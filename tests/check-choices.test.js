@@ -45,6 +45,15 @@ test('the default frequent checks match by CoC ID whatever the skill is called',
   assert.deepEqual(groups[0].choices.map(c => c.label), ['Spot Hidden', 'Écouter', 'Luck'])
 })
 
+test('choices carry only value and label', () => {
+  const { groups } = HHCheckChoices.build(entries, ['Luck'])
+  for (const group of groups) {
+    for (const choice of group.choices) {
+      assert.deepEqual(Object.keys(choice).sort(), ['label', 'value'])
+    }
+  }
+})
+
 test('setting text is split on commas and trimmed', () => {
   assert.deepEqual(HHCheckChoices.parseFrequent(' Spot Hidden,Listen , ,Luck '), ['Spot Hidden', 'Listen', 'Luck'])
   assert.deepEqual(HHCheckChoices.parseFrequent(''), [])

@@ -54,7 +54,10 @@ export default class HHCheckChoices {
       { key: HHCheckChoices.GROUP.FREQUENT, label: 'HHGROUPCHECK.Frequent', choices: frequent },
       { key: HHCheckChoices.GROUP.SKILL, label: 'CoC7.Skills', choices: skills },
       { key: HHCheckChoices.GROUP.CHARACTERISTIC, label: 'CoC7.Characteristics', choices: characteristics }
-    ].filter(g => g.choices.length > 0)
+    ]
+      .filter(g => g.choices.length > 0)
+      // selectOptions turns a group property into a nested optgroup, so choices carry only value and label
+      .map(g => ({ ...g, choices: g.choices.map(c => ({ value: c.value, label: c.label })) }))
     return {
       groups,
       selected: groups[0]?.choices[0]?.value
