@@ -1,0 +1,11 @@
+# Dependencies
+/node_modules/
+
+# Local Foundry VTT data folders written by npm run init
+/fvtt.config.json
+
+# Editors and logs
+.idea/
+.vs/
+.vscode/
+*.log

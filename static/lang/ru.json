@@ -1,0 +1,12 @@
+{
+  "HHGROUPCHECK.ErrorNoActors": "Ни у одного игрока нет назначенного персонажа, и не выбраны токены.",
+  "HHGROUPCHECK.ErrorNotKeeper": "Только Хранитель может отправлять групповые проверки.",
+  "HHGROUPCHECK.Frequent": "Частые",
+  "HHGROUPCHECK.Investigators": "Исследователи",
+  "HHGROUPCHECK.MissingCheck": "Пропущены, нет «{check}»: {names}",
+  "HHGROUPCHECK.Send": "Отправить",
+  "HHGROUPCHECK.StandbyOff": "«{setting}» отключено, поэтому эти проверки будут брошены сразу, без кнопки броска.",
+  "HHGROUPCHECK.Title": "Групповая проверка",
+  "SETTINGS.HHGroupCheckFrequent": "Групповая проверка: частые проверки",
+  "SETTINGS.HHGroupCheckFrequentHint": "Проверки через запятую, которые показываются первыми, в этом порядке, в окне групповой проверки. Первая выбрана по умолчанию. Используйте названия навыков или CoC ID (i.skill.spot-hidden), характеристики (Сила, СИЛ или str) и Удачу (lck). CoC ID работают на любом языке."
+}

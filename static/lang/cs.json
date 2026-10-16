@@ -1,0 +1,12 @@
+{
+  "HHGROUPCHECK.ErrorNoActors": "Žádný hráč nemá přiřazenou postavu a nejsou vybrány žádné tokeny.",
+  "HHGROUPCHECK.ErrorNotKeeper": "Skupinové kontroly může posílat pouze Archivář.",
+  "HHGROUPCHECK.Frequent": "Časté",
+  "HHGROUPCHECK.Investigators": "Vyšetřovatelé",
+  "HHGROUPCHECK.MissingCheck": "Přeskočeno, chybí {check}: {names}",
+  "HHGROUPCHECK.Send": "Odeslat",
+  "HHGROUPCHECK.StandbyOff": "„{setting}“ je vypnuto, takže se tyto kontroly hodí hned místo zobrazení tlačítka pro hod.",
+  "HHGROUPCHECK.Title": "Skupinová kontrola",
+  "SETTINGS.HHGroupCheckFrequent": "Skupinová kontrola: časté kontroly",
+  "SETTINGS.HHGroupCheckFrequentHint": "Kontroly oddělené čárkami, které se v tomto pořadí zobrazí jako první v dialogu skupinové kontroly. První je vybrána ve výchozím nastavení. Použijte názvy dovedností nebo CoC ID (i.skill.spot-hidden), vlastnosti (Síla, SIL nebo str) a Štěstí (lck). CoC ID fungují ve všech jazycích."
+}

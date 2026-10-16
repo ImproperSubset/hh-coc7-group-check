@@ -1,0 +1,38 @@
+{
+  "name": "hh-coc7-group-check",
+  "version": "0.1.0",
+  "description": "A Keeper tool for the Call of Cthulhu 7th Edition system on Foundry Virtual Tabletop that sends one check to several investigators at once.",
+  "scripts": {
+    "build": "webpack --mode production",
+    "eslint": "eslint hh-coc7-group-check/ scripts/ tests/",
+    "init": "node scripts/init.js",
+    "test": "node --test",
+    "watch": "webpack --mode development"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ImproperSubset/hh-coc7-group-check.git"
+  },
+  "keywords": [],
+  "author": "Rhett D. Hudson",
+  "license": "GPL-3.0-only",
+  "bugs": {
+    "url": "https://github.com/ImproperSubset/hh-coc7-group-check/issues"
+  },
+  "homepage": "https://github.com/ImproperSubset/hh-coc7-group-check#readme",
+  "type": "module",
+  "devDependencies": {
+    "@stylistic/eslint-plugin": "^5.10.0",
+    "copy-webpack-plugin": "^14.0.0",
+    "css-loader": "^7.0.0",
+    "css-minimizer-webpack-plugin": "^8.0.0",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-jsdoc": "^62.0.0",
+    "less-loader": "^12.0.0",
+    "mini-css-extract-plugin": "^2.0.0",
+    "terser-webpack-plugin": "^5.6.1",
+    "thread-loader": "^4.0.0",
+    "webpack-cli": "^7.0.0",
+    "webpackbar": "^7.0.0"
+  }
+}

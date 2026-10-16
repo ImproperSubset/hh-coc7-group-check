@@ -1,0 +1,12 @@
+{
+  "HHGROUPCHECK.ErrorNoActors": "Ingen spelare har en tilldelad rollperson och inga markörer är valda.",
+  "HHGROUPCHECK.ErrorNotKeeper": "Endast Spelledaren kan skicka gruppslag.",
+  "HHGROUPCHECK.Frequent": "Vanliga",
+  "HHGROUPCHECK.Investigators": "Utredare",
+  "HHGROUPCHECK.MissingCheck": "Hoppade över, saknar {check}: {names}",
+  "HHGROUPCHECK.Send": "Skicka",
+  "HHGROUPCHECK.StandbyOff": "\"{setting}\" är avstängt, så dessa slag slås direkt istället för att visa Slå!-knappen.",
+  "HHGROUPCHECK.Title": "Gruppslag",
+  "SETTINGS.HHGroupCheckFrequent": "Gruppslag: vanliga slag",
+  "SETTINGS.HHGroupCheckFrequentHint": "Kommaseparerade slag som listas först, i denna ordning, i dialogen för gruppslag. Det första är förvalt. Använd färdighetsnamn eller CoC ID (i.skill.spot-hidden), grundegenskaper (Styrka, STY eller str) och Tur (lck). CoC ID fungerar på alla språk."
+}

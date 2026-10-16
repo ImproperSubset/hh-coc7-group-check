@@ -1,0 +1,12 @@
+{
+  "HHGROUPCHECK.ErrorNoActors": "Żaden gracz nie ma przypisanej postaci i nie zaznaczono żadnego tokenu.",
+  "HHGROUPCHECK.ErrorNotKeeper": "Tylko Strażnik może wysyłać testy grupowe.",
+  "HHGROUPCHECK.Frequent": "Częste",
+  "HHGROUPCHECK.Investigators": "Badacze",
+  "HHGROUPCHECK.MissingCheck": "Pominięto, brak {check}: {names}",
+  "HHGROUPCHECK.Send": "Wyślij",
+  "HHGROUPCHECK.StandbyOff": "„{setting}” jest wyłączone, więc te testy zostaną rzucone od razu zamiast wyświetlić przycisk do wykonania rzutu.",
+  "HHGROUPCHECK.Title": "Test grupowy",
+  "SETTINGS.HHGroupCheckFrequent": "Test grupowy: częste testy",
+  "SETTINGS.HHGroupCheckFrequentHint": "Testy oddzielone przecinkami, wyświetlane jako pierwsze, w tej kolejności, w oknie testu grupowego. Pierwszy jest domyślnie wybrany. Użyj nazw umiejętności lub CoC ID (i.skill.spot-hidden), cech (Siła, S lub str) i Szczęścia (lck). CoC ID działają w każdym języku."
+}

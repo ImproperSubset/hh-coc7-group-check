@@ -1,0 +1,12 @@
+{
+  "HHGROUPCHECK.ErrorNoActors": "Aucun joueur n'a de personnage assigné et aucun token n'est sélectionné.",
+  "HHGROUPCHECK.ErrorNotKeeper": "Seul le Gardien peut envoyer des tests de groupe.",
+  "HHGROUPCHECK.Frequent": "Fréquents",
+  "HHGROUPCHECK.Investigators": "Investigateurs",
+  "HHGROUPCHECK.MissingCheck": "Ignorés, pas de {check} : {names}",
+  "HHGROUPCHECK.Send": "Envoyer",
+  "HHGROUPCHECK.StandbyOff": "« {setting} » est désactivé : ces tests seront lancés immédiatement au lieu d'afficher un bouton de jet.",
+  "HHGROUPCHECK.Title": "Test de groupe",
+  "SETTINGS.HHGroupCheckFrequent": "Test de groupe : tests fréquents",
+  "SETTINGS.HHGroupCheckFrequentHint": "Tests séparés par des virgules, affichés en premier, dans cet ordre, dans la fenêtre de test de groupe. Le premier est sélectionné par défaut. Utilisez des noms de compétences ou des CoC ID (i.skill.spot-hidden), des caractéristiques (Force, FOR ou str) et la Chance (lck). Les CoC ID fonctionnent dans toutes les langues."
+}

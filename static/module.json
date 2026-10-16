@@ -1,0 +1,115 @@
+{
+  "id": "hh-coc7-group-check",
+  "title": "Group Checks for Call of Cthulhu 7th Edition",
+  "description": "A Keeper tool that sends one skill, characteristic or Luck check to several investigators at once, each as a card with a Roll button.",
+  "version": "0.1.0",
+  "authors": [
+    {
+      "name": "Rhett D. Hudson"
+    }
+  ],
+  "url": "https://github.com/ImproperSubset/hh-coc7-group-check",
+  "manifest": "https://github.com/ImproperSubset/hh-coc7-group-check/releases/latest/download/module.json",
+  "bugs": "https://github.com/ImproperSubset/hh-coc7-group-check/issues",
+  "license": "LICENSE",
+  "readme": "README.md",
+  "compatibility": {
+    "minimum": "12",
+    "verified": "14"
+  },
+  "relationships": {
+    "systems": [
+      {
+        "id": "CoC7",
+        "type": "system",
+        "compatibility": {
+          "minimum": "8.16",
+          "verified": "8.16"
+        }
+      }
+    ]
+  },
+  "esmodules": [
+    "module.js"
+  ],
+  "styles": [
+    "module.css"
+  ],
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json"
+    },
+    {
+      "lang": "fr",
+      "name": "Français",
+      "path": "lang/fr.json"
+    },
+    {
+      "lang": "es",
+      "name": "Español",
+      "path": "lang/es.json"
+    },
+    {
+      "lang": "de",
+      "name": "Deutsch",
+      "path": "lang/de.json"
+    },
+    {
+      "lang": "ja",
+      "name": "日本語",
+      "path": "lang/ja.json"
+    },
+    {
+      "lang": "cn",
+      "name": "中文",
+      "path": "lang/cn.json"
+    },
+    {
+      "lang": "pl",
+      "name": "Polski",
+      "path": "lang/pl.json"
+    },
+    {
+      "lang": "pt-BR",
+      "name": "Português (Brasil)",
+      "path": "lang/pt-BR.json"
+    },
+    {
+      "lang": "zh-tw",
+      "name": "正體中文",
+      "path": "lang/zh-TW.json"
+    },
+    {
+      "lang": "sv",
+      "name": "Svenska",
+      "path": "lang/sv.json"
+    },
+    {
+      "lang": "cs",
+      "name": "Čeština",
+      "path": "lang/cs.json"
+    },
+    {
+      "lang": "ko",
+      "name": "한국어",
+      "path": "lang/ko.json"
+    },
+    {
+      "lang": "it",
+      "name": "Italiano",
+      "path": "lang/it.json"
+    },
+    {
+      "lang": "ru",
+      "name": "Русский",
+      "path": "lang/ru.json"
+    },
+    {
+      "lang": "uk",
+      "name": "Українська",
+      "path": "lang/uk.json"
+    }
+  ]
+}

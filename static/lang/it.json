@@ -1,0 +1,12 @@
+{
+  "HHGROUPCHECK.ErrorNoActors": "Nessun giocatore ha un personaggio assegnato e nessuna Pedina è selezionata.",
+  "HHGROUPCHECK.ErrorNotKeeper": "Solo il Custode può inviare tiri di gruppo.",
+  "HHGROUPCHECK.Frequent": "Frequenti",
+  "HHGROUPCHECK.Investigators": "Investigatori",
+  "HHGROUPCHECK.MissingCheck": "Saltati, senza {check}: {names}",
+  "HHGROUPCHECK.Send": "Invia",
+  "HHGROUPCHECK.StandbyOff": "\"{setting}\" è disattivato, quindi questi tiri verranno effettuati subito invece di mostrare un pulsante per tirare.",
+  "HHGROUPCHECK.Title": "Tiro di gruppo",
+  "SETTINGS.HHGroupCheckFrequent": "Tiro di gruppo: tiri frequenti",
+  "SETTINGS.HHGroupCheckFrequentHint": "Tiri separati da virgole, mostrati per primi, in quest'ordine, nella finestra del tiro di gruppo. Il primo è selezionato di default. Usa nomi di abilità o CoC ID (i.skill.spot-hidden), caratteristiche (Forza, FOR o str) e Fortuna (lck). I CoC ID funzionano in tutte le lingue."
+}

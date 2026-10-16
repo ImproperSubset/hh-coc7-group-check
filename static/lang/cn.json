@@ -1,0 +1,12 @@
+{
+  "HHGROUPCHECK.ErrorNoActors": "没有玩家分配了角色，也没有选中任何token。",
+  "HHGROUPCHECK.ErrorNotKeeper": "只有KP可以发送团体检定。",
+  "HHGROUPCHECK.Frequent": "常用",
+  "HHGROUPCHECK.Investigators": "调查员",
+  "HHGROUPCHECK.MissingCheck": "已跳过，没有{check}：{names}",
+  "HHGROUPCHECK.Send": "发送",
+  "HHGROUPCHECK.StandbyOff": "“{setting}”已关闭，因此这些检定会直接掷骰，而不是显示掷骰按钮。",
+  "HHGROUPCHECK.Title": "团体检定",
+  "SETTINGS.HHGroupCheckFrequent": "团体检定：常用检定",
+  "SETTINGS.HHGroupCheckFrequentHint": "以逗号分隔的检定，按此顺序列在团体检定对话框的最前面。默认选中第一个。可使用技能名称或CoC ID（i.skill.spot-hidden）、属性（力量或str）以及幸运（lck）。CoC ID适用于所有语言。"
+}

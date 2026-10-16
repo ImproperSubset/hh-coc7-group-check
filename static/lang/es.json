@@ -1,0 +1,12 @@
+{
+  "HHGROUPCHECK.ErrorNoActors": "Ningún jugador tiene un personaje asignado y no se han seleccionado fichas.",
+  "HHGROUPCHECK.ErrorNotKeeper": "Solo el Guardián puede enviar tiradas de grupo.",
+  "HHGROUPCHECK.Frequent": "Frecuentes",
+  "HHGROUPCHECK.Investigators": "Investigadores",
+  "HHGROUPCHECK.MissingCheck": "Omitidos, sin {check}: {names}",
+  "HHGROUPCHECK.Send": "Enviar",
+  "HHGROUPCHECK.StandbyOff": "«{setting}» está desactivado, así que estas tiradas se harán directamente en lugar de mostrar un botón de tirar.",
+  "HHGROUPCHECK.Title": "Tirada de grupo",
+  "SETTINGS.HHGroupCheckFrequent": "Tirada de grupo: tiradas frecuentes",
+  "SETTINGS.HHGroupCheckFrequentHint": "Tiradas separadas por comas que aparecen primero, en este orden, en el diálogo de tirada de grupo. La primera se selecciona por defecto. Usa nombres de habilidades o ID de CoC (i.skill.spot-hidden), características (Fuerza, FUE o str) y Suerte (lck). Los ID de CoC funcionan en todos los idiomas."
+}

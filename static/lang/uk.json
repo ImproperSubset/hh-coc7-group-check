@@ -1,0 +1,12 @@
+{
+  "HHGROUPCHECK.ErrorNoActors": "Жоден гравець не має призначеного персонажа, і не обрано жодного токена.",
+  "HHGROUPCHECK.ErrorNotKeeper": "Лише Вартовий може надсилати групові перевірки.",
+  "HHGROUPCHECK.Frequent": "Часті",
+  "HHGROUPCHECK.Investigators": "Дослідники",
+  "HHGROUPCHECK.MissingCheck": "Пропущено, немає «{check}»: {names}",
+  "HHGROUPCHECK.Send": "Надіслати",
+  "HHGROUPCHECK.StandbyOff": "«{setting}» вимкнено, тому ці перевірки буде кинуто одразу замість показу кнопки \"кинути\".",
+  "HHGROUPCHECK.Title": "Групова перевірка",
+  "SETTINGS.HHGroupCheckFrequent": "Групова перевірка: часті перевірки",
+  "SETTINGS.HHGroupCheckFrequentHint": "Перевірки через кому, які показуються першими, у цьому порядку, у вікні групової перевірки. Першу обрано за замовчуванням. Використовуйте назви умінь або CoC ID (i.skill.spot-hidden), характеристики (Сила, СИЛ або str) і Талан (lck). CoC ID працюють будь-якою мовою."
+}

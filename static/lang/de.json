@@ -1,0 +1,12 @@
+{
+  "HHGROUPCHECK.ErrorNoActors": "Kein Spieler hat einen zugewiesenen Charakter und es sind keine Tokens ausgewählt.",
+  "HHGROUPCHECK.ErrorNotKeeper": "Nur der Spielleiter kann Gruppenproben senden.",
+  "HHGROUPCHECK.Frequent": "Häufig",
+  "HHGROUPCHECK.Investigators": "Investigatoren",
+  "HHGROUPCHECK.MissingCheck": "Übersprungen, {check} fehlt: {names}",
+  "HHGROUPCHECK.Send": "Senden",
+  "HHGROUPCHECK.StandbyOff": "„{setting}“ ist aus, daher wird bei diesen Proben sofort gewürfelt, statt eine Würfelschaltfläche anzuzeigen.",
+  "HHGROUPCHECK.Title": "Gruppenprobe",
+  "SETTINGS.HHGroupCheckFrequent": "Gruppenprobe: häufige Proben",
+  "SETTINGS.HHGroupCheckFrequentHint": "Kommagetrennte Proben, die im Gruppenprobe-Dialog in dieser Reihenfolge zuerst aufgeführt werden. Die erste ist standardmäßig ausgewählt. Verwende Fertigkeitsnamen oder CoC IDs (i.skill.spot-hidden), Charaktereigenschaften (Stärke, ST oder str) und Glück (lck). CoC IDs funktionieren in jeder Sprache."
+}

@@ -1,0 +1,50 @@
+<div class="flexcol">
+  <div class="form-group">
+    <label>{{localize 'CoC7.Check'}}</label>
+    <select name="check">
+      {{#each groups as |group|}}
+        <optgroup label="{{localize group.label}}">
+          {{selectOptions group.choices selected=@root.selected valueAttr='value' labelAttr='label'}}
+        </optgroup>
+      {{/each}}
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label>{{localize 'CoC7.RollDifficulty'}}</label>
+    <select name="difficulty">
+      {{selectOptions difficultyTypes selected=difficulty localize=true valueAttr='key' labelAttr='val'}}
+    </select>
+  </div>
+
+  <div class="form-group bonus-penalty-selector">
+    <label>{{localize 'CoC7.BonusDice'}}</label>
+    <div class="bonus-penalty-box">
+      <div class="flexrow bonus-penalty-labels">
+        <span class="double-penalty"><i class="fa-solid fa-dice-d10"></i><i class="fa-solid fa-dice-d10"></i></span>
+        <span class="penalty"><i class="fa-solid fa-dice-d10"></i></span>
+        <span class="normal-roll"><i class="fa-solid fa-dice-d10"></i></span>
+        <span class="bonus"><i class="fa-solid fa-dice-d10"></i></span>
+        <span class="double-bonus"><i class="fa-solid fa-dice-d10"></i><i class="fa-solid fa-dice-d10"></i></span>
+      </div>
+      <div class="flexrow bonus-penalty-labels">
+        <span class="double-penalty">-2</span>
+        <span class="penalty">-1</span>
+        <span class="normal-roll">0</span>
+        <span class="bonus">+1</span>
+        <span class="double-bonus">+2</span>
+      </div>
+      <input type="range" name="poolModifier" min="-2" max="2" value="0">
+    </div>
+  </div>
+
+  <fieldset class="hh-group-check-actors">
+    <legend>{{localize 'HHGROUPCHECK.Investigators'}}</legend>
+    {{#each actors as |actor|}}
+      <label class="checkbox">
+        <input type="checkbox" name="actors" value="{{actor.uuid}}" {{checked actor.checked}}>
+        {{actor.name}}
+      </label>
+    {{/each}}
+  </fieldset>
+</div>

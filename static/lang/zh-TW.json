@@ -1,0 +1,12 @@
+{
+  "HHGROUPCHECK.ErrorNoActors": "沒有玩家被指派角色，也沒有選擇任何 Token。",
+  "HHGROUPCHECK.ErrorNotKeeper": "只有 KP 可以發送團體檢定。",
+  "HHGROUPCHECK.Frequent": "常用",
+  "HHGROUPCHECK.Investigators": "調查員",
+  "HHGROUPCHECK.MissingCheck": "已略過，沒有{check}：{names}",
+  "HHGROUPCHECK.Send": "發送",
+  "HHGROUPCHECK.StandbyOff": "「{setting}」已關閉，因此這些檢定會直接擲骰，而不是顯示擲骰按鈕。",
+  "HHGROUPCHECK.Title": "團體檢定",
+  "SETTINGS.HHGroupCheckFrequent": "團體檢定：常用檢定",
+  "SETTINGS.HHGroupCheckFrequentHint": "以逗號分隔的檢定，會依此順序列在團體檢定對話框的最前面。預設選取第一個。可使用技能名稱或 CoC ID（i.skill.spot-hidden）、屬性（力量或 str）以及幸運（lck）。CoC ID 在所有語言中皆可使用。"
+}

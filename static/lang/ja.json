@@ -1,0 +1,12 @@
+{
+  "HHGROUPCHECK.ErrorNoActors": "キャラクターを割り当てられたプレイヤーがおらず､トークンも選択されていない",
+  "HHGROUPCHECK.ErrorNotKeeper": "グループロールを送信できるのはキーパーのみ",
+  "HHGROUPCHECK.Frequent": "よく使う",
+  "HHGROUPCHECK.Investigators": "探索者",
+  "HHGROUPCHECK.MissingCheck": "{check}がないためスキップ：{names}",
+  "HHGROUPCHECK.Send": "送信",
+  "HHGROUPCHECK.StandbyOff": "「{setting}」がオフのため､ロールボタンを表示せずにすぐロールする",
+  "HHGROUPCHECK.Title": "グループロール",
+  "SETTINGS.HHGroupCheckFrequent": "グループロール：よく使うロール",
+  "SETTINGS.HHGroupCheckFrequentHint": "グループロールのダイアログで､この順に先頭に表示するロールをカンマ区切りで指定する。最初のものが初期選択される。技能名またはCoC ID（i.skill.spot-hidden）､能力値（STR [筋力]､STR､str）､幸運（lck）が使える。CoC IDはどの言語でも使える。"
+}
