@@ -56,9 +56,10 @@ The dialog itself and the calls into the system are tested by hand in Foundry VT
 hh-coc7-group-check/
   module.js                        entry point: registers the hooks
   constants.js                     module ID, system ID, default frequent checks
-  hooks/init.js                    registers settings
+  hooks/init.js                    registers settings and key bindings, exposes the macro API
   hooks/get-scene-control-buttons.js  adds the button to Keeper's tools (v12 and v13+ APIs)
   setup/register-settings.js       the Frequent checks setting
+  setup/register-keybindings.js    the Shift+G key binding
   apps/check-choices.js            builds the grouped check list (no Foundry dependencies)
   apps/group-check-dialog.js       the dialog and the code that sends the checks
 static/

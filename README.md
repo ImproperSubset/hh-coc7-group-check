@@ -49,7 +49,7 @@ To install a specific version instead of the latest, use that release's `module.
 ### Quick start.
 
 1. Make sure each player has their investigator assigned (**User Configuration → Character**), or select the tokens you want to roll.
-2. In the scene controls, open **Keeper's tools** and click **Group check** (the people icon).
+2. Press **Shift+G**, or open **Keeper's tools** in the scene controls and click **Group check** (the people icon).
 3. Choose the check, difficulty and bonus/penalty dice, adjust the ticked investigators, and click **Send**.
 
 For the usual table experience — each player clicks their own Roll button — turn on the system setting **Standby Keeper rolls** (see [What Send does](#what-send-does)).
@@ -103,6 +103,20 @@ When **Standby Keeper rolls** is off you'll get a warning each time you send, as
 **Investigators who can't make the check are skipped**, and a notification names them — for example *"Skipped, no Language (Latin): Harvey Walters, Rita Young"*. This happens when an investigator doesn't own the chosen skill — usually a specialization such as a Language, Science or Art/Craft that only some investigators took — or (for unusual actor types) lacks the characteristic or Luck. The module deliberately does **not** add missing skills to anyone's sheet; ask those players for the base-chance roll separately if your table wants one.
 
 Sanity rolls, opposed rolls and combined rolls are out of scope; use the system's own tools for those.
+
+### Keyboard shortcut.
+
+**Shift+G** opens the Group check dialog. Change or clear it under **Game Settings → Configure Controls → Group Checks for CoC7**. Only the Keeper can use it.
+
+### Macro.
+
+A script macro can open the dialog:
+
+```js
+game.modules.get('hh-coc7-group-check').api.groupCheck()
+```
+
+It returns a promise that resolves once the dialog is closed and any checks are sent.
 
 ## Settings.
 
