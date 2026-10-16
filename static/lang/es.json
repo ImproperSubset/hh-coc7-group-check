@@ -4,9 +4,12 @@
   "HHGROUPCHECK.Frequent": "Frecuentes",
   "HHGROUPCHECK.Investigators": "Investigadores",
   "HHGROUPCHECK.MissingCheck": "Omitidos, sin {check}: {names}",
+  "HHGROUPCHECK.SanityNeedsSystem": "Las tiradas de Cordura necesitan un sistema CoC7 que ofrezca game.CoC7.sanCheck. No se ha enviado nada.",
   "HHGROUPCHECK.Send": "Enviar",
   "HHGROUPCHECK.StandbyOff": "«{setting}» está desactivado, así que estas tiradas se harán directamente en lugar de mostrar un botón de tirar.",
   "HHGROUPCHECK.Title": "Tirada de grupo",
   "SETTINGS.HHGroupCheckFrequent": "Tirada de grupo: tiradas frecuentes",
-  "SETTINGS.HHGroupCheckFrequentHint": "Tiradas separadas por comas que aparecen primero, en este orden, en el diálogo de tirada de grupo. La primera se selecciona por defecto. Usa nombres de habilidades o ID de CoC (i.skill.spot-hidden), características (Fuerza, FUE o str) y Suerte (lck). Los ID de CoC funcionan en todos los idiomas."
+  "SETTINGS.HHGroupCheckFrequentHint": "Tiradas separadas por comas que aparecen primero, en este orden, en el diálogo de tirada de grupo. La primera se selecciona por defecto. Usa nombres de habilidades o ID de CoC (i.skill.spot-hidden), características (Fuerza, FUE o str), Suerte (lck) y Cordura (san). Los ID de CoC funcionan en todos los idiomas.",
+  "SETTINGS.HHGroupCheckWhisper": "Tirada de grupo: susurrar peticiones",
+  "SETTINGS.HHGroupCheckWhisperHint": "Susurra cada tarjeta con botón de tirar y cada petición de Cordura solo a los jugadores de ese investigador. El resultado es público una vez hecha la tirada."
 }

@@ -4,9 +4,12 @@
   "HHGROUPCHECK.Frequent": "Częste",
   "HHGROUPCHECK.Investigators": "Badacze",
   "HHGROUPCHECK.MissingCheck": "Pominięto, brak {check}: {names}",
+  "HHGROUPCHECK.SanityNeedsSystem": "Testy Poczytalności wymagają systemu CoC7, który udostępnia game.CoC7.sanCheck. Nic nie wysłano.",
   "HHGROUPCHECK.Send": "Wyślij",
   "HHGROUPCHECK.StandbyOff": "„{setting}” jest wyłączone, więc te testy zostaną rzucone od razu zamiast wyświetlić przycisk do wykonania rzutu.",
   "HHGROUPCHECK.Title": "Test grupowy",
   "SETTINGS.HHGroupCheckFrequent": "Test grupowy: częste testy",
-  "SETTINGS.HHGroupCheckFrequentHint": "Testy oddzielone przecinkami, wyświetlane jako pierwsze, w tej kolejności, w oknie testu grupowego. Pierwszy jest domyślnie wybrany. Użyj nazw umiejętności lub CoC ID (i.skill.spot-hidden), cech (Siła, S lub str) i Szczęścia (lck). CoC ID działają w każdym języku."
+  "SETTINGS.HHGroupCheckFrequentHint": "Testy oddzielone przecinkami, wyświetlane jako pierwsze, w tej kolejności, w oknie testu grupowego. Pierwszy jest domyślnie wybrany. Użyj nazw umiejętności lub CoC ID (i.skill.spot-hidden), cech (Siła, S lub str), Szczęścia (lck) i Poczytalności (san). CoC ID działają w każdym języku.",
+  "SETTINGS.HHGroupCheckWhisper": "Test grupowy: szepcz prośby",
+  "SETTINGS.HHGroupCheckWhisperHint": "Każdą kartę z przyciskiem do wykonania rzutu i prośbę o test Poczytalności szepcz tylko graczom danego badacza. Po rzucie wynik jest widoczny dla wszystkich."
 }

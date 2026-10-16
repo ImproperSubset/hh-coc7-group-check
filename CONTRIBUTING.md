@@ -45,7 +45,7 @@ After a build, reload Foundry VTT (F5) to pick up the changes.
 
 The tests run under Node with no Foundry VTT runtime, so they cover the pure logic:
 
-- `tests/check-choices.test.js`: merging skills by CoC ID and name, dropdown grouping and ordering, frequent-check matching (case, accents, CoC IDs, duplicates) and setting parsing.
+- `tests/check-choices.test.js`: merging skills by CoC ID and name, dropdown grouping and ordering, frequent-check matching (case, accents, CoC IDs, duplicates), and setting parsing.
 - `tests/lang.test.js`: every language listed in `module.json` has the same keys and placeholders as `en.json`.
 
 The dialog itself and the calls into the system are tested in a running Foundry VTT world.
@@ -58,10 +58,13 @@ hh-coc7-group-check/
   constants.js                     IDs, default frequent checks, check types and difficulties
   hooks/init.js                    registers settings and key bindings, exposes the macro API
   hooks/get-scene-control-buttons.js  adds the button to Keeper's tools (v12 and v13+ APIs)
-  setup/register-settings.js       the Frequent checks setting
+  hooks/pre-create-chat-message.js whispers a group check's standby and sanity cards to the investigator's players
+  hooks/update-chat-message.js     makes a whispered sanity card public once its SAN roll is made
+  setup/register-settings.js       the Frequent checks and whisper requests settings
   setup/register-keybindings.js    the Shift+G key binding
   apps/check-choices.js            builds the check list from plain data (no Foundry dependencies)
   apps/group-check-dialog.js       the dialog and the code that sends the checks
+  apps/card-whispers.js            which standby and sanity cards to whisper, and to whom
 static/
   module.json                      Foundry VTT manifest
   templates/group-check.hbs        dialog template
@@ -74,6 +77,36 @@ tests/                             node:test unit tests
 ### Continuous integration.
 
 Every push to `main` and every pull request runs [`ci.yml`](.github/workflows/ci.yml): actionlint on the workflows, a [REUSE](https://reuse.software/) licensing check, ESLint, the tests and a production build.
+
+### Patched CoC7 system.
+
+The CoC7 system doesn't expose its sanity check card to modules, so Sanity group checks need a fork of the system that adds the card as `game.CoC7.sanCheck`. With a released system, the module reports that and sends nothing.
+
+- Fork: [ImproperSubset/CoC7-FoundryVTT](https://github.com/ImproperSubset/CoC7-FoundryVTT), branch `expose-san-check`.
+- The branch is the latest CoC7 release plus one commit adding `game.CoC7.sanCheck` in `coc7/hooks/init.js`. It never tracks the system's unreleased `develop`.
+
+When CoC7 publishes a release, move the commit onto it. With the branch on `8.16` and a new `8.17` release:
+
+```sh
+git remote add upstream https://github.com/Miskatonic-Investigative-Society/CoC7-FoundryVTT.git  # once
+git fetch upstream --tags
+git checkout expose-san-check
+git rebase --onto 8.17 8.16 expose-san-check
+git push --force-with-lease origin expose-san-check
+```
+
+A conflict there means the system changed the `game.CoC7` object in `coc7/hooks/init.js`; re-add the import and the `sanCheck: CoC7SanCheckCard.create` line.
+
+To build the patched system into a Foundry VTT data folder, from the fork's clone:
+
+```sh
+npm install
+npm run init               # choose the Foundry VTT user data folder to build into
+npm run compendiums-build
+npm run manuals-build
+npm run roll-requests-build
+npm run build              # writes <data>/Data/systems/CoC7
+```
 
 ## Releasing.
 

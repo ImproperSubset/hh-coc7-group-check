@@ -4,9 +4,12 @@
   "HHGROUPCHECK.Frequent": "常用",
   "HHGROUPCHECK.Investigators": "调查员",
   "HHGROUPCHECK.MissingCheck": "已跳过，没有{check}：{names}",
+  "HHGROUPCHECK.SanityNeedsSystem": "理智检定需要提供 game.CoC7.sanCheck 的 CoC7 系统。未发送任何内容。",
   "HHGROUPCHECK.Send": "发送",
   "HHGROUPCHECK.StandbyOff": "“{setting}”已关闭，因此这些检定会直接掷骰，而不是显示掷骰按钮。",
   "HHGROUPCHECK.Title": "团体检定",
   "SETTINGS.HHGroupCheckFrequent": "团体检定：常用检定",
-  "SETTINGS.HHGroupCheckFrequentHint": "以逗号分隔的检定，按此顺序列在团体检定对话框的最前面。默认选中第一个。可使用技能名称或CoC ID（i.skill.spot-hidden）、属性（力量或str）以及幸运（lck）。CoC ID适用于所有语言。"
+  "SETTINGS.HHGroupCheckFrequentHint": "以逗号分隔的检定，按此顺序列在团体检定对话框的最前面。默认选中第一个。可使用技能名称或CoC ID（i.skill.spot-hidden）、属性（力量或str）、幸运（lck）以及理智（san）。CoC ID适用于所有语言。",
+  "SETTINGS.HHGroupCheckWhisper": "团体检定：私信请求",
+  "SETTINGS.HHGroupCheckWhisperHint": "只把每张掷骰卡和理智请求私信给该调查员的玩家。掷骰后结果对所有人公开。"
 }

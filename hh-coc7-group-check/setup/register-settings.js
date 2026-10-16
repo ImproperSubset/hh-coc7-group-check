@@ -12,4 +12,12 @@ export default function () {
     default: DEFAULT_FREQUENT_CHECKS,
     type: String
   })
+  game.settings.register(FOLDER_ID, 'whisperRequests', {
+    name: 'SETTINGS.HHGroupCheckWhisper',
+    hint: 'SETTINGS.HHGroupCheckWhisperHint',
+    scope: 'world',
+    config: true,
+    default: true,
+    type: Boolean
+  })
 }

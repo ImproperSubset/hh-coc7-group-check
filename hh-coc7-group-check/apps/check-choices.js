@@ -68,7 +68,7 @@ export function skillEntries (skills) {
 }
 
 /**
- * The eight characteristics, then Luck
+ * The eight characteristics, then Luck and Sanity
  * @param {Function} localize turns a translation key into text
  * @returns {Array<object>}
  */
@@ -88,6 +88,14 @@ export function characteristicEntries (localize) {
     group: GROUP.CHARACTERISTIC,
     key: 'lck',
     aliases: [localize('CoC7.Luck'), 'Luck', 'lck']
+  })
+  entries.push({
+    type: CHECK_TYPE.SANITY,
+    value: CHECK_TYPE.SANITY + ':san',
+    label: localize('CoC7.Sanity'),
+    group: GROUP.CHARACTERISTIC,
+    key: 'san',
+    aliases: [localize('CoC7.Sanity'), 'Sanity', 'san']
   })
   return entries
 }

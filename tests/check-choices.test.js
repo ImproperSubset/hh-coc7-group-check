@@ -4,7 +4,7 @@ import { buildChoices, characteristicEntries, parseFrequent, skillEntries } from
 import { DEFAULT_FREQUENT_CHECKS } from '../hh-coc7-group-check/constants.js'
 
 const labels = { frequent: 'Frequent', skill: 'Skills', characteristic: 'Characteristics' }
-const french = { 'CHARAC.Strength': 'Force', 'CHARAC.STR': 'FOR', 'CoC7.Luck': 'Chance' }
+const french = { 'CHARAC.Strength': 'Force', 'CHARAC.STR': 'FOR', 'CoC7.Luck': 'Chance', 'CoC7.Sanity': 'Santé Mentale' }
 
 const entries = [
   ...skillEntries([
@@ -87,11 +87,16 @@ test('a check listed twice in the setting is used once', () => {
 
 test('the default frequent checks match by CoC ID whatever the skill is called', () => {
   const result = buildChoices(entries, parseFrequent(DEFAULT_FREQUENT_CHECKS), labels)
-  assert.deepEqual(result.choices.filter(c => c.group === 'Frequent').map(c => c.label), ['Spot Hidden', 'Écouter', 'Chance'])
+  assert.deepEqual(result.choices.filter(c => c.group === 'Frequent').map(c => c.label), ['Spot Hidden', 'Écouter', 'Chance', 'Santé Mentale'])
 })
 
 test('setting text is split on commas and trimmed', () => {
   assert.deepEqual(parseFrequent(' Spot Hidden,Listen , ,Luck '), ['Spot Hidden', 'Listen', 'Luck'])
   assert.deepEqual(parseFrequent(''), [])
   assert.deepEqual(parseFrequent(undefined), [])
+})
+
+test('Sanity matches its English name and key in any language', () => {
+  const result = buildChoices(entries, ['Sanity', 'san', 'santé mentale'], labels)
+  assert.deepEqual(values(result, 'Frequent'), ['sanity:san'])
 })

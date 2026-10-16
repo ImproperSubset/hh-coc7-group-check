@@ -4,9 +4,12 @@
   "HHGROUPCHECK.Frequent": "常用",
   "HHGROUPCHECK.Investigators": "調查員",
   "HHGROUPCHECK.MissingCheck": "已略過，沒有{check}：{names}",
+  "HHGROUPCHECK.SanityNeedsSystem": "心智檢定需要提供 game.CoC7.sanCheck 的 CoC7 系統。未傳送任何內容。",
   "HHGROUPCHECK.Send": "發送",
   "HHGROUPCHECK.StandbyOff": "「{setting}」已關閉，因此這些檢定會直接擲骰，而不是顯示擲骰按鈕。",
   "HHGROUPCHECK.Title": "團體檢定",
   "SETTINGS.HHGroupCheckFrequent": "團體檢定：常用檢定",
-  "SETTINGS.HHGroupCheckFrequentHint": "以逗號分隔的檢定，會依此順序列在團體檢定對話框的最前面。預設選取第一個。可使用技能名稱或 CoC ID（i.skill.spot-hidden）、屬性（力量或 str）以及幸運（lck）。CoC ID 在所有語言中皆可使用。"
+  "SETTINGS.HHGroupCheckFrequentHint": "以逗號分隔的檢定，會依此順序列在團體檢定對話框的最前面。預設選取第一個。可使用技能名稱或 CoC ID（i.skill.spot-hidden）、屬性（力量或 str）、幸運（lck）以及心智（san）。CoC ID 在所有語言中皆可使用。",
+  "SETTINGS.HHGroupCheckWhisper": "團體檢定：私訊請求",
+  "SETTINGS.HHGroupCheckWhisperHint": "只把每張擲骰卡和心智請求私訊給該調查員的玩家。擲骰後結果對所有人公開。"
 }

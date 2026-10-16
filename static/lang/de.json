@@ -4,9 +4,12 @@
   "HHGROUPCHECK.Frequent": "Häufig",
   "HHGROUPCHECK.Investigators": "Investigatoren",
   "HHGROUPCHECK.MissingCheck": "Übersprungen, {check} fehlt: {names}",
+  "HHGROUPCHECK.SanityNeedsSystem": "Stabilitätsproben brauchen ein CoC7-System, das game.CoC7.sanCheck bereitstellt. Es wurde nichts gesendet.",
   "HHGROUPCHECK.Send": "Senden",
   "HHGROUPCHECK.StandbyOff": "„{setting}“ ist aus, daher wird bei diesen Proben sofort gewürfelt, statt eine Würfelschaltfläche anzuzeigen.",
   "HHGROUPCHECK.Title": "Gruppenprobe",
   "SETTINGS.HHGroupCheckFrequent": "Gruppenprobe: häufige Proben",
-  "SETTINGS.HHGroupCheckFrequentHint": "Kommagetrennte Proben, die im Gruppenprobe-Dialog in dieser Reihenfolge zuerst aufgeführt werden. Die erste ist standardmäßig ausgewählt. Verwende Fertigkeitsnamen oder CoC IDs (i.skill.spot-hidden), Charaktereigenschaften (Stärke, ST oder str) und Glück (lck). CoC IDs funktionieren in jeder Sprache."
+  "SETTINGS.HHGroupCheckFrequentHint": "Kommagetrennte Proben, die im Gruppenprobe-Dialog in dieser Reihenfolge zuerst aufgeführt werden. Die erste ist standardmäßig ausgewählt. Verwende Fertigkeitsnamen oder CoC IDs (i.skill.spot-hidden), Charaktereigenschaften (Stärke, ST oder str), Glück (lck) und Stabilität (san). CoC IDs funktionieren in jeder Sprache.",
+  "SETTINGS.HHGroupCheckWhisper": "Gruppenprobe: Anfragen flüstern",
+  "SETTINGS.HHGroupCheckWhisperHint": "Jede Würfelkarte und Stabilitätsanfrage nur an die Spieler des jeweiligen Investigators flüstern. Nach dem Wurf ist das Ergebnis öffentlich."
 }
