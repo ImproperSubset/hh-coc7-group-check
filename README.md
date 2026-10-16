@@ -24,7 +24,7 @@ Only the Keeper can use the tool. Open it with **Shift+G** (change it under **Co
 game.modules.get('hh-coc7-group-check').api.groupCheck()
 ```
 
-The dialog lists each player's assigned character (**User Configuration → Character**) and the actors of any tokens you have selected, apart from monsters (see [Sanity checks](#sanity-checks)). When tokens are selected, only their actors start ticked. Choose the check, the difficulty and any bonus or penalty dice, untick anyone who shouldn't roll, and click **Send**.
+The dialog lists each player's assigned character (**User Configuration → Character**) and the actors of any tokens you have selected. Selected investigators start ticked; if you selected none, every investigator does. Selected monsters (see [Sanity checks](#sanity-checks)) start ticked and roll along with the investigators, except in a Sanity check. Choose the check, the difficulty and any bonus or penalty dice, untick anyone who shouldn't roll, and click **Send**.
 
 The check list starts with your frequent checks (see [Settings](#settings)), then every skill that any listed investigator has, then the characteristics, Luck and Sanity. Skills that share a CoC ID or a name are listed once, even if the investigators were built in different languages.
 
@@ -47,7 +47,7 @@ Opposed and combined rolls are not covered. Use the system's own tools for those
 
 ### Sanity checks.
 
-Select the monster's token, along with any investigators' tokens, and open the dialog. A selected monster (any actor other than an investigator whose sanity loss is filled in, such as `0/1D6`) makes **Sanity** the chosen check and fills in its loss on a success and on a failure, with its type or name as the reason. The monster doesn't join the list of who rolls. The investigators you selected start ticked; if you selected only the monster, everyone does.
+Select the monster's token, along with any investigators' tokens, and open the dialog. A selected monster (any actor other than an investigator whose sanity loss is filled in, such as `0/1D6`) makes **Sanity** the chosen check and fills in its loss on a success and on a failure, with its type or name as the reason. In a Sanity check the monster is left out of the list of who rolls. Pick any other check and it rolls along with the investigators.
 
 You can also choose **Sanity** from the check list and type the loss (for example `0` and `1D6`) and the reason yourself.
 

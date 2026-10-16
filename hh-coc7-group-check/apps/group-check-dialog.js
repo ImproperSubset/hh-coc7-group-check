@@ -28,8 +28,8 @@ export default class HHGroupCheckDialog extends foundry.applications.api.DialogV
 
   /**
    * Actors that can be offered: players' assigned characters plus the actors of selected tokens.
-   * A selected monster supplies the Sanity values instead of joining the list.
-   * @returns {object} {actors, selected, sanity}
+   * The first selected monster also supplies the Sanity values.
+   * @returns {object} {actors, selected, monsters, sanity}
    */
   static candidateActors () {
     const actors = new Map()
@@ -39,14 +39,19 @@ export default class HHGroupCheckDialog extends foundry.applications.api.DialogV
       }
     }
     const selected = new Set()
+    const monsters = new Set()
     let sanity
     if (canvas.ready) {
       for (const token of canvas.tokens.controlled) {
+        if (!token.actor) {
+          continue
+        }
+        actors.set(token.actor.uuid, token.actor)
         const monster = HHGroupCheckDialog.monsterSanity(token.actor)
         if (monster) {
           sanity ??= monster
-        } else if (token.actor) {
-          actors.set(token.actor.uuid, token.actor)
+          monsters.add(token.actor.uuid)
+        } else {
           selected.add(token.actor.uuid)
         }
       }
@@ -54,6 +59,7 @@ export default class HHGroupCheckDialog extends foundry.applications.api.DialogV
     return {
       actors: [...actors.values()].sort((a, b) => a.name.localeCompare(b.name)),
       selected,
+      monsters,
       sanity
     }
   }
@@ -90,7 +96,8 @@ export default class HHGroupCheckDialog extends foundry.applications.api.DialogV
       actors: candidates.actors.map(a => ({
         uuid: a.uuid,
         name: a.name,
-        checked: candidates.selected.size === 0 || candidates.selected.has(a.uuid)
+        monster: candidates.monsters.has(a.uuid),
+        checked: candidates.monsters.has(a.uuid) || candidates.selected.size === 0 || candidates.selected.has(a.uuid)
       })),
       choices: choices.choices,
       groups: choices.groups,
@@ -121,10 +128,17 @@ export default class HHGroupCheckDialog extends foundry.applications.api.DialogV
         const element = dialog.element ?? dialog
         const check = element.querySelector('select[name=check]')
         const fields = element.querySelector('fieldset.hh-group-check-sanity')
-        // A disabled fieldset skips the required loss field and stays out of the way of other checks
+        const monsters = element.querySelectorAll('input[name=actors][data-monster]')
+        // A disabled fieldset skips the required loss field and stays out of the way of other checks.
+        // Monsters cause the sanity loss, so they sit out a Sanity check and roll any other check.
         const toggle = () => {
-          fields.disabled = check.value !== sanityValue
-          fields.hidden = fields.disabled
+          const isSanity = check.value === sanityValue
+          fields.disabled = !isSanity
+          fields.hidden = !isSanity
+          for (const input of monsters) {
+            input.disabled = isSanity
+            input.closest('label').hidden = isSanity
+          }
         }
         check.addEventListener('change', toggle)
         toggle()
@@ -139,7 +153,7 @@ export default class HHGroupCheckDialog extends foundry.applications.api.DialogV
             sanMin: form.sanMin.value,
             sanMax: form.sanMax.value,
             sanReason: form.sanReason.value,
-            actorUuids: [...button.form.querySelectorAll('input[name=actors]:checked')].map(i => i.value)
+            actorUuids: [...button.form.querySelectorAll('input[name=actors]:checked:not(:disabled)')].map(i => i.value)
           }
         }
       }

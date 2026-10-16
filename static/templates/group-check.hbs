@@ -54,7 +54,7 @@
     <legend>{{localize 'HHGROUPCHECK.Investigators'}}</legend>
     {{#each actors as |actor|}}
       <label class="checkbox">
-        <input type="checkbox" name="actors" value="{{actor.uuid}}" {{checked actor.checked}}>
+        <input type="checkbox" name="actors" value="{{actor.uuid}}" {{checked actor.checked}} {{#if actor.monster}}data-monster{{/if}}>
         {{actor.name}}
       </label>
     {{/each}}
