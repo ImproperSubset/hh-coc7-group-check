@@ -10,8 +10,26 @@ const CHECK_METHOD = {
 
 export default class HHGroupCheckDialog extends foundry.applications.api.DialogV2 {
   /**
-   * Actors that can be offered: players' assigned characters plus the actors of selected tokens
-   * @returns {object} {actors, selected}
+   * Sanity loss values of a monster: an actor that isn't an investigator and has sanity loss filled in
+   * @param {Document} actor
+   * @returns {object|undefined} {sanMin, sanMax, sanReason}
+   */
+  static monsterSanity (actor) {
+    const sanLoss = actor?.system?.special?.sanLoss
+    if (actor?.type === 'character' || !(sanLoss?.checkPassed || sanLoss?.checkFailled)) {
+      return undefined
+    }
+    return {
+      sanMin: sanLoss.checkPassed,
+      sanMax: sanLoss.checkFailled,
+      sanReason: actor.system.infos?.type?.length ? actor.system.infos.type : actor.name
+    }
+  }
+
+  /**
+   * Actors that can be offered: players' assigned characters plus the actors of selected tokens.
+   * A selected monster supplies the Sanity values instead of joining the list.
+   * @returns {object} {actors, selected, sanity}
    */
   static candidateActors () {
     const actors = new Map()
@@ -21,9 +39,13 @@ export default class HHGroupCheckDialog extends foundry.applications.api.DialogV
       }
     }
     const selected = new Set()
+    let sanity
     if (canvas.ready) {
       for (const token of canvas.tokens.controlled) {
-        if (token.actor) {
+        const monster = HHGroupCheckDialog.monsterSanity(token.actor)
+        if (monster) {
+          sanity ??= monster
+        } else if (token.actor) {
           actors.set(token.actor.uuid, token.actor)
           selected.add(token.actor.uuid)
         }
@@ -31,28 +53,9 @@ export default class HHGroupCheckDialog extends foundry.applications.api.DialogV
     }
     return {
       actors: [...actors.values()].sort((a, b) => a.name.localeCompare(b.name)),
-      selected
+      selected,
+      sanity
     }
-  }
-
-  /**
-   * Sanity loss values from a targeted creature or NPC, to fill in the Sanity fields
-   * @returns {object} {found, sanMin, sanMax, sanReason}
-   */
-  static sanitySource () {
-    for (const token of game.user.targets) {
-      const actor = token.actor
-      const sanLoss = actor?.system?.special?.sanLoss
-      if (sanLoss?.checkPassed || sanLoss?.checkFailled) {
-        return {
-          found: true,
-          sanMin: sanLoss.checkPassed,
-          sanMax: sanLoss.checkFailled,
-          sanReason: actor.system.infos?.type?.length ? actor.system.infos.type : actor.name
-        }
-      }
-    }
-    return { found: false, sanMin: '0', sanMax: '', sanReason: '' }
   }
 
   /**
@@ -81,8 +84,8 @@ export default class HHGroupCheckDialog extends foundry.applications.api.DialogV
       [GROUP.CHARACTERISTIC]: game.i18n.localize('CoC7.Characteristics')
     })
     const sanityValue = entries.find(e => e.type === CHECK_TYPE.SANITY).value
-    const sanity = HHGroupCheckDialog.sanitySource()
-    const selected = sanity.found ? sanityValue : choices.selected
+    const sanity = candidates.sanity ?? { sanMin: '0', sanMax: '', sanReason: '' }
+    const selected = candidates.sanity ? sanityValue : choices.selected
     const data = {
       actors: candidates.actors.map(a => ({
         uuid: a.uuid,
