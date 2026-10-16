@@ -6,7 +6,6 @@ TemplateHelpers.requireNodeVersion()
 const rootFolder = TemplateHelpers.systemRoot
 
 const outputPaths = {}
-let existingPath = ''
 let multiple = false
 
 if (fs.existsSync(rootFolder + '/fvtt.config.json')) {
@@ -26,24 +25,6 @@ if (fs.existsSync(rootFolder + '/fvtt.config.json')) {
       }
     }
   }
-} else if (fs.existsSync(rootFolder + '/fvtt.config.js')) {
-  await import(rootFolder.replace(/^([a-z]:)/i, 'file://$1') + '/fvtt.config.js').then((oldConfig) => {
-    if (!fs.existsSync(rootFolder + '/fvtt.config.json')) {
-      if (typeof oldConfig.default.userDataPath === 'string') {
-        if (fs.existsSync(oldConfig.default.userDataPath + '/Data/modules') || fs.existsSync(oldConfig.default.userDataPath + '/Data/systems') || fs.existsSync(oldConfig.default.userDataPath + '/Data/worlds')) {
-          existingPath = oldConfig.default.userDataPath
-        }
-      }
-    }
-  }).catch(() => {
-  })
-}
-if (existingPath !== '') {
-  let name = await TemplateHelpers.inputText({ prompt: 'Set name for ' + existingPath, defaultText: 'default' })
-  if (name === 'currentSelection') {
-    name = 'currentSelectionPath'
-  }
-  outputPaths[name] = existingPath
 }
 
 let action
@@ -124,11 +105,7 @@ if (action === 'S') {
   }
   try {
     fs.writeFileSync(rootFolder + '/fvtt.config.json', JSON.stringify(newConfig, null, 2), { flag: 'w+' })
-    if (existingPath !== '') {
-      TemplateHelpers.ansiFormat('Config file migrated.\n' + 'You can delete your "fvtt.config.js" file and "packs" folder.\n', { color: 'green', output: true })
-    } else {
-      TemplateHelpers.ansiFormat('Config file created\n', { color: 'green', output: true })
-    }
+    TemplateHelpers.ansiFormat('Config file created\n', { color: 'green', output: true })
   } catch (err) {
     TemplateHelpers.ansiFormat('Unable to create "fvtt.config.json"\n', { color: 'red', output: true })
   }

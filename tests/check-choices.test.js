@@ -1,64 +1,97 @@
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
-import HHCheckChoices from '../hh-coc7-group-check/apps/check-choices.js'
+import { buildChoices, characteristicEntries, parseFrequent, skillEntries } from '../hh-coc7-group-check/apps/check-choices.js'
+import { DEFAULT_FREQUENT_CHECKS } from '../hh-coc7-group-check/constants.js'
+
+const labels = { frequent: 'Frequent', skill: 'Skills', characteristic: 'Characteristics' }
+const french = { 'CHARAC.Strength': 'Force', 'CHARAC.STR': 'FOR', 'CoC7.Luck': 'Chance' }
 
 const entries = [
-  { value: 'skill:i.skill.spot-hidden', label: 'Spot Hidden', group: 'skill', aliases: ['Spot Hidden', 'i.skill.spot-hidden'] },
-  { value: 'skill:i.skill.listen', label: 'Écouter', group: 'skill', aliases: ['Écouter', 'i.skill.listen'] },
-  { value: 'skill:Accounting', label: 'Accounting', group: 'skill', aliases: ['Accounting'] },
-  { value: 'skill:Bricolage', label: 'Bricolage', group: 'skill', aliases: ['Bricolage', 'Bricolage'] },
-  { value: 'characteristic:pow', label: 'Power', group: 'characteristic', aliases: ['Power', 'POW', 'pow'] },
-  { value: 'attribute:lck', label: 'Luck', group: 'characteristic', aliases: ['Luck', 'lck'] }
+  ...skillEntries([
+    { name: 'Spot Hidden', cocid: 'i.skill.spot-hidden' },
+    { name: 'Écouter', cocid: 'i.skill.listen' },
+    { name: 'Accounting', cocid: '' },
+    { name: 'Bricolage', cocid: '' }
+  ]),
+  ...characteristicEntries(key => french[key] ?? key)
 ]
 
-test('frequent checks come first in setting order and leave their groups', () => {
-  const { groups, selected } = HHCheckChoices.build(entries, ['Luck', 'spot hidden', 'POW'])
-  assert.deepEqual(groups.map(g => g.key), ['frequent', 'skill'])
-  assert.deepEqual(groups[0].choices.map(c => c.value), ['attribute:lck', 'skill:i.skill.spot-hidden', 'characteristic:pow'])
-  assert.deepEqual(groups[1].choices.map(c => c.value), ['skill:Accounting', 'skill:Bricolage', 'skill:i.skill.listen'])
-  assert.equal(selected, 'attribute:lck')
+const values = (result, group) => result.choices.filter(c => c.group === group).map(c => c.value)
+
+test('skills sharing a CoC ID merge, whatever they are called', () => {
+  const skills = skillEntries([
+    { name: 'Spot Hidden', cocid: 'i.skill.spot-hidden' },
+    { name: 'Trouver Objet Caché', cocid: 'i.skill.spot-hidden' }
+  ])
+  assert.equal(skills.length, 1)
+  assert.equal(skills[0].label, 'Spot Hidden')
+  assert.deepEqual(skills[0].aliases, ['Spot Hidden', 'i.skill.spot-hidden', 'Trouver Objet Caché'])
 })
 
-test('empty groups are dropped and unknown frequent names are ignored', () => {
-  const { groups } = HHCheckChoices.build(entries, ['Luck', 'Power', 'Cthulhu Mythos'])
-  assert.deepEqual(groups.map(g => g.key), ['frequent', 'skill'])
-})
-
-test('no frequent checks selects the first skill', () => {
-  const { groups, selected } = HHCheckChoices.build(entries, [])
-  assert.equal(groups[0].key, 'skill')
-  assert.equal(selected, 'skill:Accounting')
-})
-
-test('accents and case are ignored when matching', () => {
-  const { groups } = HHCheckChoices.build(entries, ['ecouter'])
-  assert.deepEqual(groups[0].choices.map(c => c.value), ['skill:i.skill.listen'])
-})
-
-test('a frequent name listed twice is used once', () => {
-  const { groups } = HHCheckChoices.build(entries, ['Écouter', 'i.skill.listen'])
-  assert.deepEqual(groups[0].choices.map(c => c.value), ['skill:i.skill.listen'])
-})
-
-test('the default frequent checks match by CoC ID whatever the skill is called', () => {
-  const { groups } = HHCheckChoices.build(entries, HHCheckChoices.parseFrequent('i.skill.spot-hidden, i.skill.listen, i.skill.library-use, i.skill.psychology, lck'))
-  assert.deepEqual(groups[0].choices.map(c => c.label), ['Spot Hidden', 'Écouter', 'Luck'])
-})
-
-test('choices carry only value and label', () => {
-  const { groups } = HHCheckChoices.build(entries, ['Luck'])
-  for (const group of groups) {
-    for (const choice of group.choices) {
-      assert.deepEqual(Object.keys(choice).sort(), ['label', 'value'])
-    }
+test('a skill with no CoC ID merges with a same-named skill that has one, in either order', () => {
+  for (const order of [[0, 1], [1, 0]]) {
+    const both = [{ name: 'Spot Hidden', cocid: 'i.skill.spot-hidden' }, { name: 'Spot Hidden', cocid: '' }]
+    const skills = skillEntries(order.map(i => both[i]))
+    assert.equal(skills.length, 1)
+    assert.equal(skills[0].cocid, 'i.skill.spot-hidden')
+    assert.deepEqual([...skills[0].aliases].sort(), ['Spot Hidden', 'i.skill.spot-hidden'])
   }
 })
 
-test('setting text is split on commas and trimmed', () => {
-  assert.deepEqual(HHCheckChoices.parseFrequent(' Spot Hidden,Listen , ,Luck '), ['Spot Hidden', 'Listen', 'Luck'])
-  assert.deepEqual(HHCheckChoices.parseFrequent(''), [])
+test('skill names merge ignoring case and accents, and different names stay apart', () => {
+  const skills = skillEntries([
+    { name: 'Écouter', cocid: '' },
+    { name: 'ecouter', cocid: '' },
+    { name: 'Language (Latin)', cocid: 'i.skill.language-latin' },
+    { name: 'Language (Greek)', cocid: 'i.skill.language-greek' }
+  ])
+  assert.deepEqual(skills.map(s => s.label), ['Écouter', 'Language (Latin)', 'Language (Greek)'])
 })
 
-test('values with colons in the key keep the whole key', () => {
-  assert.deepEqual(HHCheckChoices.parseValue('skill:Science: Biology'), { type: 'skill', key: 'Science: Biology' })
+test('frequent checks come first in setting order and leave their groups', () => {
+  const result = buildChoices(entries, ['Chance', 'spot hidden', 'FOR'], labels)
+  assert.deepEqual(result.groups, ['Frequent', 'Skills', 'Characteristics'])
+  assert.deepEqual(values(result, 'Frequent'), ['attribute:lck', 'skill:i.skill.spot-hidden', 'characteristic:str'])
+  assert.deepEqual(values(result, 'Skills'), ['skill:Accounting', 'skill:Bricolage', 'skill:i.skill.listen'])
+  assert.ok(!values(result, 'Characteristics').includes('characteristic:str'))
+  assert.equal(result.selected, 'attribute:lck')
+})
+
+test('Luck matches its English name and key in any language', () => {
+  const result = buildChoices(entries, ['Luck', 'lck'], labels)
+  assert.deepEqual(values(result, 'Frequent'), ['attribute:lck'])
+})
+
+test('empty groups are left out and unknown frequent names are ignored', () => {
+  const skillsOnly = skillEntries([{ name: 'Spot Hidden', cocid: 'i.skill.spot-hidden' }])
+  const result = buildChoices(skillsOnly, ['Spot Hidden', 'Cthulhu Mythos'], labels)
+  assert.deepEqual(result.groups, ['Frequent'])
+  assert.deepEqual(result.choices, [{ value: 'skill:i.skill.spot-hidden', label: 'Spot Hidden', group: 'Frequent' }])
+})
+
+test('with no frequent checks the first skill is selected', () => {
+  const result = buildChoices(entries, [], labels)
+  assert.equal(result.groups[0], 'Skills')
+  assert.equal(result.selected, 'skill:Accounting')
+})
+
+test('accents and case are ignored when matching frequent checks', () => {
+  const result = buildChoices(entries, ['ecouter'], labels)
+  assert.deepEqual(values(result, 'Frequent'), ['skill:i.skill.listen'])
+})
+
+test('a check listed twice in the setting is used once', () => {
+  const result = buildChoices(entries, ['Écouter', 'i.skill.listen'], labels)
+  assert.deepEqual(values(result, 'Frequent'), ['skill:i.skill.listen'])
+})
+
+test('the default frequent checks match by CoC ID whatever the skill is called', () => {
+  const result = buildChoices(entries, parseFrequent(DEFAULT_FREQUENT_CHECKS), labels)
+  assert.deepEqual(result.choices.filter(c => c.group === 'Frequent').map(c => c.label), ['Spot Hidden', 'Écouter', 'Chance'])
+})
+
+test('setting text is split on commas and trimmed', () => {
+  assert.deepEqual(parseFrequent(' Spot Hidden,Listen , ,Luck '), ['Spot Hidden', 'Listen', 'Luck'])
+  assert.deepEqual(parseFrequent(''), [])
+  assert.deepEqual(parseFrequent(undefined), [])
 })

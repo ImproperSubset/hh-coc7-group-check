@@ -2,11 +2,7 @@
   <div class="form-group">
     <label>{{localize 'CoC7.Check'}}</label>
     <select name="check">
-      {{#each groups as |group|}}
-        <optgroup label="{{localize group.label}}">
-          {{selectOptions group.choices selected=@root.selected valueAttr='value' labelAttr='label'}}
-        </optgroup>
-      {{/each}}
+      {{selectOptions choices selected=selected groups=groups}}
     </select>
   </div>
 

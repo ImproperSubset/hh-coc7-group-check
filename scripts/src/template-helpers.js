@@ -53,8 +53,6 @@ export default class TemplateHelpers {
     return formatted
   }
 
-
-
   /**
    * Prompt for FoundryVTT
    * @returns {Promise<string>}
@@ -145,31 +143,19 @@ export default class TemplateHelpers {
   }
 
   /**
-   * Is this a module or a system. Load the config
+   * Load static/module.json
    * @returns {object}
    */
-  static loadFoundryConfig () {
-    const rootFolder = TemplateHelpers.systemRoot
-
-    let type = ''
-
-    if (fs.existsSync(rootFolder + '/static/module.json')) {
-      type = 'module'
-    } else if (fs.existsSync(rootFolder + '/static/system.json')) {
-      type = 'system'
-    } else {
-      throw new Error('No module.json or system.json')
+  static loadModuleManifest () {
+    const manifestPath = TemplateHelpers.systemRoot + '/static/module.json'
+    if (!fs.existsSync(manifestPath)) {
+      throw new Error('No static/module.json')
     }
-
-    const foundryConfig = JSON.parse(fs.readFileSync(rootFolder + '/static/' + type + '.json', 'utf8'))
-    if (typeof foundryConfig?.id === 'undefined') {
-      throw new Error('No id found in ./' + type + '.json file')
+    const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'))
+    if (typeof manifest?.id === 'undefined') {
+      throw new Error('No id found in static/module.json')
     }
-
-    return {
-      type,
-      json: foundryConfig
-    }
+    return manifest
   }
 
   /**
@@ -227,64 +213,14 @@ export default class TemplateHelpers {
     return args
   }
 
-
   /**
    * Escape a string for use in a Regular Expression
    * @param {string} string
    * @returns {string}
    */
   static quoteRegExp (string) {
-    /* // FoundryVTT V13 */
-    // Replace in Node 24 with RegExp.escape()
-    // https://bitbucket.org/cggaertner/js-hacks/raw/master/quote.js
-    const len = string.length
-    let qString = ''
-
-    for (let current, i = 0; i < len; ++i) {
-      current = string.charAt(i)
-
-      if (current >= ' ' && current <= '~') {
-        if (current === '\\' || current === "'") {
-          qString += '\\'
-        }
-
-        qString += current.replace(/[-[\]/{}()*+?.\\^$|]/g, '\\$&')
-      } else {
-        switch (current) {
-          case '\b':
-            qString += '\\b'
-            break
-
-          case '\f':
-            qString += '\\f'
-            break
-
-          case '\n':
-            qString += '\\n'
-            break
-
-          case '\r':
-            qString += '\\r'
-            break
-
-          case '\t':
-            qString += '\\t'
-            break
-
-          case '\v':
-            qString += '\\v'
-            break
-
-          default:
-            qString += '\\u'
-            current = current.charCodeAt(0).toString(16)
-            for (let j = 4; --j >= current.length; qString += '0');
-            qString += current
-        }
-      }
-    }
-
-    return qString
+    // RegExp.escape needs Node 24; package.json allows 22.13
+    return string.replace(/[.*+?^${}()|[\]\\/-]/g, '\\$&')
   }
 
   /**
@@ -292,9 +228,10 @@ export default class TemplateHelpers {
    */
   static requireNodeVersion () {
     const currentNodeVersion = process.versions.node
+    const [major, minor] = currentNodeVersion.split('.').map(Number)
 
-    if (currentNodeVersion.split('.')[0] < 20) {
-      TemplateHelpers.ansiFormat('Requires Node 20 or higher.\n' + 'You are currently using Node ' + currentNodeVersion + '.\n' + 'Please update your version of Node.', { color: 'red', output: true })
+    if (major < 20 || (major === 20 && minor < 9)) {
+      TemplateHelpers.ansiFormat('Requires Node 20.9 or higher.\n' + 'You are currently using Node ' + currentNodeVersion + '.\n' + 'Please update your version of Node.', { color: 'red', output: true })
       process.exit(1)
     }
   }
@@ -402,5 +339,4 @@ export default class TemplateHelpers {
     TemplateHelpers.ansiFormat('ERROR: ' + e.message + '\n' + stack, { color: 'red', output: true })
     process.exit(1)
   }
-
 }

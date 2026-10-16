@@ -16,7 +16,7 @@ The build reuses the CoC7 system's webpack scripts, which compile the module and
 
 ### Prerequisites.
 
-- Node.js 20 or later (CI uses Node 24)
+- Node.js 20.19+, 22.13+ or 24+ (CI uses Node 24). The build alone runs on Node 20.9 or later; ESLint needs the newer versions.
 - A local Foundry VTT installation with the CoC7 system, for testing
 
 ### Setup.
@@ -26,7 +26,7 @@ npm ci         # install the exact dependency versions in package-lock.json
 npm run init   # interactive: choose the Foundry VTT user data folder(s) to build into
 ```
 
-`npm run init` asks for your Foundry VTT **user data** folder — the one containing `Data/` (on Linux typically `~/.local/share/FoundryVTT`) — and saves your choices to `fvtt.config.json`, which is git-ignored. You can register several folders (say, a v12 and a v13 install) and toggle between building to one or all of them.
+`npm run init` asks for your Foundry VTT **user data** folder, the one that contains `Data/` (on Linux usually `~/.local/share/FoundryVTT`), and saves your choices to `fvtt.config.json`, which git ignores. You can register several folders, such as a v13 and a v14 install, and build into one or all of them.
 
 ### Build and test.
 
@@ -45,29 +45,29 @@ After a build, reload Foundry VTT (F5) to pick up the changes.
 
 The tests run under Node with no Foundry VTT runtime, so they cover the pure logic:
 
-- `tests/check-choices.test.js` — dropdown grouping and ordering, frequent-check matching (case, accents, CoC IDs, duplicates) and value parsing.
-- `tests/lang.test.js` — every language listed in `module.json` has the same keys and placeholders as `en.json`.
+- `tests/check-choices.test.js`: merging skills by CoC ID and name, dropdown grouping and ordering, frequent-check matching (case, accents, CoC IDs, duplicates) and setting parsing.
+- `tests/lang.test.js`: every language listed in `module.json` has the same keys and placeholders as `en.json`.
 
-The dialog itself and the calls into the system are tested by hand in Foundry VTT.
+The dialog itself and the calls into the system are tested in a running Foundry VTT world.
 
 ### Project layout.
 
 ```
 hh-coc7-group-check/
   module.js                        entry point: registers the hooks
-  constants.js                     module ID, system ID, default frequent checks
+  constants.js                     IDs, default frequent checks, check types and difficulties
   hooks/init.js                    registers settings and key bindings, exposes the macro API
   hooks/get-scene-control-buttons.js  adds the button to Keeper's tools (v12 and v13+ APIs)
   setup/register-settings.js       the Frequent checks setting
   setup/register-keybindings.js    the Shift+G key binding
-  apps/check-choices.js            builds the grouped check list (no Foundry dependencies)
+  apps/check-choices.js            builds the check list from plain data (no Foundry dependencies)
   apps/group-check-dialog.js       the dialog and the code that sends the checks
 static/
   module.json                      Foundry VTT manifest
   templates/group-check.hbs        dialog template
   lang/*.json                      translations
 styles/hh-coc7-group-check.less    dialog styling
-scripts/, webpack.config.js        build scripts from the CoC7 system
+scripts/, webpack.config.js        build scripts adapted from the CoC7 system
 tests/                             node:test unit tests
 ```
 

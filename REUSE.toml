@@ -10,14 +10,14 @@ SPDX-License-Identifier = "GPL-3.0-only"
 
 # Copied unchanged from the Call of Cthulhu 7th Edition system
 [[annotations]]
-path = [".editorconfig", "eslint.config.js", "webpack.config.js", "scripts/init.js"]
+path = [".editorconfig", "eslint.config.js", "webpack.config.js"]
 precedence = "override"
 SPDX-FileCopyrightText = "Miskatonic Investigative Society"
 SPDX-License-Identifier = "GPL-3.0-only"
 
 # Modified from the Call of Cthulhu 7th Edition system
 [[annotations]]
-path = ["scripts/webpack-config.js", "scripts/src/template-helpers.js", "static/templates/group-check.hbs", "hh-coc7-group-check/apps/group-check-dialog.js"]
+path = ["scripts/init.js", "scripts/webpack-config.js", "scripts/src/template-helpers.js", "static/templates/group-check.hbs", "hh-coc7-group-check/apps/group-check-dialog.js"]
 precedence = "override"
 SPDX-FileCopyrightText = ["Miskatonic Investigative Society", "2026 Rhett D. Hudson"]
 SPDX-License-Identifier = "GPL-3.0-only"

@@ -1,7 +1,7 @@
 {
   "id": "hh-coc7-group-check",
   "title": "Group Checks for CoC7",
-  "description": "A Keeper tool that sends one skill, characteristic or Luck check to several investigators at once, each as a card with a Roll button.",
+  "description": "A Keeper tool that asks several investigators for the same skill, characteristic or Luck check at once.",
   "version": "0.1.0",
   "authors": [
     {
