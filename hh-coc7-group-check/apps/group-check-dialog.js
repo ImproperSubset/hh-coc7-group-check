@@ -1,6 +1,6 @@
 import { CHECK_TYPE, DIFFICULTY, FOLDER_ID, GROUP, SYSTEM_ID } from '../constants.js'
 import { buildChoices, characteristicEntries, normalize, parseFrequent, sanLossLink, skillEntries } from './check-choices.js'
-import { expectStandbyCard } from './standby-whispers.js'
+import { expectCard } from './card-whispers.js'
 
 const CHECK_METHOD = {
   [CHECK_TYPE.ATTRIBUTE]: 'attributeCheck',
@@ -12,7 +12,7 @@ export default class HHGroupCheckDialog extends foundry.applications.api.DialogV
   /**
    * Sanity loss values of a monster: an actor that isn't an investigator and has sanity loss filled in
    * @param {Document} actor
-   * @returns {object|undefined} {sanMin, sanMax, sanReason}
+   * @returns {object|undefined} {sanMin, sanMax, sanReason, sourceUuid}
    */
   static monsterSanity (actor) {
     const sanLoss = actor?.system?.special?.sanLoss
@@ -22,7 +22,8 @@ export default class HHGroupCheckDialog extends foundry.applications.api.DialogV
     return {
       sanMin: sanLoss.checkPassed,
       sanMax: sanLoss.checkFailled,
-      sanReason: actor.system.infos?.type?.length ? actor.system.infos.type : actor.name
+      sanReason: actor.system.infos?.type?.length ? actor.system.infos.type : actor.name,
+      sourceUuid: actor.uuid
     }
   }
 
@@ -153,6 +154,7 @@ export default class HHGroupCheckDialog extends foundry.applications.api.DialogV
             sanMin: form.sanMin.value,
             sanMax: form.sanMax.value,
             sanReason: form.sanReason.value,
+            sourceUuid: candidates.sanity?.sourceUuid ?? '',
             actorUuids: [...button.form.querySelectorAll('input[name=actors]:checked:not(:disabled)')].map(i => i.value)
           }
         }
@@ -236,7 +238,7 @@ export default class HHGroupCheckDialog extends foundry.applications.api.DialogV
     const whisper = game.settings.get(FOLDER_ID, 'whisperRequests') && game.settings.get(SYSTEM_ID, 'stanbyGMRolls')
     for (const { actor, target } of rolls) {
       if (whisper && actor.hasPlayerOwner) {
-        expectStandbyCard(actor.uuid, actor.owners.map(u => u.id))
+        expectCard('CoC7Check', actor.uuid, actor.owners.map(u => u.id))
       }
       await actor[CHECK_METHOD[entry.type]](target, true, { difficulty, poolModifier })
     }
@@ -246,17 +248,47 @@ export default class HHGroupCheckDialog extends foundry.applications.api.DialogV
   }
 
   /**
-   * Ask each actor's players for a sanity check with the system's sanity loss roll link
+   * Start a sanity check for each actor: a sanity card when the system provides game.CoC7.sanCheck, otherwise a roll link for the actor's players
    * @param {object} options
    * @param {int} options.difficulty
    * @param {int} options.poolModifier
    * @param {string} options.sanMin
    * @param {string} options.sanMax
    * @param {string} options.sanReason
+   * @param {string} options.sourceUuid the monster causing the loss, if any
    * @param {Array<Document>} actors
    */
-  static async sendSanity ({ difficulty, poolModifier, sanMin, sanMax, sanReason }, actors) {
-    const link = sanLossLink({ sanMin, sanMax, sanReason, difficulty, poolModifier })
+  static async sendSanity (options, actors) {
+    if (typeof game.CoC7?.sanCheck === 'function') {
+      await HHGroupCheckDialog.sendSanityCards(options, actors)
+    } else {
+      await HHGroupCheckDialog.sendSanityLinks(options, actors)
+    }
+  }
+
+  /**
+   * Create the system's sanity card for each actor; player-owned actors' cards are whispered to their players
+   * @param {object} options as for sendSanity
+   * @param {Array<Document>} actors
+   */
+  static async sendSanityCards (options, actors) {
+    const { difficulty, poolModifier, sanMin, sanMax, sanReason, sourceUuid } = options
+    const whisper = game.settings.get(FOLDER_ID, 'whisperRequests')
+    for (const actor of actors) {
+      if (whisper && actor.hasPlayerOwner) {
+        expectCard('CoC7SanCheckCard', actor.uuid, actor.owners.map(u => u.id))
+      }
+      await game.CoC7.sanCheck(actor.uuid, { sanMin, sanMax, sanReason, sourceUuid, difficulty, poolModifier })
+    }
+  }
+
+  /**
+   * Ask each actor's players for a sanity check with the system's sanity loss roll link
+   * @param {object} options as for sendSanity
+   * @param {Array<Document>} actors
+   */
+  static async sendSanityLinks (options, actors) {
+    const link = sanLossLink(options)
     const whisper = game.settings.get(FOLDER_ID, 'whisperRequests')
     const messages = []
     const skipped = []

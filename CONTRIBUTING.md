@@ -58,12 +58,13 @@ hh-coc7-group-check/
   constants.js                     IDs, default frequent checks, check types and difficulties
   hooks/init.js                    registers settings and key bindings, exposes the macro API
   hooks/get-scene-control-buttons.js  adds the button to Keeper's tools (v12 and v13+ APIs)
-  hooks/pre-create-chat-message.js whispers a group check's standby cards to the investigator's players
+  hooks/pre-create-chat-message.js whispers a group check's standby and sanity cards to the investigator's players
+  hooks/update-chat-message.js     makes a whispered sanity card public once its SAN roll is made
   setup/register-settings.js       the Frequent checks and whisper requests settings
   setup/register-keybindings.js    the Shift+G key binding
   apps/check-choices.js            builds the check list and the sanity loss link from plain data (no Foundry dependencies)
   apps/group-check-dialog.js       the dialog and the code that sends the checks
-  apps/standby-whispers.js         which standby cards to whisper, and to whom
+  apps/card-whispers.js            which standby and sanity cards to whisper, and to whom
 static/
   module.json                      Foundry VTT manifest
   templates/group-check.hbs        dialog template
