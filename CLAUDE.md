@@ -8,7 +8,7 @@ Foundry VTT module `hh-coc7-group-check`: a Keeper dialog (Keeper's tools button
 ## Repositories
 
 - **This repo**: `ImproperSubset/hh-coc7-group-check`, public. `main` is what releases are cut from.
-- **CoC7 system fork**: `ImproperSubset/CoC7-FoundryVTT`, local clone `~/git/CoC7-FoundryVTT` (remote `origin` is upstream, `fork` is the fork). Branch `expose-san-check` is the latest CoC7 release plus two commits: `game.CoC7.sanCheck` in `coc7/hooks/init.js` and `.github/workflows/fork-release.yml`. Releases are tagged `<CoC7 release>.hh.<build>`, such as `8.16.hh.1`. The fork's `develop` and `master` mirror upstream and are never changed.
+- **CoC7 system fork**: `ImproperSubset/CoC7-FoundryVTT`, local clone `~/git/CoC7-FoundryVTT` (remote `origin` is upstream, `fork` is the fork). Each CoC7 release gets a branch `hh-<release>` (currently `hh-8.16`): that release plus two commits: `game.CoC7.sanCheck` in `coc7/hooks/init.js` and `.github/workflows/fork-release.yml`. Releases are tagged `<CoC7 release>.hh.<build>`, such as `8.16.hh.1`. The fork's `develop` and `master` mirror upstream and are never changed.
 - **Upstream CoC7**: `Miskatonic-Investigative-Society/CoC7-FoundryVTT`. Read its source to learn how the system works. Never push to it, open pull requests, issues or comments on it, or fork it again without the user's explicit permission for that specific action.
 
 ## How to work here
