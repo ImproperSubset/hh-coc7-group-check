@@ -145,10 +145,10 @@ Matching ignores case and accents, so `ecouter` matches *Écouter*. Entries that
 
 To find a skill's CoC ID, open the skill from an investigator's sheet and click the **CoC ID** button in the sheet's title bar; the system calls it the *System ID*.
 
-Example for a Mythos-heavy campaign:
+Example for a modern-era game:
 
 ```
-i.skill.spot-hidden, i.skill.listen, POW, i.skill.occult, lck
+i.skill.spot-hidden, i.skill.listen, i.skill.computer-use, i.skill.electronics, lck
 ```
 
 ## Troubleshooting.
