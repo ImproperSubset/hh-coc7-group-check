@@ -1,5 +1,5 @@
 import { CHECK_TYPE, DIFFICULTY, FOLDER_ID, GROUP, SYSTEM_ID } from '../constants.js'
-import { buildChoices, characteristicEntries, normalize, parseFrequent, sanLossLink, skillEntries } from './check-choices.js'
+import { buildChoices, characteristicEntries, normalize, parseFrequent, skillEntries } from './check-choices.js'
 import { expectCard } from './card-whispers.js'
 
 const CHECK_METHOD = {
@@ -105,8 +105,6 @@ export default class HHGroupCheckDialog extends foundry.applications.api.DialogV
       selected,
       sanity,
       sanitySelected: selected === sanityValue,
-      // Without game.CoC7.sanCheck the reason goes into a roll link, which limits its characters
-      linkMode: typeof game.CoC7?.sanCheck !== 'function',
       difficulty: DIFFICULTY[game.settings.get(SYSTEM_ID, 'defaultCheckDifficulty')] ?? DIFFICULTY.regular,
       difficultyTypes: [
         { key: DIFFICULTY.unknown, val: 'CoC7.RollDifficultyUnknownName' },
@@ -250,7 +248,8 @@ export default class HHGroupCheckDialog extends foundry.applications.api.DialogV
   }
 
   /**
-   * Start a sanity check for each actor: a sanity card when the system provides game.CoC7.sanCheck, otherwise a roll link for the actor's players
+   * Create the system's sanity card for each actor; player-owned actors' cards are whispered to their players.
+   * Needs a CoC7 system that provides game.CoC7.sanCheck.
    * @param {object} options
    * @param {int} options.difficulty
    * @param {int} options.poolModifier
@@ -260,58 +259,17 @@ export default class HHGroupCheckDialog extends foundry.applications.api.DialogV
    * @param {string} options.sourceUuid the monster causing the loss, if any
    * @param {Array<Document>} actors
    */
-  static async sendSanity (options, actors) {
-    if (typeof game.CoC7?.sanCheck === 'function') {
-      await HHGroupCheckDialog.sendSanityCards(options, actors)
-    } else {
-      await HHGroupCheckDialog.sendSanityLinks(options, actors)
+  static async sendSanity ({ difficulty, poolModifier, sanMin, sanMax, sanReason, sourceUuid }, actors) {
+    if (typeof game.CoC7?.sanCheck !== 'function') {
+      ui.notifications.error('HHGROUPCHECK.SanityNeedsSystem', { localize: true })
+      return
     }
-  }
-
-  /**
-   * Create the system's sanity card for each actor; player-owned actors' cards are whispered to their players
-   * @param {object} options as for sendSanity
-   * @param {Array<Document>} actors
-   */
-  static async sendSanityCards (options, actors) {
-    const { difficulty, poolModifier, sanMin, sanMax, sanReason, sourceUuid } = options
     const whisper = game.settings.get(FOLDER_ID, 'whisperRequests')
     for (const actor of actors) {
       if (whisper && actor.hasPlayerOwner) {
         expectCard('CoC7SanCheckCard', actor.uuid, actor.owners.map(u => u.id))
       }
       await game.CoC7.sanCheck(actor.uuid, { sanMin, sanMax, sanReason, sourceUuid, difficulty, poolModifier })
-    }
-  }
-
-  /**
-   * Ask each actor's players for a sanity check with the system's sanity loss roll link
-   * @param {object} options as for sendSanity
-   * @param {Array<Document>} actors
-   */
-  static async sendSanityLinks (options, actors) {
-    const link = sanLossLink(options)
-    const whisper = game.settings.get(FOLDER_ID, 'whisperRequests')
-    const messages = []
-    const skipped = []
-    for (const actor of actors) {
-      // The link rolls for whoever clicks it, so an actor without a player has no one to click it
-      const owners = actor.owners
-      if (owners.length === 0) {
-        skipped.push(actor.name)
-      } else {
-        messages.push({
-          speaker: { alias: game.user.name },
-          whisper: whisper ? owners.map(u => u.id) : [],
-          content: game.i18n.format('CoC7.MessageTargetCheckRequested', { name: actor.name, check: link })
-        })
-      }
-    }
-    if (messages.length > 0) {
-      await ChatMessage.create(messages)
-    }
-    if (skipped.length > 0) {
-      ui.notifications.info(game.i18n.format('HHGROUPCHECK.SanityNoPlayer', { names: skipped.join(', ') }))
     }
   }
 

@@ -51,10 +51,9 @@ Select the monster's token, along with any investigators' tokens, and open the d
 
 You can also choose **Sanity** from the check list and type the loss (for example `0` and `1D6`) and the reason yourself.
 
-What Send does depends on the CoC7 system version:
+Sanity checks need a CoC7 system that provides `game.CoC7.sanCheck`, which released versions of the system don't yet have (see the [contributing guide](CONTRIBUTING.md#patched-coc7-system)). Without it, Send shows an error and sends nothing.
 
-- When the system provides `game.CoC7.sanCheck`, each ticked investigator gets the system's sanity check card straight away, with the monster as its source so the system's creature rules apply. With **Group check: whisper requests** on, a player-owned investigator's card is whispered to its players and turns public once the SAN roll is made.
-- Otherwise, Send posts the system's sanity loss roll link to each ticked investigator's players, whispered when **Group check: whisper requests** is on. The player clicks the link, and the system's sanity check card takes it from there. Investigators with no player are skipped and named in a notification. A roll link can't carry a reason containing `,` `:` `[` `]` `{` or `}`, so the dialog won't send one; the system tracks sanity loss per reason, so the module never alters it.
+Send gives each ticked investigator the system's sanity check card, with the monster as its source so the system's creature rules apply. With **Group check: whisper requests** on, a player-owned investigator's card is whispered to its players and turns public once the SAN roll is made. The reason is passed to the system unchanged, so loss is tracked per reason exactly as when you click the monster's sanity loss on its sheet.
 
 The macro's promise resolves once the dialog closes and the checks have started. The chat messages can arrive a moment later.
 

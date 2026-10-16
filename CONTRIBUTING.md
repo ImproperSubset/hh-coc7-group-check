@@ -45,7 +45,7 @@ After a build, reload Foundry VTT (F5) to pick up the changes.
 
 The tests run under Node with no Foundry VTT runtime, so they cover the pure logic:
 
-- `tests/check-choices.test.js`: merging skills by CoC ID and name, dropdown grouping and ordering, frequent-check matching (case, accents, CoC IDs, duplicates), setting parsing and the sanity loss link.
+- `tests/check-choices.test.js`: merging skills by CoC ID and name, dropdown grouping and ordering, frequent-check matching (case, accents, CoC IDs, duplicates), and setting parsing.
 - `tests/lang.test.js`: every language listed in `module.json` has the same keys and placeholders as `en.json`.
 
 The dialog itself and the calls into the system are tested in a running Foundry VTT world.
@@ -62,7 +62,7 @@ hh-coc7-group-check/
   hooks/update-chat-message.js     makes a whispered sanity card public once its SAN roll is made
   setup/register-settings.js       the Frequent checks and whisper requests settings
   setup/register-keybindings.js    the Shift+G key binding
-  apps/check-choices.js            builds the check list and the sanity loss link from plain data (no Foundry dependencies)
+  apps/check-choices.js            builds the check list from plain data (no Foundry dependencies)
   apps/group-check-dialog.js       the dialog and the code that sends the checks
   apps/card-whispers.js            which standby and sanity cards to whisper, and to whom
 static/
@@ -80,7 +80,7 @@ Every push to `main` and every pull request runs [`ci.yml`](.github/workflows/ci
 
 ### Patched CoC7 system.
 
-The CoC7 system doesn't expose its sanity check card to modules, so with a released system, a Sanity group check falls back to posting roll links. A fork of the system adds the card as `game.CoC7.sanCheck`, and with it the module creates sanity cards directly:
+The CoC7 system doesn't expose its sanity check card to modules, so Sanity group checks need a fork of the system that adds the card as `game.CoC7.sanCheck`. With a released system, the module reports that and sends nothing.
 
 - Fork: [ImproperSubset/CoC7-FoundryVTT](https://github.com/ImproperSubset/CoC7-FoundryVTT), branch `expose-san-check`.
 - The branch is the latest CoC7 release plus one commit adding `game.CoC7.sanCheck` in `coc7/hooks/init.js`. It never tracks the system's unreleased `develop`.

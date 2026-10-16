@@ -1,7 +1,6 @@
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
-import * as fs from 'fs'
-import { buildChoices, characteristicEntries, linkSafeReason, parseFrequent, sanLossLink, skillEntries } from '../hh-coc7-group-check/apps/check-choices.js'
+import { buildChoices, characteristicEntries, parseFrequent, skillEntries } from '../hh-coc7-group-check/apps/check-choices.js'
 import { DEFAULT_FREQUENT_CHECKS } from '../hh-coc7-group-check/constants.js'
 
 const labels = { frequent: 'Frequent', skill: 'Skills', characteristic: 'Characteristics' }
@@ -100,40 +99,4 @@ test('setting text is split on commas and trimmed', () => {
 test('Sanity matches its English name and key in any language', () => {
   const result = buildChoices(entries, ['Sanity', 'san', 'santé mentale'], labels)
   assert.deepEqual(values(result, 'Frequent'), ['sanity:san'])
-})
-
-test('the sanity loss link carries the loss, reason, difficulty and dice', () => {
-  assert.equal(
-    sanLossLink({ sanMin: '1', sanMax: '1D6', sanReason: 'Deep One', difficulty: 2, poolModifier: -1 }),
-    '@coc7.sanloss[sanMin:1,sanMax:1D6,sanReason:Deep One,difficulty:2,poolModifier:-1]'
-  )
-})
-
-test('the sanity loss link keeps the reason exactly and defaults the success loss to 0', () => {
-  assert.equal(
-    sanLossLink({ sanMin: ' ', sanMax: '1D10', sanReason: 'Deep  One ', difficulty: 1, poolModifier: 0 }),
-    '@coc7.sanloss[sanMin:0,sanMax:1D10,sanReason:Deep  One ,difficulty:1,poolModifier:0]'
-  )
-  assert.equal(
-    sanLossLink({ sanMin: '0', sanMax: '1D4', sanReason: '', difficulty: -1, poolModifier: 1 }),
-    '@coc7.sanloss[sanMin:0,sanMax:1D4,difficulty:-1,poolModifier:1]'
-  )
-})
-
-test('reasons with characters that break a roll link are not link-safe', () => {
-  for (const reason of ['Deep One', 'Byakhee', 'Shoggoth (young)', '', undefined]) {
-    assert.equal(linkSafeReason(reason), true, String(reason))
-  }
-  for (const reason of ['Shoggoth, Elder', 'Cult: Silver Twilight', 'Thing [unseen]', 'Star {spawn}']) {
-    assert.equal(linkSafeReason(reason), false, reason)
-  }
-})
-
-test("the dialog's reason field pattern accepts exactly the link-safe reasons", () => {
-  const template = fs.readFileSync(new URL('../static/templates/group-check.hbs', import.meta.url), 'utf8')
-  // Browsers compile an input pattern with the v flag, anchored to the whole value
-  const pattern = new RegExp('^(?:' + template.match(/name="sanReason"[^>]*pattern="([^"]+)"/)[1] + ')$', 'v')
-  for (const reason of ['Deep One', 'Shoggoth (young)', '', 'Shoggoth, Elder', 'Cult: Silver Twilight', 'Thing [unseen]', 'Star {spawn}']) {
-    assert.equal(pattern.test(reason), linkSafeReason(reason), reason)
-  }
 })

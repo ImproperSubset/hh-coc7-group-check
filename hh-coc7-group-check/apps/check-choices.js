@@ -101,36 +101,6 @@ export function characteristicEntries (localize) {
 }
 
 /**
- * Can this sanity loss reason go into a roll link? The link splits its options on commas and colons,
- * and brackets or braces end it. The dialog's reason field pattern matches this.
- * @param {string} sanReason
- * @returns {boolean}
- */
-export function linkSafeReason (sanReason) {
-  return !/[,:[\]{}]/.test(sanReason ?? '')
-}
-
-/**
- * The system's sanity loss roll link, as documented in its links manual. The reason goes in unchanged,
- * because the system tracks loss per reason; check it with linkSafeReason first.
- * @param {object} sanity
- * @param {string} sanity.sanMin loss on a success, such as 0 or 1
- * @param {string} sanity.sanMax loss on a failure, such as 1D6
- * @param {string} sanity.sanReason what caused the loss
- * @param {int} sanity.difficulty
- * @param {int} sanity.poolModifier
- * @returns {string}
- */
-export function sanLossLink ({ sanMin, sanMax, sanReason, difficulty, poolModifier }) {
-  const options = ['sanMin:' + (String(sanMin ?? '').trim() || '0'), 'sanMax:' + String(sanMax ?? '').trim()]
-  if (sanReason) {
-    options.push('sanReason:' + sanReason)
-  }
-  options.push('difficulty:' + difficulty, 'poolModifier:' + poolModifier)
-  return '@coc7.sanloss[' + options.join(',') + ']'
-}
-
-/**
  * Build the dropdown options, with frequent checks first in setting order
  * @param {Array<object>} entries from skillEntries and characteristicEntries
  * @param {Array<string>} frequentNames
