@@ -4,6 +4,7 @@
   "HHGROUPCHECK.Frequent": "常用",
   "HHGROUPCHECK.Investigators": "調查員",
   "HHGROUPCHECK.MissingCheck": "已略過，沒有{check}：{names}",
+  "HHGROUPCHECK.SanReasonLink": "心智檢定連結的原因中不能包含 , : [ ] { 或 }。",
   "HHGROUPCHECK.SanityNoPlayer": "心智檢定請求會發送給玩家。已略過，沒有玩家：{names}",
   "HHGROUPCHECK.Send": "發送",
   "HHGROUPCHECK.StandbyOff": "「{setting}」已關閉，因此這些檢定會直接擲骰，而不是顯示擲骰按鈕。",

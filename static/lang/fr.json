@@ -4,6 +4,7 @@
   "HHGROUPCHECK.Frequent": "Fréquents",
   "HHGROUPCHECK.Investigators": "Investigateurs",
   "HHGROUPCHECK.MissingCheck": "Ignorés, pas de {check} : {names}",
+  "HHGROUPCHECK.SanReasonLink": "La raison d'un lien de jet de Santé Mentale ne peut pas contenir , : [ ] { ou }.",
   "HHGROUPCHECK.SanityNoPlayer": "Les tests de Santé Mentale sont envoyés aux joueurs. Ignorés, sans joueur : {names}",
   "HHGROUPCHECK.Send": "Envoyer",
   "HHGROUPCHECK.StandbyOff": "« {setting} » est désactivé : ces tests seront lancés immédiatement au lieu d'afficher un bouton de jet.",

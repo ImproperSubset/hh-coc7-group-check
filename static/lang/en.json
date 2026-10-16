@@ -4,6 +4,7 @@
   "HHGROUPCHECK.Frequent": "Frequent",
   "HHGROUPCHECK.Investigators": "Investigators",
   "HHGROUPCHECK.MissingCheck": "Skipped, no {check}: {names}",
+  "HHGROUPCHECK.SanReasonLink": "A sanity roll link can't contain , : [ ] { or } in its reason.",
   "HHGROUPCHECK.SanityNoPlayer": "Sanity requests go to players. Skipped, no player: {names}",
   "HHGROUPCHECK.Send": "Send",
   "HHGROUPCHECK.StandbyOff": "\"{setting}\" is off, so these checks roll immediately instead of showing a roll button.",

@@ -4,6 +4,7 @@
   "HHGROUPCHECK.Frequent": "Häufig",
   "HHGROUPCHECK.Investigators": "Investigatoren",
   "HHGROUPCHECK.MissingCheck": "Übersprungen, {check} fehlt: {names}",
+  "HHGROUPCHECK.SanReasonLink": "Der Grund in einem Stabilitäts-Wurflink darf , : [ ] { oder } nicht enthalten.",
   "HHGROUPCHECK.SanityNoPlayer": "Stabilitätsproben gehen an die Spieler. Übersprungen, kein Spieler: {names}",
   "HHGROUPCHECK.Send": "Senden",
   "HHGROUPCHECK.StandbyOff": "„{setting}“ ist aus, daher wird bei diesen Proben sofort gewürfelt, statt eine Würfelschaltfläche anzuzeigen.",

@@ -4,6 +4,7 @@
   "HHGROUPCHECK.Frequent": "Frecuentes",
   "HHGROUPCHECK.Investigators": "Investigadores",
   "HHGROUPCHECK.MissingCheck": "Omitidos, sin {check}: {names}",
+  "HHGROUPCHECK.SanReasonLink": "La causa de un enlace de tirada de Cordura no puede contener , : [ ] { ni }.",
   "HHGROUPCHECK.SanityNoPlayer": "Las tiradas de Cordura se envían a los jugadores. Omitidos, sin jugador: {names}",
   "HHGROUPCHECK.Send": "Enviar",
   "HHGROUPCHECK.StandbyOff": "«{setting}» está desactivado, así que estas tiradas se harán directamente en lugar de mostrar un botón de tirar.",

@@ -4,6 +4,7 @@
   "HHGROUPCHECK.Frequent": "Časté",
   "HHGROUPCHECK.Investigators": "Vyšetřovatelé",
   "HHGROUPCHECK.MissingCheck": "Přeskočeno, chybí {check}: {names}",
+  "HHGROUPCHECK.SanReasonLink": "Důvod v odkazu na hod příčetnosti nesmí obsahovat , : [ ] { ani }.",
   "HHGROUPCHECK.SanityNoPlayer": "Žádosti o příčetnost dostávají hráči. Přeskočeno, bez hráče: {names}",
   "HHGROUPCHECK.Send": "Odeslat",
   "HHGROUPCHECK.StandbyOff": "„{setting}“ je vypnuto, takže se tyto kontroly hodí hned místo zobrazení tlačítka pro hod.",

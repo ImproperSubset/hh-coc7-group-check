@@ -105,6 +105,8 @@ export default class HHGroupCheckDialog extends foundry.applications.api.DialogV
       selected,
       sanity,
       sanitySelected: selected === sanityValue,
+      // Without game.CoC7.sanCheck the reason goes into a roll link, which limits its characters
+      linkMode: typeof game.CoC7?.sanCheck !== 'function',
       difficulty: DIFFICULTY[game.settings.get(SYSTEM_ID, 'defaultCheckDifficulty')] ?? DIFFICULTY.regular,
       difficultyTypes: [
         { key: DIFFICULTY.unknown, val: 'CoC7.RollDifficultyUnknownName' },

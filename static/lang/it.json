@@ -4,6 +4,7 @@
   "HHGROUPCHECK.Frequent": "Frequenti",
   "HHGROUPCHECK.Investigators": "Investigatori",
   "HHGROUPCHECK.MissingCheck": "Saltati, senza {check}: {names}",
+  "HHGROUPCHECK.SanReasonLink": "La causa in un collegamento di tiro di Sanità non può contenere , : [ ] { o }.",
   "HHGROUPCHECK.SanityNoPlayer": "I tiri di Sanità vanno ai giocatori. Saltati, senza giocatore: {names}",
   "HHGROUPCHECK.Send": "Invia",
   "HHGROUPCHECK.StandbyOff": "\"{setting}\" è disattivato, quindi questi tiri verranno effettuati subito invece di mostrare un pulsante per tirare.",

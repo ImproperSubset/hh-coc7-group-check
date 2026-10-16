@@ -4,6 +4,7 @@
   "HHGROUPCHECK.Frequent": "よく使う",
   "HHGROUPCHECK.Investigators": "探索者",
   "HHGROUPCHECK.MissingCheck": "{check}がないためスキップ：{names}",
+  "HHGROUPCHECK.SanReasonLink": "正気度ロールのリンクの原因には , : [ ] { } を使えない。",
   "HHGROUPCHECK.SanityNoPlayer": "正気度ロールの指示はプレイヤーに送る。プレイヤーがいないためスキップ：{names}",
   "HHGROUPCHECK.Send": "送信",
   "HHGROUPCHECK.StandbyOff": "「{setting}」がオフのため､ロールボタンを表示せずにすぐロールする",

@@ -4,6 +4,7 @@
   "HHGROUPCHECK.Frequent": "Frequentes",
   "HHGROUPCHECK.Investigators": "Investigadores",
   "HHGROUPCHECK.MissingCheck": "Ignorados, sem {check}: {names}",
+  "HHGROUPCHECK.SanReasonLink": "O motivo de um link de teste de Sanidade não pode conter , : [ ] { ou }.",
   "HHGROUPCHECK.SanityNoPlayer": "Os testes de Sanidade vão para os jogadores. Ignorados, sem jogador: {names}",
   "HHGROUPCHECK.Send": "Enviar",
   "HHGROUPCHECK.StandbyOff": "\"{setting}\" está desativado, então estes testes serão rolados imediatamente em vez de mostrar um botão de rolagem.",
