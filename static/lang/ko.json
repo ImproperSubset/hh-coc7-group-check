@@ -4,9 +4,12 @@
   "HHGROUPCHECK.Frequent": "자주 사용",
   "HHGROUPCHECK.Investigators": "조사자",
   "HHGROUPCHECK.MissingCheck": "{check} 없음, 건너뜀: {names}",
+  "HHGROUPCHECK.SanityNoPlayer": "이성 판정 요청은 플레이어에게 보냅니다. 플레이어 없음, 건너뜀: {names}",
   "HHGROUPCHECK.Send": "보내기",
   "HHGROUPCHECK.StandbyOff": "\"{setting}\" 설정이 꺼져 있어 롤 버튼을 표시하지 않고 바로 판정합니다.",
   "HHGROUPCHECK.Title": "그룹 판정",
   "SETTINGS.HHGroupCheckFrequent": "그룹 판정: 자주 사용하는 판정",
-  "SETTINGS.HHGroupCheckFrequentHint": "그룹 판정 대화상자에서 이 순서대로 맨 앞에 표시할 판정을 쉼표로 구분해 입력합니다. 첫 번째 항목이 기본으로 선택됩니다. 기능 이름이나 CoC ID(i.skill.spot-hidden), 특성치(근력 또는 str), 운(lck)을 사용할 수 있습니다. CoC ID는 모든 언어에서 작동합니다."
+  "SETTINGS.HHGroupCheckFrequentHint": "그룹 판정 대화상자에서 이 순서대로 맨 앞에 표시할 판정을 쉼표로 구분해 입력합니다. 첫 번째 항목이 기본으로 선택됩니다. 기능 이름이나 CoC ID(i.skill.spot-hidden), 특성치(근력 또는 str), 운(lck), 이성(san)을 사용할 수 있습니다. CoC ID는 모든 언어에서 작동합니다.",
+  "SETTINGS.HHGroupCheckWhisper": "그룹 판정: 요청 귓속말",
+  "SETTINGS.HHGroupCheckWhisperHint": "각 롤 버튼 카드와 이성 판정 요청을 해당 조사자의 플레이어에게만 귓속말로 보냅니다. 굴린 뒤에는 결과가 모두에게 공개됩니다."
 }

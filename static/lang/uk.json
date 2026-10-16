@@ -4,9 +4,12 @@
   "HHGROUPCHECK.Frequent": "Часті",
   "HHGROUPCHECK.Investigators": "Дослідники",
   "HHGROUPCHECK.MissingCheck": "Пропущено, немає «{check}»: {names}",
+  "HHGROUPCHECK.SanityNoPlayer": "Перевірки Глузду надсилаються гравцям. Пропущено, немає гравця: {names}",
   "HHGROUPCHECK.Send": "Надіслати",
   "HHGROUPCHECK.StandbyOff": "«{setting}» вимкнено, тому ці перевірки буде кинуто одразу замість показу кнопки \"кинути\".",
   "HHGROUPCHECK.Title": "Групова перевірка",
   "SETTINGS.HHGroupCheckFrequent": "Групова перевірка: часті перевірки",
-  "SETTINGS.HHGroupCheckFrequentHint": "Перевірки через кому, які показуються першими, у цьому порядку, у вікні групової перевірки. Першу обрано за замовчуванням. Використовуйте назви умінь або CoC ID (i.skill.spot-hidden), характеристики (Сила, СИЛ або str) і Талан (lck). CoC ID працюють будь-якою мовою."
+  "SETTINGS.HHGroupCheckFrequentHint": "Перевірки через кому, які показуються першими, у цьому порядку, у вікні групової перевірки. Першу обрано за замовчуванням. Використовуйте назви умінь або CoC ID (i.skill.spot-hidden), характеристики (Сила, СИЛ або str), Талан (lck) і Глузд (san). CoC ID працюють будь-якою мовою.",
+  "SETTINGS.HHGroupCheckWhisper": "Групова перевірка: шептати запити",
+  "SETTINGS.HHGroupCheckWhisperHint": "Шептати кожну картку з кнопкою \"кинути\" і кожен запит на перевірку Глузду лише гравцям цього дослідника. Після кидка результат бачать усі."
 }

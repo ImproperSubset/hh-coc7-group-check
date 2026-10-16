@@ -68,7 +68,7 @@ export function skillEntries (skills) {
 }
 
 /**
- * The eight characteristics, then Luck
+ * The eight characteristics, then Luck and Sanity
  * @param {Function} localize turns a translation key into text
  * @returns {Array<object>}
  */
@@ -89,7 +89,36 @@ export function characteristicEntries (localize) {
     key: 'lck',
     aliases: [localize('CoC7.Luck'), 'Luck', 'lck']
   })
+  entries.push({
+    type: CHECK_TYPE.SANITY,
+    value: CHECK_TYPE.SANITY + ':san',
+    label: localize('CoC7.Sanity'),
+    group: GROUP.CHARACTERISTIC,
+    key: 'san',
+    aliases: [localize('CoC7.Sanity'), 'Sanity', 'san']
+  })
   return entries
+}
+
+/**
+ * The system's sanity loss roll link, as documented in its links manual
+ * @param {object} sanity
+ * @param {string} sanity.sanMin loss on a success, such as 0 or 1
+ * @param {string} sanity.sanMax loss on a failure, such as 1D6
+ * @param {string} sanity.sanReason what caused the loss
+ * @param {int} sanity.difficulty
+ * @param {int} sanity.poolModifier
+ * @returns {string}
+ */
+export function sanLossLink ({ sanMin, sanMax, sanReason, difficulty, poolModifier }) {
+  // The link splits its options on commas and colons, and brackets or braces end it
+  const clean = text => String(text ?? '').replace(/[,:[\]{}]/g, ' ').replace(/\s+/g, ' ').trim()
+  const options = ['sanMin:' + (clean(sanMin) || '0'), 'sanMax:' + clean(sanMax)]
+  if (clean(sanReason)) {
+    options.push('sanReason:' + clean(sanReason))
+  }
+  options.push('difficulty:' + difficulty, 'poolModifier:' + poolModifier)
+  return '@coc7.sanloss[' + options.join(',') + ']'
 }
 
 /**

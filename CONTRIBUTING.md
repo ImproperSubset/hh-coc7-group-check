@@ -45,7 +45,7 @@ After a build, reload Foundry VTT (F5) to pick up the changes.
 
 The tests run under Node with no Foundry VTT runtime, so they cover the pure logic:
 
-- `tests/check-choices.test.js`: merging skills by CoC ID and name, dropdown grouping and ordering, frequent-check matching (case, accents, CoC IDs, duplicates) and setting parsing.
+- `tests/check-choices.test.js`: merging skills by CoC ID and name, dropdown grouping and ordering, frequent-check matching (case, accents, CoC IDs, duplicates), setting parsing and the sanity loss link.
 - `tests/lang.test.js`: every language listed in `module.json` has the same keys and placeholders as `en.json`.
 
 The dialog itself and the calls into the system are tested in a running Foundry VTT world.
@@ -58,10 +58,12 @@ hh-coc7-group-check/
   constants.js                     IDs, default frequent checks, check types and difficulties
   hooks/init.js                    registers settings and key bindings, exposes the macro API
   hooks/get-scene-control-buttons.js  adds the button to Keeper's tools (v12 and v13+ APIs)
-  setup/register-settings.js       the Frequent checks setting
+  hooks/pre-create-chat-message.js whispers a group check's standby cards to the investigator's players
+  setup/register-settings.js       the Frequent checks and whisper requests settings
   setup/register-keybindings.js    the Shift+G key binding
-  apps/check-choices.js            builds the check list from plain data (no Foundry dependencies)
+  apps/check-choices.js            builds the check list and the sanity loss link from plain data (no Foundry dependencies)
   apps/group-check-dialog.js       the dialog and the code that sends the checks
+  apps/standby-whispers.js         which standby cards to whisper, and to whom
 static/
   module.json                      Foundry VTT manifest
   templates/group-check.hbs        dialog template

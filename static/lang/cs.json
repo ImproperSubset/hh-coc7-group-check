@@ -4,9 +4,12 @@
   "HHGROUPCHECK.Frequent": "Časté",
   "HHGROUPCHECK.Investigators": "Vyšetřovatelé",
   "HHGROUPCHECK.MissingCheck": "Přeskočeno, chybí {check}: {names}",
+  "HHGROUPCHECK.SanityNoPlayer": "Žádosti o příčetnost dostávají hráči. Přeskočeno, bez hráče: {names}",
   "HHGROUPCHECK.Send": "Odeslat",
   "HHGROUPCHECK.StandbyOff": "„{setting}“ je vypnuto, takže se tyto kontroly hodí hned místo zobrazení tlačítka pro hod.",
   "HHGROUPCHECK.Title": "Skupinová kontrola",
   "SETTINGS.HHGroupCheckFrequent": "Skupinová kontrola: časté kontroly",
-  "SETTINGS.HHGroupCheckFrequentHint": "Kontroly oddělené čárkami, které se v tomto pořadí zobrazí jako první v dialogu skupinové kontroly. První je vybrána ve výchozím nastavení. Použijte názvy dovedností nebo CoC ID (i.skill.spot-hidden), vlastnosti (Síla, SIL nebo str) a Štěstí (lck). CoC ID fungují ve všech jazycích."
+  "SETTINGS.HHGroupCheckFrequentHint": "Kontroly oddělené čárkami, které se v tomto pořadí zobrazí jako první v dialogu skupinové kontroly. První je vybrána ve výchozím nastavení. Použijte názvy dovedností nebo CoC ID (i.skill.spot-hidden), vlastnosti (Síla, SIL nebo str), Štěstí (lck) a Příčetnost (san). CoC ID fungují ve všech jazycích.",
+  "SETTINGS.HHGroupCheckWhisper": "Skupinová kontrola: šeptat žádosti",
+  "SETTINGS.HHGroupCheckWhisperHint": "Každou kartu s tlačítkem pro hod a žádost o příčetnost šeptat jen hráčům daného vyšetřovatele. Po hodu je výsledek veřejný."
 }

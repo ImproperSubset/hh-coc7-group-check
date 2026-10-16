@@ -1,5 +1,6 @@
 import { CHECK_TYPE, DIFFICULTY, FOLDER_ID, GROUP, SYSTEM_ID } from '../constants.js'
-import { buildChoices, characteristicEntries, normalize, parseFrequent, skillEntries } from './check-choices.js'
+import { buildChoices, characteristicEntries, normalize, parseFrequent, sanLossLink, skillEntries } from './check-choices.js'
+import { expectStandbyCard } from './standby-whispers.js'
 
 const CHECK_METHOD = {
   [CHECK_TYPE.ATTRIBUTE]: 'attributeCheck',
@@ -35,6 +36,26 @@ export default class HHGroupCheckDialog extends foundry.applications.api.DialogV
   }
 
   /**
+   * Sanity loss values from a targeted creature or NPC, to fill in the Sanity fields
+   * @returns {object} {found, sanMin, sanMax, sanReason}
+   */
+  static sanitySource () {
+    for (const token of game.user.targets) {
+      const actor = token.actor
+      const sanLoss = actor?.system?.special?.sanLoss
+      if (sanLoss?.checkPassed || sanLoss?.checkFailled) {
+        return {
+          found: true,
+          sanMin: sanLoss.checkPassed,
+          sanMax: sanLoss.checkFailled,
+          sanReason: actor.system.infos?.type?.length ? actor.system.infos.type : actor.name
+        }
+      }
+    }
+    return { found: false, sanMin: '0', sanMax: '', sanReason: '' }
+  }
+
+  /**
    * Show the Keeper the group check dialog and send the chosen check
    */
   static async create () {
@@ -59,6 +80,9 @@ export default class HHGroupCheckDialog extends foundry.applications.api.DialogV
       [GROUP.SKILL]: game.i18n.localize('CoC7.Skills'),
       [GROUP.CHARACTERISTIC]: game.i18n.localize('CoC7.Characteristics')
     })
+    const sanityValue = entries.find(e => e.type === CHECK_TYPE.SANITY).value
+    const sanity = HHGroupCheckDialog.sanitySource()
+    const selected = sanity.found ? sanityValue : choices.selected
     const data = {
       actors: candidates.actors.map(a => ({
         uuid: a.uuid,
@@ -67,7 +91,9 @@ export default class HHGroupCheckDialog extends foundry.applications.api.DialogV
       })),
       choices: choices.choices,
       groups: choices.groups,
-      selected: choices.selected,
+      selected,
+      sanity,
+      sanitySelected: selected === sanityValue,
       difficulty: DIFFICULTY[game.settings.get(SYSTEM_ID, 'defaultCheckDifficulty')] ?? DIFFICULTY.regular,
       difficultyTypes: [
         { key: DIFFICULTY.unknown, val: 'CoC7.RollDifficultyUnknownName' },
@@ -87,6 +113,19 @@ export default class HHGroupCheckDialog extends foundry.applications.api.DialogV
       rejectClose: false,
       /* // FoundryVTT V12 */
       content: await (foundry.applications.handlebars?.renderTemplate ?? renderTemplate)('modules/' + FOLDER_ID + '/templates/group-check.hbs', data),
+      render: (event, dialog) => {
+        // Foundry 12 passes the dialog's element, later versions the dialog
+        const element = dialog.element ?? dialog
+        const check = element.querySelector('select[name=check]')
+        const fields = element.querySelector('fieldset.hh-group-check-sanity')
+        // A disabled fieldset skips the required loss field and stays out of the way of other checks
+        const toggle = () => {
+          fields.disabled = check.value !== sanityValue
+          fields.hidden = fields.disabled
+        }
+        check.addEventListener('change', toggle)
+        toggle()
+      },
       ok: {
         callback: (event, button) => {
           const form = button.form.elements
@@ -94,6 +133,9 @@ export default class HHGroupCheckDialog extends foundry.applications.api.DialogV
             entry: entries.find(e => e.value === form.check.value),
             difficulty: Number(form.difficulty.value),
             poolModifier: form.poolModifier.valueAsNumber,
+            sanMin: form.sanMin.value,
+            sanMax: form.sanMax.value,
+            sanReason: form.sanReason.value,
             actorUuids: [...button.form.querySelectorAll('input[name=actors]:checked')].map(i => i.value)
           }
         }
@@ -137,18 +179,33 @@ export default class HHGroupCheckDialog extends foundry.applications.api.DialogV
   }
 
   /**
-   * Start the check for each chosen actor that can make it; player-owned actors get a standby Roll card
+   * Send the chosen check to the ticked actors
+   * @param {object} options the dialog's result
+   * @param {object} options.entry
+   * @param {Array<string>} options.actorUuids
+   * @param {Array<Document>} actors
+   */
+  static async send (options, actors) {
+    const chosen = actors.filter(a => options.actorUuids.includes(a.uuid))
+    if (options.entry.type === CHECK_TYPE.SANITY) {
+      await HHGroupCheckDialog.sendSanity(options, chosen)
+    } else {
+      await HHGroupCheckDialog.sendCheck(options, chosen)
+    }
+  }
+
+  /**
+   * Start a skill, characteristic or Luck check for each actor that can make it; player-owned actors get a standby Roll card
    * @param {object} options
    * @param {object} options.entry
    * @param {int} options.difficulty
    * @param {int} options.poolModifier
-   * @param {Array<string>} options.actorUuids
    * @param {Array<Document>} actors
    */
-  static async send ({ entry, difficulty, poolModifier, actorUuids }, actors) {
+  static async sendCheck ({ entry, difficulty, poolModifier }, actors) {
     const rolls = []
     const missing = []
-    for (const actor of actors.filter(a => actorUuids.includes(a.uuid))) {
+    for (const actor of actors) {
       const target = HHGroupCheckDialog.checkTarget(actor, entry)
       if (typeof target === 'undefined') {
         missing.push(actor.name)
@@ -159,11 +216,51 @@ export default class HHGroupCheckDialog extends foundry.applications.api.DialogV
     if (!game.settings.get(SYSTEM_ID, 'stanbyGMRolls') && rolls.some(r => r.actor.hasPlayerOwner)) {
       ui.notifications.warn(game.i18n.format('HHGROUPCHECK.StandbyOff', { setting: game.i18n.localize('SETTINGS.StandbyGMRolls') }))
     }
+    const whisper = game.settings.get(FOLDER_ID, 'whisperRequests') && game.settings.get(SYSTEM_ID, 'stanbyGMRolls')
     for (const { actor, target } of rolls) {
+      if (whisper && actor.hasPlayerOwner) {
+        expectStandbyCard(actor.uuid, actor.owners.map(u => u.id))
+      }
       await actor[CHECK_METHOD[entry.type]](target, true, { difficulty, poolModifier })
     }
     if (missing.length > 0) {
       ui.notifications.info(game.i18n.format('HHGROUPCHECK.MissingCheck', { check: entry.label, names: missing.join(', ') }))
+    }
+  }
+
+  /**
+   * Ask each actor's players for a sanity check with the system's sanity loss roll link
+   * @param {object} options
+   * @param {int} options.difficulty
+   * @param {int} options.poolModifier
+   * @param {string} options.sanMin
+   * @param {string} options.sanMax
+   * @param {string} options.sanReason
+   * @param {Array<Document>} actors
+   */
+  static async sendSanity ({ difficulty, poolModifier, sanMin, sanMax, sanReason }, actors) {
+    const link = sanLossLink({ sanMin, sanMax, sanReason, difficulty, poolModifier })
+    const whisper = game.settings.get(FOLDER_ID, 'whisperRequests')
+    const messages = []
+    const skipped = []
+    for (const actor of actors) {
+      // The link rolls for whoever clicks it, so an actor without a player has no one to click it
+      const owners = actor.owners
+      if (owners.length === 0) {
+        skipped.push(actor.name)
+      } else {
+        messages.push({
+          speaker: { alias: game.user.name },
+          whisper: whisper ? owners.map(u => u.id) : [],
+          content: game.i18n.format('CoC7.MessageTargetCheckRequested', { name: actor.name, check: link })
+        })
+      }
+    }
+    if (messages.length > 0) {
+      await ChatMessage.create(messages)
+    }
+    if (skipped.length > 0) {
+      ui.notifications.info(game.i18n.format('HHGROUPCHECK.SanityNoPlayer', { names: skipped.join(', ') }))
     }
   }
 

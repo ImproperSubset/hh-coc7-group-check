@@ -26,7 +26,7 @@ game.modules.get('hh-coc7-group-check').api.groupCheck()
 
 The dialog lists each player's assigned character (**User Configuration → Character**) and the actors of any tokens you have selected. When tokens are selected, only their actors start ticked. Choose the check, the difficulty and any bonus or penalty dice, untick anyone who shouldn't roll, and click **Send**.
 
-The check list starts with your frequent checks (see [Settings](#settings)), then every skill that any listed investigator has, then the characteristics and Luck. Skills that share a CoC ID or a name are listed once, even if the investigators were built in different languages.
+The check list starts with your frequent checks (see [Settings](#settings)), then every skill that any listed investigator has, then the characteristics, Luck and Sanity. Skills that share a CoC ID or a name are listed once, even if the investigators were built in different languages.
 
 ### What Send does.
 
@@ -39,9 +39,17 @@ What happens depends on who owns the actor and on the system setting **Standby K
 
 With the setting off, you get a warning when a player's investigator is about to roll.
 
+With the module setting **Group check: whisper requests** on (the default), each Roll card is whispered to the players who own that investigator, so players see only their own requests. When the player clicks **Roll**, the card becomes public and everyone sees the result.
+
 Investigators who don't have the chosen skill are skipped, and a notification names them. The module never adds a skill to a sheet. If your table wants base-chance rolls for them, ask for those separately.
 
-Sanity, opposed and combined rolls are not covered. Use the system's own tools for those.
+Opposed and combined rolls are not covered. Use the system's own tools for those.
+
+### Sanity checks.
+
+Choose **Sanity** in the check list and fill in the sanity loss on a success and on a failure (for example `0` and `1D6`) and, optionally, the reason. To fill these in from a creature or NPC, target its token (**T**) before opening the dialog; Sanity is then selected and its loss and type or name are filled in.
+
+Send posts the system's sanity loss roll link to each ticked investigator's players, whispered when **Group check: whisper requests** is on. The player clicks the link, and the system's sanity check card takes it from there, including the loss on a failure. Investigators with no player are skipped and named in a notification.
 
 The macro's promise resolves once the dialog closes and the checks have started. The chat messages can arrive a moment later.
 
@@ -50,7 +58,7 @@ The macro's promise resolves once the dialog closes and the checks have started.
 **Group check: frequent checks** is a world setting: a comma-separated list of checks to put at the top of the list, in order. The first one is selected when the dialog opens. The default is:
 
 ```
-i.skill.spot-hidden, i.skill.listen, i.skill.library-use, i.skill.psychology, lck
+i.skill.spot-hidden, i.skill.listen, i.skill.library-use, i.skill.psychology, lck, san
 ```
 
 For a modern-era game you might use:
@@ -59,9 +67,11 @@ For a modern-era game you might use:
 i.skill.spot-hidden, i.skill.listen, i.skill.computer-use, i.skill.electronics, lck
 ```
 
-An entry can be a skill's CoC ID (`i.skill.listen`, which works in every language), a skill name as it appears on the sheet (`Science (Biology)`), a characteristic (`Strength`, `STR` or `str`) or Luck (`Luck` or `lck`). Case and accents don't matter, and entries that match nothing are ignored.
+An entry can be a skill's CoC ID (`i.skill.listen`, which works in every language), a skill name as it appears on the sheet (`Science (Biology)`), a characteristic (`Strength`, `STR` or `str`), Luck (`Luck` or `lck`) or Sanity (`Sanity` or `san`). Case and accents don't matter, and entries that match nothing are ignored.
 
 To find a skill's CoC ID, open the skill from a sheet as the Keeper and click the fingerprint button in its title bar. Foundry 12 labels it **ID**; later versions show **System ID (CoC ID)** when you hover over it.
+
+**Group check: whisper requests** is a world setting, on by default. It whispers each Roll card and sanity request to the players of that investigator. Turn it off to post them publicly.
 
 ## Languages.
 

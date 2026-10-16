@@ -34,6 +34,22 @@
     </div>
   </div>
 
+  <fieldset class="hh-group-check-sanity" {{#unless sanitySelected}}disabled hidden{{/unless}}>
+    <legend>{{localize 'CoC7.SanityLossEncounter'}}</legend>
+    <div class="form-group">
+      <label>{{localize 'CoC7.MinSanloss'}}</label>
+      <input type="text" name="sanMin" value="{{sanity.sanMin}}" />
+    </div>
+    <div class="form-group">
+      <label>{{localize 'CoC7.MaxSanloss'}}</label>
+      <input type="text" name="sanMax" value="{{sanity.sanMax}}" required />
+    </div>
+    <div class="form-group">
+      <label>{{localize 'CoC7.SanityLossTypeReason'}}</label>
+      <input type="text" name="sanReason" value="{{sanity.sanReason}}" />
+    </div>
+  </fieldset>
+
   <fieldset class="hh-group-check-actors">
     <legend>{{localize 'HHGROUPCHECK.Investigators'}}</legend>
     {{#each actors as |actor|}}

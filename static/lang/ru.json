@@ -4,9 +4,12 @@
   "HHGROUPCHECK.Frequent": "Частые",
   "HHGROUPCHECK.Investigators": "Исследователи",
   "HHGROUPCHECK.MissingCheck": "Пропущены, нет «{check}»: {names}",
+  "HHGROUPCHECK.SanityNoPlayer": "Проверки рассудка отправляются игрокам. Пропущены, нет игрока: {names}",
   "HHGROUPCHECK.Send": "Отправить",
   "HHGROUPCHECK.StandbyOff": "«{setting}» отключено, поэтому эти проверки будут брошены сразу, без кнопки броска.",
   "HHGROUPCHECK.Title": "Групповая проверка",
   "SETTINGS.HHGroupCheckFrequent": "Групповая проверка: частые проверки",
-  "SETTINGS.HHGroupCheckFrequentHint": "Проверки через запятую, которые показываются первыми, в этом порядке, в окне групповой проверки. Первая выбрана по умолчанию. Используйте названия навыков или CoC ID (i.skill.spot-hidden), характеристики (Сила, СИЛ или str) и Удачу (lck). CoC ID работают на любом языке."
+  "SETTINGS.HHGroupCheckFrequentHint": "Проверки через запятую, которые показываются первыми, в этом порядке, в окне групповой проверки. Первая выбрана по умолчанию. Используйте названия навыков или CoC ID (i.skill.spot-hidden), характеристики (Сила, СИЛ или str), Удачу (lck) и Рассудок (san). CoC ID работают на любом языке.",
+  "SETTINGS.HHGroupCheckWhisper": "Групповая проверка: шептать запросы",
+  "SETTINGS.HHGroupCheckWhisperHint": "Шептать каждую карточку с кнопкой броска и каждый запрос проверки рассудка только игрокам этого исследователя. После броска результат виден всем."
 }

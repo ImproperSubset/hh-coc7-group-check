@@ -4,9 +4,12 @@
   "HHGROUPCHECK.Frequent": "Frequent",
   "HHGROUPCHECK.Investigators": "Investigators",
   "HHGROUPCHECK.MissingCheck": "Skipped, no {check}: {names}",
+  "HHGROUPCHECK.SanityNoPlayer": "Sanity requests go to players. Skipped, no player: {names}",
   "HHGROUPCHECK.Send": "Send",
   "HHGROUPCHECK.StandbyOff": "\"{setting}\" is off, so these checks roll immediately instead of showing a roll button.",
   "HHGROUPCHECK.Title": "Group check",
   "SETTINGS.HHGroupCheckFrequent": "Group check: frequent checks",
-  "SETTINGS.HHGroupCheckFrequentHint": "Comma-separated checks listed first, in this order, in the Group check dialog. The first one is selected by default. Use skill names or CoC IDs (i.skill.spot-hidden), characteristics (Strength, STR or str) and Luck (lck). CoC IDs work in every language."
+  "SETTINGS.HHGroupCheckFrequentHint": "Comma-separated checks listed first, in this order, in the Group check dialog. The first one is selected by default. Use skill names or CoC IDs (i.skill.spot-hidden), characteristics (Strength, STR or str), Luck (lck) and Sanity (san). CoC IDs work in every language.",
+  "SETTINGS.HHGroupCheckWhisper": "Group check: whisper requests",
+  "SETTINGS.HHGroupCheckWhisperHint": "Whisper each Roll card and sanity request only to the players of that investigator. Results are public once rolled."
 }
