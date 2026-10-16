@@ -1,4 +1,4 @@
-<h1 align="center">Group Checks for Call of Cthulhu 7th Edition</h1>
+<h1 align="center">Group Checks for CoC7</h1>
 <p align="center">
   <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fgithub.com%2FImproperSubset%2Fhh-coc7-group-check%2Freleases%2Flatest%2Fdownload%2Fmodule.json&query=%24.compatibility.minimum&label=Foundry%20VTT&suffix=%2B">
   <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fgithub.com%2FImproperSubset%2Fhh-coc7-group-check%2Freleases%2Flatest%2Fdownload%2Fmodule.json&query=%24.compatibility.verified&label=Foundry%20VTT%20verified">
@@ -40,7 +40,7 @@ Pick the check, the difficulty and any bonus or penalty dice once, tick who shou
    https://github.com/ImproperSubset/hh-coc7-group-check/releases/latest/download/module.json
    ```
 
-3. Launch your Call of Cthulhu world and enable **Group Checks for Call of Cthulhu 7th Edition** under **Game Settings → Manage Modules**.
+3. Launch your CoC7 world and enable **Group Checks for CoC7** under **Game Settings → Manage Modules**.
 
 To install a specific version instead of the latest, use that release's `module.json` from the [releases page](https://github.com/ImproperSubset/hh-coc7-group-check/releases).
 
@@ -106,7 +106,7 @@ Sanity rolls, opposed rolls and combined rolls are out of scope; use the system'
 
 ## Settings.
 
-Found under **Game Settings → Configure Settings → Group Checks for Call of Cthulhu 7th Edition**. Settings are world-wide and only the Keeper can change them.
+Found under **Game Settings → Configure Settings → Group Checks for CoC7**. Settings are world-wide and only the Keeper can change them.
 
 ### Frequent checks.
 

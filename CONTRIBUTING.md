@@ -1,4 +1,4 @@
-# Contributing to Group Checks for Call of Cthulhu 7th Edition.
+# Contributing to Group Checks for CoC7.
 
 This guide is for people who want to work on the module itself. If you just want to use it, see the [README](README.md).
 
