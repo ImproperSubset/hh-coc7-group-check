@@ -78,6 +78,36 @@ tests/                             node:test unit tests
 
 Every push to `main` and every pull request runs [`ci.yml`](.github/workflows/ci.yml): actionlint on the workflows, a [REUSE](https://reuse.software/) licensing check, ESLint, the tests and a production build.
 
+### Patched CoC7 system.
+
+The CoC7 system doesn't expose its sanity check card to modules, so with a released system, a Sanity group check falls back to posting roll links. A fork of the system adds the card as `game.CoC7.sanCheck`, and with it the module creates sanity cards directly:
+
+- Fork: [ImproperSubset/CoC7-FoundryVTT](https://github.com/ImproperSubset/CoC7-FoundryVTT), branch `expose-san-check`.
+- The branch is the latest CoC7 release plus one commit adding `game.CoC7.sanCheck` in `coc7/hooks/init.js`. It never tracks the system's unreleased `develop`.
+
+When CoC7 publishes a release, move the commit onto it. With the branch on `8.16` and a new `8.17` release:
+
+```sh
+git remote add upstream https://github.com/Miskatonic-Investigative-Society/CoC7-FoundryVTT.git  # once
+git fetch upstream --tags
+git checkout expose-san-check
+git rebase --onto 8.17 8.16 expose-san-check
+git push --force-with-lease origin expose-san-check
+```
+
+A conflict there means the system changed the `game.CoC7` object in `coc7/hooks/init.js`; re-add the import and the `sanCheck: CoC7SanCheckCard.create` line.
+
+To build the patched system into a Foundry VTT data folder, from the fork's clone:
+
+```sh
+npm install
+npm run init               # choose the Foundry VTT user data folder to build into
+npm run compendiums-build
+npm run manuals-build
+npm run roll-requests-build
+npm run build              # writes <data>/Data/systems/CoC7
+```
+
 ## Releasing.
 
 1. Bump the version everywhere it lives, and commit:
