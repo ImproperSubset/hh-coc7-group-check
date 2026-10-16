@@ -83,7 +83,10 @@ Every push to `main` and every pull request runs [`ci.yml`](.github/workflows/ci
 The CoC7 system doesn't expose its sanity check card to modules, so Sanity group checks need a fork of the system that adds the card as `game.CoC7.sanCheck`. With a released system, the module reports that and sends nothing.
 
 - Fork: [ImproperSubset/CoC7-FoundryVTT](https://github.com/ImproperSubset/CoC7-FoundryVTT), branch `expose-san-check`.
-- The branch is the latest CoC7 release plus one commit adding `game.CoC7.sanCheck` in `coc7/hooks/init.js`. It never tracks the system's unreleased `develop`.
+- The branch is the latest CoC7 release plus two commits: one adding `game.CoC7.sanCheck` in `coc7/hooks/init.js`, and one adding `.github/workflows/fork-release.yml`. It never tracks the system's unreleased `develop`.
+- Install it in Foundry VTT from the manifest URL `https://github.com/ImproperSubset/CoC7-FoundryVTT/releases/latest/download/system.json`.
+
+Fork versions are the CoC7 release they're based on, then `hh` and a build number: `8.16.hh.1`, `8.16.hh.2`, then `8.17.hh.1` after rebasing onto 8.17. Foundry VTT compares versions part by part, numbers as numbers, so each of these counts as newer than the one before and than the CoC7 release itself.
 
 When CoC7 publishes a release, move the commit onto it. With the branch on `8.16` and a new `8.17` release:
 
@@ -96,6 +99,14 @@ git push --force-with-lease origin expose-san-check
 ```
 
 A conflict there means the system changed the `game.CoC7` object in `coc7/hooks/init.js`; re-add the import and the `sanCheck: CoC7SanCheckCard.create` line.
+
+Then publish a fork release from the branch:
+
+```sh
+gh release create 8.17.hh.1 --target expose-san-check --title 8.17.hh.1 --notes "CoC7 8.17 with game.CoC7.sanCheck."
+```
+
+The fork release workflow checks the tag is the branch's `system.json` version plus `.hh.<build>`, builds the system and its compendium packs, sets `version`, `url`, `manifest` and `download` in `system.json` to the fork, and attaches `system.json` and `system.zip` to the release. For a fix without a new CoC7 release, bump the build number (`8.16.hh.2`).
 
 To build the patched system into a Foundry VTT data folder, from the fork's clone:
 
