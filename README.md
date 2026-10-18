@@ -51,7 +51,7 @@ Select the monster's token, along with any investigators' tokens, and open the d
 
 You can also choose **Sanity** from the check list and type the loss (for example `0` and `1D6`) and the reason yourself.
 
-Sanity checks need a CoC7 system that provides `game.CoC7.sanCheck`, which released versions of the system don't yet have (see the [contributing guide](CONTRIBUTING.md#patched-coc7-system)). Without it, Send shows an error and sends nothing.
+Sanity checks need CoC7 8.16.hh.1 or later from [ImproperSubset/CoC7-FoundryVTT](https://github.com/ImproperSubset/CoC7-FoundryVTT), installed from the manifest URL `https://github.com/ImproperSubset/CoC7-FoundryVTT/releases/latest/download/system.json`. With any other CoC7 system, Send shows an error and sends nothing.
 
 Send gives each ticked investigator the system's sanity check card, with the monster as its source so the system's creature rules apply. With **Group check: whisper requests** on, a player-owned investigator's card is whispered to its players and turns public once the SAN roll is made. The reason is passed to the system unchanged, so loss is tracked per reason exactly as when you click the monster's sanity loss on its sheet.
 
