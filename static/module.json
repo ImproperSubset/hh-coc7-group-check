@@ -5,7 +5,7 @@
   "version": "0.2.1",
   "authors": [
     {
-      "name": "Rhett D. Hudson"
+      "name": "ImproperSubset"
     }
   ],
   "url": "https://github.com/ImproperSubset/hh-coc7-group-check",
@@ -29,12 +29,8 @@
       }
     ]
   },
-  "esmodules": [
-    "module.js"
-  ],
-  "styles": [
-    "module.css"
-  ],
+  "esmodules": ["module.js"],
+  "styles": ["module.css"],
   "languages": [
     {
       "lang": "en",

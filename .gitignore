@@ -10,3 +10,5 @@
 .vs/
 .vscode/
 *.log
+
+!/.claude/skills

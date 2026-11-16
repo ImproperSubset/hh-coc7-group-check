@@ -1,0 +1,188 @@
+# Copied to a project's root as prek.toml; activate in each clone with `prek install`.
+#
+# Every hook in this file changes no file and holds no file to our standards,
+# so it is safe on files of any origin, such as a fork's upstream files: a fork
+# installs this file and fork.toml, every other project this file and
+# format.toml. A hook that formats a file, or holds it to a style or policy of
+# ours, goes in format.toml instead.
+#
+# A file is checked in the repository it calls home. Everything under
+# .hh/shared/, and each pinned skill in .claude/skills/hh-*/, comes from
+# hh-rules and is checked there, with the exceptions agreed for it; jscpd's
+# own skills, .claude/skills/dry-refactoring/ and .claude/skills/jscpd/, come
+# from jscpd. A project's copy is replaced on each update, so a fix made in the
+# project would not last.
+# rulesync also rewrites the skills as it generates them, in a form mdformat
+# would change. The format, lint, duplication and disabling-comment checks
+# therefore skip them; gitleaks and reuse, which check the project's own
+# secrets and labels, do not.
+
+[[repos]]
+repo = "https://github.com/gitleaks/gitleaks"
+rev = "v8.30.1"
+hooks = [
+  { id = "gitleaks" },
+  # The identity check: gitleaks again, with rules from the committer's own
+  # ~/.config/hh-rules/identity.toml, which names no one here. It takes the
+  # staged files, so an `exclude` agreed for a project holds file by file.
+  { id = "gitleaks", alias = "identity", name = "No committer identity", entry = ".hh/shared/identity-check.sh", pass_filenames = true },
+]
+
+# Diary decisions and the citations of them, in docs and code comments alike,
+# so it runs on every commit; the script is copied to .hh/shared/ by /hh-rules
+# from the project's tag. hh-drift-carried holds every decision in force to a
+# citation or a CC_NO_DOC line; /hh-rules adds it once it passes.
+[[repos]]
+repo = "local"
+
+[[repos.hooks]]
+id = "hh-drift"
+name = "Check diary decisions and citations"
+language = "system"
+entry = ".hh/shared/hh-drift"
+always_run = true
+pass_filenames = false
+
+[[repos.hooks]]
+id = "hh-drift-carried"
+name = "Every diary decision cited or marked docless"
+language = "system"
+entry = ".hh/shared/hh-drift --carried"
+always_run = true
+pass_filenames = false
+
+# Duplication: jscpd over the whole tracked tree at every commit, all
+# languages, printing its figures and marking as new each clone that HEAD does
+# not have. It never fails a commit, because metrics are reported as numbers
+# and never held to a threshold; the wrap puts each new clone in the plan. Its
+# exclusions are in .jscpd.jsonc, each with its reason, and
+# .hh/shared/jscpd-run strips that file's comments for jscpd, which reads only
+# strict JSON; it is pinned here and installed by prek from PyPI. By default
+# jscpd skips what .gitignore lists and does not follow symlinks.
+[[repos]]
+repo = "local"
+
+[[repos.hooks]]
+id = "jscpd"
+name = "Check for duplicated code"
+language = "python"
+additional_dependencies = ["jscpd==5.4.1"]
+entry = ".hh/shared/jscpd-run --new-since-head ."
+pass_filenames = false
+always_run = true
+verbose = true
+
+
+# The formatters and linters, the licence check, and the checks that refuse
+# comments disabling a check, which every project but a fork installs after
+# base.toml. Each formats a file or holds it to a style or policy of ours, so
+# none runs on a fork's upstream files; fork.toml carries the Markdown ones a fork runs on its own
+# records. The Markdown pins here and in fork.toml are kept equal by hh-rules'
+# own commit check.
+
+# Licensing: every file carries an SPDX license and copyright, which the
+# project's REUSE.toml gives for all of them at once, with license texts in
+# LICENSES/. It runs in one process because the Bash tool's sandbox refuses
+# the socket its worker processes need.
+[[repos]]
+repo = "https://github.com/fsfe/reuse-tool"
+rev = "v6.2.0"
+hooks = [{ id = "reuse", args = ["--no-multiprocessing", "lint"] }]
+
+# Markdown: mdformat writes the form. The plugin pins sit on this row;
+# .mdformat.toml names the extensions, so a missing plugin fails instead of
+# rewriting tables.
+[[repos]]
+repo = "https://github.com/hukkin/mdformat"
+rev = "1.0.0"
+hooks = [{ id = "mdformat", exclude = "^(\\.hh/shared|\\.claude/skills/(hh-[^/]+|dry-refactoring|jscpd))/", additional_dependencies = ["mdformat-gfm==1.0.0", "mdformat-frontmatter==2.1.2"] }]
+
+# Shell: shellcheck with every check on (.shellcheckrc), and shfmt at a
+# four-space indent. Both leave zsh files out: shellcheck cannot parse zsh,
+# and shfmt, in its zsh mode too, deletes comments from zsh and rewrites its
+# conditionals.
+[[repos]]
+repo = "https://github.com/shellcheck-py/shellcheck-py"
+rev = "v0.11.0.1"
+hooks = [{ id = "shellcheck", exclude = "^(\\.hh/shared|\\.claude/skills/(hh-[^/]+|dry-refactoring|jscpd))/", exclude_types = ["zsh"] }]
+
+[[repos]]
+repo = "https://github.com/scop/pre-commit-shfmt"
+rev = "v3.14.1-1"
+hooks = [{ id = "shfmt", exclude = "^(\\.hh/shared|\\.claude/skills/(hh-[^/]+|dry-refactoring|jscpd))/", exclude_types = ["zsh"], args = ["--write", "--indent", "4"] }]
+
+# JSON: Prettier formats .json and .jsonc but accepts comments and duplicate
+# keys, so check-json holds .json files to strict JSON, except those whose
+# tools define them as JSON with comments. Prettier leaves alone the JSON
+# files another tool writes, which would otherwise be reformatted after every
+# write. Prettier never formats Markdown, which is mdformat's.
+[[repos]]
+repo = "local"
+
+[[repos.hooks]]
+id = "prettier-json"
+name = "Format JSON with Prettier"
+language = "node"
+entry = "prettier --write"
+additional_dependencies = ["prettier@3.9.10"]
+files = "\\.jsonc?$"
+exclude = "^(\\.hh/shared|\\.claude/skills/(hh-[^/]+|dry-refactoring|jscpd))/|(^|/)(package-lock\\.json|\\.claude/settings(\\.local)?\\.json)$"
+
+[[repos]]
+repo = "builtin"
+hooks = [{ id = "check-json", exclude = "^(\\.hh/shared|\\.claude/skills/(hh-[^/]+|dry-refactoring|jscpd))/|(^|/)(tsconfig[^/]*|jsconfig[^/]*|\\.vscode/[^/]*|devcontainer)\\.json$" }]
+
+# Disabling comments: a comment that switches a check off in the code is
+# refused for every tool in this file. An exception goes in the tool's own
+# config instead, scoped to its files with its reason beside it, and only with
+# the operator's agreement, so all of them are visible in one place.
+[[repos]]
+repo = "local"
+
+[[repos.hooks]]
+id = "no-disable-shellcheck"
+name = "No shellcheck disabling comments"
+language = "pygrep"
+entry = "#\\s*shellcheck\\s+disable"
+types = ["shell"]
+exclude = "^(\\.hh/shared|\\.claude/skills/(hh-[^/]+|dry-refactoring|jscpd))/"
+
+[[repos.hooks]]
+id = "no-disable-markdownlint"
+name = "No markdownlint disabling comments"
+language = "pygrep"
+entry = "<!--\\s*markdownlint-(disable|enable|capture|restore|configure-file)"
+types = ["markdown"]
+exclude = "^(\\.hh/shared|\\.claude/skills/(hh-[^/]+|dry-refactoring|jscpd))/"
+
+[[repos.hooks]]
+id = "no-disable-prettier"
+name = "No Prettier ignore comments"
+language = "pygrep"
+entry = "//\\s*prettier-ignore"
+files = "\\.jsonc?$"
+exclude = "^(\\.hh/shared|\\.claude/skills/(hh-[^/]+|dry-refactoring|jscpd))/"
+
+[[repos.hooks]]
+id = "no-disable-jscpd"
+name = "No jscpd ignore comments"
+language = "pygrep"
+entry = "jscpd:ignore-(start|end)"
+types = ["text"]
+exclude = "^(\\.hh/shared|\\.claude/skills/(hh-[^/]+|dry-refactoring|jscpd))/"
+
+[[repos.hooks]]
+id = "no-disable-gitleaks"
+name = "No gitleaks allow comments"
+language = "pygrep"
+entry = "gitleaks[:]allow"
+types = ["text"]
+
+# The module's own checks: ESLint with the CoC7 system's config, and the tests,
+# both run as npm scripts on the whole tree.
+[[repos]]
+repo = "local"
+hooks = [
+  { id = "eslint", name = "ESLint", entry = "npm run -s eslint", language = "system", pass_filenames = false, files = "\\.(js|mjs|cjs)$" },
+  { id = "npm-test", name = "Tests", entry = "npm test --silent", language = "system", pass_filenames = false, files = "^(hh-coc7-group-check|scripts|static|tests)/" },
+]

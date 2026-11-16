@@ -1,0 +1,3 @@
+# Copied to a project's root by /hh-rules. Every check is on, the optional
+# ones included: a finding a linter can make is one nobody has to debug.
+enable=all
