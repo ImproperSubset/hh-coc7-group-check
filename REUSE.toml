@@ -37,7 +37,8 @@ SPDX-FileCopyrightText = "2026 ImproperSubset"
 SPDX-License-Identifier = "GPL-3.0-only"
 
 # hh-rules' scripts and their REUSE.toml, copied from hh-rules at the project's tag;
-# the root "**" entry overrides .hh/shared/REUSE.toml, so they are labelled here.
+# the root "**" entry overrides .hh/shared/REUSE.toml, so they are labelled here
+# (diary decision 2026-11-16: hh-rules' copies labelled at the root).
 [[annotations]]
 path = ".hh/shared/**"
 precedence = "override"
