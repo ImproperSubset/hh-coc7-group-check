@@ -1,6 +1,6 @@
-<h1 align="center">Group Checks for CoC7</h1>
+# Group Checks for CoC7
 
-## Overview.
+## Overview
 
 A Keeper tool for the
 [Call of Cthulhu 7th Edition system](https://github.com/Miskatonic-Investigative-Society/CoC7-FoundryVTT)
@@ -11,19 +11,19 @@ the system posts when you roll from the character sheet.
 
 Requires Foundry VTT 14 and CoC7 9.2 or later.
 
-## Installation.
+## Installation
 
 In Foundry VTT's setup screen, open **Add-on Modules**, click **Install Module**
 and paste this manifest URL:
 
-```
+```text
 https://github.com/ImproperSubset/hh-coc7-group-check/releases/latest/download/module.json
 ```
 
 Then enable **Group Checks for CoC7** in your world under **Game Settings →
 Manage Modules**.
 
-## Usage.
+## Usage
 
 Only the Keeper can use the tool. Open it with **Shift+G** (change it under
 **Configure Controls**), with the **Group check** button in **Keeper's tools**,
@@ -46,7 +46,7 @@ then every skill that any listed investigator has, then the characteristics,
 Luck and Sanity. Skills that share a CoC ID or a name are listed once, even if
 the investigators were built in different languages.
 
-### What Send does.
+### What Send does
 
 What happens depends on who owns the actor and on the system setting **Standby
 Keeper rolls**:
@@ -71,7 +71,7 @@ base-chance rolls for them, ask for those separately.
 Opposed and combined rolls are not covered. Use the system's own tools for
 those.
 
-### Sanity checks.
+### Sanity checks
 
 Select the monster's token, along with any investigators' tokens, and open the
 dialog. A selected monster (any actor other than an investigator whose sanity
@@ -99,19 +99,19 @@ monster's sanity loss on its sheet.
 The macro's promise resolves once the dialog closes and the checks have started.
 The chat messages can arrive a moment later.
 
-## Settings.
+## Settings
 
 **Group check: frequent checks** is a world setting: a comma-separated list of
 checks to put at the top of the list, in order. The first one is selected when
 the dialog opens. The default is:
 
-```
+```text
 i.skill.spot-hidden, i.skill.listen, i.skill.library-use, i.skill.psychology, lck, san
 ```
 
 For a modern-era game you might use:
 
-```
+```text
 i.skill.spot-hidden, i.skill.listen, i.skill.computer-use, i.skill.electronics, lck
 ```
 
@@ -129,18 +129,18 @@ you hover over it.
 each Roll card and sanity request to the players of that investigator. Turn it
 off to post them publicly.
 
-## Languages.
+## Languages
 
 The module's own text is machine-translated into the 14 other languages the CoC7
 system supports, using the system's terms. Skill, characteristic and difficulty
 names come from the system itself. Corrections from native speakers are welcome.
 
-## Contributing.
+## Contributing
 
 Bug reports and pull requests are welcome. The
 [contributing guide](CONTRIBUTING.md) covers building, testing and releasing.
 
-## Licenses.
+## Licenses
 
 Copyright © 2026 ImproperSubset. Licensed under the
 [GNU General Public License v3.0 only](LICENSE). Parts of the build scripts, the

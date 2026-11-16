@@ -1,34 +1,34 @@
-# Contributing to Group Checks for CoC7.
+# Contributing to Group Checks for CoC7
 
 This guide is for people who want to work on the module itself. If you just want
 to use it, see the [README](README.md).
 
-## Reporting bugs.
+## Reporting bugs
 
 Open an [issue](https://github.com/ImproperSubset/hh-coc7-group-check/issues)
 with your Foundry VTT and CoC7 system versions, what you did, what you expected
 and what happened instead. Errors from the browser console (F12) help a lot.
 
-## Translations.
+## Translations
 
 Each language is one file in [`static/lang/`](static/lang/). Edit it and open a
 pull request. `npm test` checks that every language file has exactly the same
 keys and `{placeholders}` as `en.json`, so a new key has to be added to all of
 them.
 
-## Development.
+## Development
 
 The build reuses the CoC7 system's webpack scripts, which compile the module and
 write it directly into one or more Foundry VTT user data folders so you can test
 it live.
 
-### Prerequisites.
+### Prerequisites
 
 - Node.js 20.19+, 22.13+ or 24+ (CI uses Node 24). The build alone runs on Node
   20.9 or later; ESLint needs the newer versions.
 - A local Foundry VTT installation with the CoC7 system, for testing
 
-### Setup.
+### Setup
 
 ```sh
 npm ci         # install the exact dependency versions in package-lock.json
@@ -40,7 +40,7 @@ contains `Data/` (on Linux usually `~/.local/share/FoundryVTT`), and saves your
 choices to `fvtt.config.json`, which git ignores. You can register several
 folders, such as two Foundry VTT installs, and build into one or all of them.
 
-### Build and test.
+### Build and test
 
 ```sh
 npm run build   # production build into <user data>/Data/modules/hh-coc7-group-check
@@ -56,7 +56,7 @@ npm test        # run the unit tests with node:test
 
 After a build, reload Foundry VTT (F5) to pick up the changes.
 
-### Tests.
+### Tests
 
 The tests run under Node with no Foundry VTT runtime, so they cover the pure
 logic:
@@ -70,9 +70,9 @@ logic:
 The dialog itself and the calls into the system are tested in a running Foundry
 VTT world (diary decision 2026-11-16: the dialog tested in a running world).
 
-### Project layout.
+### Project layout
 
-```
+```text
 hh-coc7-group-check/
   module.js                        entry point: registers the hooks
   constants.js                     IDs, default frequent checks, check types and difficulties
@@ -94,14 +94,14 @@ scripts/, webpack.config.js        build scripts adapted from the CoC7 system
 tests/                             node:test unit tests
 ```
 
-### Continuous integration.
+### Continuous integration
 
 Every push to `main` and every pull request runs
 [`ci.yml`](.github/workflows/ci.yml): actionlint on the workflows, a
 [REUSE](https://reuse.software/) licensing check, ESLint, the tests and a
 production build.
 
-## Releasing.
+## Releasing
 
 1. Bump the version everywhere it lives, and commit:
 
