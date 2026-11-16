@@ -1,10 +1,5 @@
 # Plan
 
-- **Try the module on CoC7 9.2.hh.1.** `static/module.json` verifies CoC7
-  8.16.hh.1, and 9.2 renamed fields the module may read. Done when a group check
-  of each kind (skill, characteristic, Luck, Sanity) runs in a world on
-  9.2.hh.1, and `module.json`'s verified version says so.
-
 - **Turn on the base checks.** `markdownlint-cli2` was left out of `prek.toml`
   at setup with 26 findings in `CONTRIBUTING.md` and `README.md`: 20 MD026
   (headings ending in a period), 4 MD040 (fenced code without a language), 1

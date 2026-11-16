@@ -9,7 +9,7 @@ investigators for the same skill, characteristic or Luck check at once. Each
 investigator's check appears in the chat log as its own message, the same one
 the system posts when you roll from the character sheet.
 
-Requires Foundry VTT 12, 13 or 14 and CoC7 8.16 or later.
+Requires Foundry VTT 14 and CoC7 9.2 or later.
 
 ## Installation.
 
@@ -83,7 +83,7 @@ other check and it rolls along with the investigators.
 You can also choose **Sanity** from the check list and type the loss (for
 example `0` and `1D6`) and the reason yourself.
 
-Sanity checks need CoC7 8.16.hh.1 or later from
+Sanity checks need CoC7 9.2.hh.1 or later from
 [ImproperSubset/CoC7-FoundryVTT](https://github.com/ImproperSubset/CoC7-FoundryVTT),
 installed from the manifest URL
 `https://github.com/ImproperSubset/CoC7-FoundryVTT/releases/latest/download/system.json`.
@@ -122,8 +122,8 @@ characteristic (`Strength`, `STR` or `str`), Luck (`Luck` or `lck`) or Sanity
 nothing are ignored.
 
 To find a skill's CoC ID, open the skill from a sheet as the Keeper and click
-the fingerprint button in its title bar. Foundry 12 labels it **ID**; later
-versions show **System ID (CoC ID)** when you hover over it.
+the fingerprint button in its title bar, which shows **System ID (CoC ID)** when
+you hover over it.
 
 **Group check: whisper requests** is a world setting, on by default. It whispers
 each Roll card and sanity request to the players of that investigator. Turn it

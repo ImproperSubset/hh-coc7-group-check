@@ -38,7 +38,7 @@ npm run init   # interactive: choose the Foundry VTT user data folder(s) to buil
 `npm run init` asks for your Foundry VTT **user data** folder, the one that
 contains `Data/` (on Linux usually `~/.local/share/FoundryVTT`), and saves your
 choices to `fvtt.config.json`, which git ignores. You can register several
-folders, such as a v13 and a v14 install, and build into one or all of them.
+folders, such as two Foundry VTT installs, and build into one or all of them.
 
 ### Build and test.
 
@@ -77,7 +77,7 @@ hh-coc7-group-check/
   module.js                        entry point: registers the hooks
   constants.js                     IDs, default frequent checks, check types and difficulties
   hooks/init.js                    registers settings and key bindings, exposes the macro API
-  hooks/get-scene-control-buttons.js  adds the button to Keeper's tools (v12 and v13+ APIs)
+  hooks/get-scene-control-buttons.js  adds the button to Keeper's tools
   hooks/pre-create-chat-message.js whispers a group check's standby and sanity cards to the investigator's players
   hooks/update-chat-message.js     makes a whispered sanity card public once its SAN roll is made
   setup/register-settings.js       the Frequent checks and whisper requests settings

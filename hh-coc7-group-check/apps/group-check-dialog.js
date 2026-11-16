@@ -114,8 +114,7 @@ export default class HHGroupCheckDialog extends foundry.applications.api.DialogV
       ]
     }
     const options = await this.prompt({
-      // CoC7 8.16 styles the roll dialog by 'coc7 dialog', and CoC7 9 by 'coc7-sheet'
-      classes: ['coc7', 'dialog', 'coc7-sheet', 'bonus-selection', 'hh-group-check'],
+      classes: ['coc7-sheet', 'bonus-selection', 'hh-group-check'],
       window: {
         title: game.i18n.localize('HHGROUPCHECK.Title')
       },
@@ -123,11 +122,9 @@ export default class HHGroupCheckDialog extends foundry.applications.api.DialogV
         width: 480
       },
       rejectClose: false,
-      /* // FoundryVTT V12 */
-      content: await (foundry.applications.handlebars?.renderTemplate ?? renderTemplate)('modules/' + FOLDER_ID + '/templates/group-check.hbs', data),
+      content: await foundry.applications.handlebars.renderTemplate('modules/' + FOLDER_ID + '/templates/group-check.hbs', data),
       render: (event, dialog) => {
-        // Foundry 12 passes the dialog's element, later versions the dialog
-        const element = dialog.element ?? dialog
+        const element = dialog.element
         const check = element.querySelector('select[name=check]')
         const fields = element.querySelector('fieldset.hh-group-check-sanity')
         const monsters = element.querySelectorAll('input[name=actors][data-monster]')

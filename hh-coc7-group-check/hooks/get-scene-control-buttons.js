@@ -15,14 +15,7 @@ export default function (controls) {
     title: 'HHGROUPCHECK.Title',
     onChange: () => HHGroupCheckDialog.create()
   }
-  if (Array.isArray(controls)) {
-    /* // FoundryVTT v12 */
-    const menu = controls.find(c => c.name === 'coc7menu')
-    if (Array.isArray(menu?.tools)) {
-      tool.onClick = tool.onChange
-      menu.tools.push(tool)
-    }
-  } else if (typeof controls.coc7menu?.tools !== 'undefined') {
+  if (typeof controls.coc7menu?.tools !== 'undefined') {
     controls.coc7menu.tools['hh-group-check'] = tool
   }
 }

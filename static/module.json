@@ -14,7 +14,7 @@
   "license": "LICENSE",
   "readme": "README.md",
   "compatibility": {
-    "minimum": "12",
+    "minimum": "14",
     "verified": "14"
   },
   "relationships": {
@@ -23,8 +23,8 @@
         "id": "CoC7",
         "type": "system",
         "compatibility": {
-          "minimum": "8.16",
-          "verified": "8.16.hh.1"
+          "minimum": "9.2",
+          "verified": "9.2.hh.1"
         }
       }
     ]
