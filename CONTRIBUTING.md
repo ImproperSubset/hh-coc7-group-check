@@ -68,7 +68,7 @@ logic:
   and placeholders as `en.json`.
 
 The dialog itself and the calls into the system are tested in a running Foundry
-VTT world.
+VTT world (diary decision 2026-11-16: the dialog tested in a running world).
 
 ### Project layout.
 
