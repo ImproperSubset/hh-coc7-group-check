@@ -1,52 +1,64 @@
 <div class="flexcol">
   <div class="form-group">
-    <label>{{localize 'CoC7.Check'}}</label>
-    <select name="check">
-      {{selectOptions choices selected=selected groups=groups}}
-    </select>
+    <label class="flex-single">{{localize 'CoC7.Check'}}</label>
+    <div class="form-value">
+      <select name="check">
+        {{selectOptions choices selected=selected groups=groups}}
+      </select>
+    </div>
   </div>
 
   <div class="form-group">
-    <label>{{localize 'CoC7.RollDifficulty'}}</label>
-    <select name="difficulty">
-      {{selectOptions difficultyTypes selected=difficulty localize=true valueAttr='key' labelAttr='val'}}
-    </select>
+    <label class="flex-single">{{localize 'CoC7.RollDifficulty'}}</label>
+    <div class="form-value">
+      <select name="difficulty">
+        {{selectOptions difficultyTypes selected=difficulty localize=true valueAttr='key' labelAttr='val'}}
+      </select>
+    </div>
   </div>
 
   <div class="form-group bonus-penalty-selector">
-    <label>{{localize 'CoC7.BonusDice'}}</label>
-    <div class="bonus-penalty-box">
-      <div class="flexrow bonus-penalty-labels">
-        <span class="double-penalty"><i class="fa-solid fa-dice-d10"></i><i class="fa-solid fa-dice-d10"></i></span>
-        <span class="penalty"><i class="fa-solid fa-dice-d10"></i></span>
-        <span class="normal-roll"><i class="fa-solid fa-dice-d10"></i></span>
-        <span class="bonus"><i class="fa-solid fa-dice-d10"></i></span>
-        <span class="double-bonus"><i class="fa-solid fa-dice-d10"></i><i class="fa-solid fa-dice-d10"></i></span>
+    <label class="flex-single">{{localize 'CoC7.BonusDice'}}</label>
+    <div class="form-value">
+      <div class="bonus-penalty-box">
+        <div class="flexrow bonus-penalty-labels">
+          <span class="double-penalty"><i class="fa-solid fa-dice-d10"></i><i class="fa-solid fa-dice-d10"></i></span>
+          <span class="penalty"><i class="fa-solid fa-dice-d10"></i></span>
+          <span class="normal-roll"><i class="fa-solid fa-dice-d10"></i></span>
+          <span class="bonus"><i class="fa-solid fa-dice-d10"></i></span>
+          <span class="double-bonus"><i class="fa-solid fa-dice-d10"></i><i class="fa-solid fa-dice-d10"></i></span>
+        </div>
+        <div class="flexrow bonus-penalty-labels">
+          <span class="double-penalty">-2</span>
+          <span class="penalty">-1</span>
+          <span class="normal-roll">0</span>
+          <span class="bonus">+1</span>
+          <span class="double-bonus">+2</span>
+        </div>
+        <input type="range" name="poolModifier" min="-2" max="2" value="0">
       </div>
-      <div class="flexrow bonus-penalty-labels">
-        <span class="double-penalty">-2</span>
-        <span class="penalty">-1</span>
-        <span class="normal-roll">0</span>
-        <span class="bonus">+1</span>
-        <span class="double-bonus">+2</span>
-      </div>
-      <input type="range" name="poolModifier" min="-2" max="2" value="0">
     </div>
   </div>
 
   <fieldset class="hh-group-check-sanity" {{#unless sanitySelected}}disabled hidden{{/unless}}>
     <legend>{{localize 'CoC7.SanityLossEncounter'}}</legend>
     <div class="form-group">
-      <label>{{localize 'CoC7.MinSanloss'}}</label>
-      <input type="text" name="sanMin" value="{{sanity.sanMin}}" />
+      <label class="flex-single">{{localize 'CoC7.MinSanloss'}}</label>
+      <div class="form-value">
+        <input type="text" name="sanMin" value="{{sanity.sanMin}}" />
+      </div>
     </div>
     <div class="form-group">
-      <label>{{localize 'CoC7.MaxSanloss'}}</label>
-      <input type="text" name="sanMax" value="{{sanity.sanMax}}" required />
+      <label class="flex-single">{{localize 'CoC7.MaxSanloss'}}</label>
+      <div class="form-value">
+        <input type="text" name="sanMax" value="{{sanity.sanMax}}" required />
+      </div>
     </div>
     <div class="form-group">
-      <label>{{localize 'CoC7.SanityLossTypeReason'}}</label>
-      <input type="text" name="sanReason" value="{{sanity.sanReason}}" />
+      <label class="flex-single">{{localize 'CoC7.SanityLossTypeReason'}}</label>
+      <div class="form-value">
+        <input type="text" name="sanReason" value="{{sanity.sanReason}}" />
+      </div>
     </div>
   </fieldset>
 

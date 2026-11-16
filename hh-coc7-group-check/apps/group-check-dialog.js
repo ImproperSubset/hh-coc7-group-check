@@ -114,7 +114,8 @@ export default class HHGroupCheckDialog extends foundry.applications.api.DialogV
       ]
     }
     const options = await this.prompt({
-      classes: ['coc7', 'dialog', 'bonus-selection', 'hh-group-check'],
+      // CoC7 8.16 styles the roll dialog by 'coc7 dialog', and CoC7 9 by 'coc7-sheet'
+      classes: ['coc7', 'dialog', 'coc7-sheet', 'bonus-selection', 'hh-group-check'],
       window: {
         title: game.i18n.localize('HHGROUPCHECK.Title')
       },
