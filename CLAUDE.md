@@ -3,7 +3,8 @@
 Foundry VTT module `hh-coc7-group-check`: a Keeper dialog (Keeper's tools
 button, Shift+G, or `game.modules.get('hh-coc7-group-check').api.groupCheck()`)
 that sends one skill, characteristic, Luck or Sanity check to several
-investigators. GPL-3.0-only.
+investigators. GPL-3.0-only, the CoC7 system's license, since the module copies
+its code (diary decision 2026-11-16: the module's license).
 
 - `README.md` describes what the module does for users.
 - `CONTRIBUTING.md` covers building, tests, project layout, CI and releasing.
@@ -45,7 +46,9 @@ investigators. GPL-3.0-only.
   it; keep local notes in `CLAUDE.local.md`, which `.git/info/exclude` keeps out
   of git.
 - The commit checks in `prek.toml` run `npm run eslint`, `npm test` and
-  `reuse lint`, among hh-rules' checks. CI also runs actionlint and a build.
+  `reuse lint`, among hh-rules' checks; no rules pack, since the module keeps
+  the system's ESLint config and `node:test` (diary decision 2026-11-16: no
+  rules pack). CI also runs actionlint and a build.
 - Tests are `tests/**/*.test.js`.
 - Commit as `ImproperSubset <1039371+ImproperSubset@users.noreply.github.com>`;
   GitHub rejects pushes containing the user's private email.
