@@ -5,9 +5,10 @@
 A Keeper tool for the
 [Call of Cthulhu 7th Edition system](https://github.com/Miskatonic-Investigative-Society/CoC7-FoundryVTT)
 on [Foundry Virtual Tabletop](https://foundryvtt.com). It asks several
-investigators for the same skill, characteristic or Luck check at once. Each
-investigator's check appears in the chat log as its own message, the same one
-the system posts when you roll from the character sheet.
+investigators for the same skill, characteristic or Luck check at once, and asks
+every player for a Luck improvement roll. Each investigator's check appears in
+the chat log as its own message, the same one the system posts when you roll
+from the character sheet.
 
 Requires Foundry VTT 14 and CoC7 9.2 or later.
 
@@ -81,7 +82,8 @@ In a Sanity check the monster is left out of the list of who rolls. Pick any
 other check and it rolls along with the investigators.
 
 You can also choose **Sanity** from the check list and type the loss (for
-example `0` and `1D6`) and the reason yourself.
+example `0` and `1D6`) and the reason yourself. Send refuses an empty loss on a
+failure, or a loss that isn't a dice formula, and points at the field.
 
 Sanity checks need CoC7 9.2.hh.1 or later from
 [ImproperSubset/CoC7-FoundryVTT](https://github.com/ImproperSubset/CoC7-FoundryVTT),
@@ -98,6 +100,29 @@ monster's sanity loss on its sheet.
 
 The macro's promise resolves once the dialog closes and the checks have started.
 The chat messages can arrive a moment later.
+
+### Luck improvement
+
+The **Recover Luck Points** button in **Keeper's tools** asks every player for
+the Luck improvement roll of the development phase (diary decision 2026-11-16:
+Luck improvement through the system's Luck check card). There is no dialog: each
+player's assigned character (**User Configuration → Character**) gets the
+system's Luck check card, at Regular difficulty, whispered to its players like
+any other group check (diary decision 2026-11-16: Luck improvement for assigned
+characters only). Investigators no player has as their character are left out.
+
+The card can be rolled once, and offers no push, bonus dice or Luck spending
+afterwards. Once it is rolled, the system applies it as a Luck improvement roll,
+exactly as the investigator sheet's **Recover Luck Points** does: a roll above
+current Luck adds 1D10, the system's Pulp rule for Luck development rolls
+applies, and the system posts the result. The card reads as a Luck check, so a
+roll that raises Luck shows as a failure. The Keeper must be logged in when the
+player rolls.
+
+Luck improvement needs CoC7 9.2.hh.4 or later from
+[ImproperSubset/CoC7-FoundryVTT](https://github.com/ImproperSubset/CoC7-FoundryVTT),
+from the same manifest URL as for Sanity checks. With any other CoC7 system, the
+button shows an error and sends nothing.
 
 ## Settings
 

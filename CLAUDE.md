@@ -16,9 +16,10 @@ its code (diary decision 2026-11-16: the module's license).
   releases are cut from.
 - **CoC7 system fork**: `ImproperSubset/CoC7-FoundryVTT`, local clone
   `~/git/CoC7-FoundryVTT` (remote `origin` is the fork, `upstream` is upstream).
-  The module needs its `game.CoC7.sanCheck`. How the fork is versioned and
-  released is in that clone's `.hh/docs/releases.md`; read it before changing
-  the fork.
+  The module needs its `game.CoC7.sanCheck` and `game.CoC7.developLuck` (diary
+  decision 2026-11-16: Luck gain applied by the system). How the fork is
+  versioned and released is in that clone's `.hh/docs/releases.md`; read it
+  before changing the fork.
 - **Upstream CoC7**: `Miskatonic-Investigative-Society/CoC7-FoundryVTT`. Read
   its source to learn how the system works. Never push to it, open pull
   requests, issues or comments on it, or fork it again without the user's
@@ -30,8 +31,9 @@ its code (diary decision 2026-11-16: the module's license).
   `SETTINGS.*`) and terminology, and check its source before assuming how it
   behaves, citing `file:line`.
 - Support Foundry VTT 14 and CoC7 9.2 or later, with Sanity checks on the fork's
-  9.2.hh.1 or later (diary decision 2026-11-16: narrow version support). Code
-  kept only for an older Foundry release is marked with the system's
+  9.2.hh.1 or later and Luck improvement on 9.2.hh.4 or later (diary decision
+  2026-11-16: narrow version support with Luck improvement). Code kept only for
+  an older Foundry release is marked with the system's
   `/* // FoundryVTT V<release> */` convention.
 - Ship every user-facing string in all 15 languages the system supports, using
   each language's terms from the system's own language files.
