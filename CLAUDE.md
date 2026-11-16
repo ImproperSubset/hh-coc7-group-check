@@ -46,7 +46,9 @@ its code (diary decision 2026-11-16: the module's license).
   actually happens. If it can't be confirmed, say it's unconfirmed.
 - This repo is public. Server, infrastructure and personal details never go in
   it; keep local notes in `CLAUDE.local.md`, which `.git/info/exclude` keeps out
-  of git.
+  of git. Such a detail found in unpushed commits, diary entries included, is
+  removed by rebuilding those commits before the push (diary decision
+  2026-11-16: unpushed details removed from history).
 - The commit checks in `prek.toml` run `npm run eslint`, `npm test` and
   `reuse lint`, among hh-rules' checks; no rules pack, since the module keeps
   the system's ESLint config and `node:test` (diary decision 2026-11-16: no
