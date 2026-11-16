@@ -1,8 +1,10 @@
 {
   "HHGROUPCHECK.ErrorNoActors": "Nessun giocatore ha un personaggio assegnato e nessuna Pedina è selezionata.",
+  "HHGROUPCHECK.ErrorNoCharacters": "Nessun giocatore ha un personaggio assegnato.",
   "HHGROUPCHECK.ErrorNotKeeper": "Solo il Custode può inviare tiri di gruppo.",
   "HHGROUPCHECK.Frequent": "Frequenti",
   "HHGROUPCHECK.Investigators": "Investigatori",
+  "HHGROUPCHECK.LuckNeedsSystem": "Il recupero dei Punti Fortuna richiede un sistema CoC7 che fornisca game.CoC7.developLuck. Non è stato inviato nulla.",
   "HHGROUPCHECK.MissingCheck": "Saltati, senza {check}: {names}",
   "HHGROUPCHECK.SanityNeedsSystem": "I tiri di Sanità richiedono un sistema CoC7 che fornisca game.CoC7.sanCheck. Non è stato inviato nulla.",
   "HHGROUPCHECK.Send": "Invia",

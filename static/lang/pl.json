@@ -1,8 +1,10 @@
 {
   "HHGROUPCHECK.ErrorNoActors": "Żaden gracz nie ma przypisanej postaci i nie zaznaczono żadnego tokenu.",
+  "HHGROUPCHECK.ErrorNoCharacters": "Żaden gracz nie ma przypisanej postaci.",
   "HHGROUPCHECK.ErrorNotKeeper": "Tylko Strażnik może wysyłać testy grupowe.",
   "HHGROUPCHECK.Frequent": "Częste",
   "HHGROUPCHECK.Investigators": "Badacze",
+  "HHGROUPCHECK.LuckNeedsSystem": "Odzyskiwanie Punktów Szczęścia wymaga systemu CoC7, który udostępnia game.CoC7.developLuck. Nic nie wysłano.",
   "HHGROUPCHECK.MissingCheck": "Pominięto, brak {check}: {names}",
   "HHGROUPCHECK.SanityNeedsSystem": "Testy Poczytalności wymagają systemu CoC7, który udostępnia game.CoC7.sanCheck. Nic nie wysłano.",
   "HHGROUPCHECK.Send": "Wyślij",

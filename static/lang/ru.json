@@ -1,8 +1,10 @@
 {
   "HHGROUPCHECK.ErrorNoActors": "Ни у одного игрока нет назначенного персонажа, и не выбраны токены.",
+  "HHGROUPCHECK.ErrorNoCharacters": "Ни у одного игрока нет назначенного персонажа.",
   "HHGROUPCHECK.ErrorNotKeeper": "Только Хранитель может отправлять групповые проверки.",
   "HHGROUPCHECK.Frequent": "Частые",
   "HHGROUPCHECK.Investigators": "Исследователи",
+  "HHGROUPCHECK.LuckNeedsSystem": "Для восстановления очков удачи нужна система CoC7 с game.CoC7.developLuck. Ничего не отправлено.",
   "HHGROUPCHECK.MissingCheck": "Пропущены, нет «{check}»: {names}",
   "HHGROUPCHECK.SanityNeedsSystem": "Для проверок рассудка нужна система CoC7 с game.CoC7.sanCheck. Ничего не отправлено.",
   "HHGROUPCHECK.Send": "Отправить",

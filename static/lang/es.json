@@ -1,8 +1,10 @@
 {
   "HHGROUPCHECK.ErrorNoActors": "Ningún jugador tiene un personaje asignado y no se han seleccionado fichas.",
+  "HHGROUPCHECK.ErrorNoCharacters": "Ningún jugador tiene un personaje asignado.",
   "HHGROUPCHECK.ErrorNotKeeper": "Solo el Guardián puede enviar tiradas de grupo.",
   "HHGROUPCHECK.Frequent": "Frecuentes",
   "HHGROUPCHECK.Investigators": "Investigadores",
+  "HHGROUPCHECK.LuckNeedsSystem": "Recuperar puntos de Suerte necesita un sistema CoC7 que ofrezca game.CoC7.developLuck. No se ha enviado nada.",
   "HHGROUPCHECK.MissingCheck": "Omitidos, sin {check}: {names}",
   "HHGROUPCHECK.SanityNeedsSystem": "Las tiradas de Cordura necesitan un sistema CoC7 que ofrezca game.CoC7.sanCheck. No se ha enviado nada.",
   "HHGROUPCHECK.Send": "Enviar",

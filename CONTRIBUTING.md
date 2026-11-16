@@ -77,14 +77,16 @@ hh-coc7-group-check/
   module.js                        entry point: registers the hooks
   constants.js                     IDs, default frequent checks, check types and difficulties
   hooks/init.js                    registers settings and key bindings, exposes the macro API
-  hooks/get-scene-control-buttons.js  adds the button to Keeper's tools
-  hooks/pre-create-chat-message.js whispers a group check's standby and sanity cards to the investigator's players
-  hooks/update-chat-message.js     makes a whispered sanity card public once its SAN roll is made
+  hooks/get-scene-control-buttons.js  adds the group check and Luck improvement buttons to Keeper's tools
+  hooks/create-chat-message.js     applies a Luck improvement card that was rolled as it was created
+  hooks/pre-create-chat-message.js whispers a group check's standby and sanity cards to the investigator's players; marks and closes Luck improvement cards
+  hooks/update-chat-message.js     applies a rolled Luck improvement card; makes a whispered sanity card public once its SAN roll is made
   setup/register-settings.js       the Frequent checks and whisper requests settings
   setup/register-keybindings.js    the Shift+G key binding
   apps/check-choices.js            builds the check list from plain data (no Foundry dependencies)
-  apps/group-check-dialog.js       the dialog and the code that sends the checks
-  apps/card-whispers.js            which standby and sanity cards to whisper, and to whom
+  apps/group-check-dialog.js       the dialog and the code that sends the checks and Luck improvement rolls
+  apps/expected-cards.js           the cards the module has asked the system for, and what to change on each
+  apps/luck-improvement.js         hands a rolled Luck improvement card to the system
 static/
   module.json                      Foundry VTT manifest
   templates/group-check.hbs        dialog template

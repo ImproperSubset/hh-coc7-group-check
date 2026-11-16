@@ -1,8 +1,10 @@
 {
   "HHGROUPCHECK.ErrorNoActors": "Žádný hráč nemá přiřazenou postavu a nejsou vybrány žádné tokeny.",
+  "HHGROUPCHECK.ErrorNoCharacters": "Žádný hráč nemá přiřazenou postavu.",
   "HHGROUPCHECK.ErrorNotKeeper": "Skupinové kontroly může posílat pouze Archivář.",
   "HHGROUPCHECK.Frequent": "Časté",
   "HHGROUPCHECK.Investigators": "Vyšetřovatelé",
+  "HHGROUPCHECK.LuckNeedsSystem": "Obnovení bodů štěstí vyžaduje systém CoC7, který poskytuje game.CoC7.developLuck. Nic nebylo odesláno.",
   "HHGROUPCHECK.MissingCheck": "Přeskočeno, chybí {check}: {names}",
   "HHGROUPCHECK.SanityNeedsSystem": "Kontroly příčetnosti vyžadují systém CoC7, který poskytuje game.CoC7.sanCheck. Nic nebylo odesláno.",
   "HHGROUPCHECK.Send": "Odeslat",

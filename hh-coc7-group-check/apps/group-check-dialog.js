@@ -1,6 +1,6 @@
 import { CHECK_TYPE, DIFFICULTY, FOLDER_ID, GROUP, SYSTEM_ID } from '../constants.js'
 import { buildChoices, characteristicEntries, normalize, parseFrequent, skillEntries } from './check-choices.js'
-import { expectCard } from './card-whispers.js'
+import { expectCard } from './expected-cards.js'
 
 const CHECK_METHOD = {
   [CHECK_TYPE.ATTRIBUTE]: 'attributeCheck',
@@ -28,17 +28,26 @@ export default class HHGroupCheckDialog extends foundry.applications.api.DialogV
   }
 
   /**
-   * Actors that can be offered: players' assigned characters plus the actors of selected tokens.
-   * The first selected monster also supplies the Sanity values.
-   * @returns {object} {actors, selected, monsters, sanity}
+   * Each player's assigned character, once each, by UUID
+   * @returns {Map<string, Document>}
    */
-  static candidateActors () {
+  static playerCharacters () {
     const actors = new Map()
     for (const user of game.users.players) {
       if (user.character) {
         actors.set(user.character.uuid, user.character)
       }
     }
+    return actors
+  }
+
+  /**
+   * Actors that can be offered: players' assigned characters plus the actors of selected tokens.
+   * The first selected monster also supplies the Sanity values.
+   * @returns {object} {actors, selected, monsters, sanity}
+   */
+  static candidateActors () {
+    const actors = HHGroupCheckDialog.playerCharacters()
     const selected = new Set()
     const monsters = new Set()
     let sanity
@@ -223,9 +232,10 @@ export default class HHGroupCheckDialog extends foundry.applications.api.DialogV
    * @param {object} options.entry
    * @param {int} options.difficulty
    * @param {int} options.poolModifier
+   * @param {boolean} [options.luckImprovement] the cards are Luck improvement rolls
    * @param {Array<Document>} actors
    */
-  static async sendCheck ({ entry, difficulty, poolModifier }, actors) {
+  static async sendCheck ({ entry, difficulty, poolModifier, luckImprovement = false }, actors) {
     const rolls = []
     const missing = []
     for (const actor of actors) {
@@ -241,14 +251,40 @@ export default class HHGroupCheckDialog extends foundry.applications.api.DialogV
     }
     const whisper = game.settings.get(FOLDER_ID, 'whisperRequests') && game.settings.get(SYSTEM_ID, 'stanbyGMRolls')
     for (const { actor, target } of rolls) {
+      const changes = { luckImprovement }
       if (whisper && actor.hasPlayerOwner) {
-        expectCard('CoC7Check', actor.uuid, actor.owners.map(u => u.id))
+        changes.whisper = actor.owners.map(u => u.id)
+      }
+      if (changes.whisper || luckImprovement) {
+        expectCard('CoC7Check', actor.uuid, changes)
       }
       await actor[CHECK_METHOD[entry.type]](target, true, { difficulty, poolModifier })
     }
     if (missing.length > 0) {
       ui.notifications.info(game.i18n.format('HHGROUPCHECK.MissingCheck', { check: entry.label, names: missing.join(', ') }))
     }
+  }
+
+  /**
+   * Send each player's assigned character a Luck check card whose roll, once made, is applied as a Luck improvement roll.
+   * Needs a CoC7 system that provides game.CoC7.developLuck.
+   */
+  static async sendLuckImprovement () {
+    if (!game.user.isGM) {
+      ui.notifications.warn('HHGROUPCHECK.ErrorNotKeeper', { localize: true })
+      return
+    }
+    if (typeof game.CoC7?.developLuck !== 'function') {
+      ui.notifications.error('HHGROUPCHECK.LuckNeedsSystem', { localize: true })
+      return
+    }
+    const actors = [...HHGroupCheckDialog.playerCharacters().values()]
+    if (actors.length === 0) {
+      ui.notifications.warn('HHGROUPCHECK.ErrorNoCharacters', { localize: true })
+      return
+    }
+    const entry = characteristicEntries(key => game.i18n.localize(key)).find(e => e.type === CHECK_TYPE.ATTRIBUTE && e.key === 'lck')
+    await HHGroupCheckDialog.sendCheck({ entry, difficulty: DIFFICULTY.regular, poolModifier: 0, luckImprovement: true }, actors)
   }
 
   /**
@@ -271,7 +307,7 @@ export default class HHGroupCheckDialog extends foundry.applications.api.DialogV
     const whisper = game.settings.get(FOLDER_ID, 'whisperRequests')
     for (const actor of actors) {
       if (whisper && actor.hasPlayerOwner) {
-        expectCard('CoC7SanCheckCard', actor.uuid, actor.owners.map(u => u.id))
+        expectCard('CoC7SanCheckCard', actor.uuid, { whisper: actor.owners.map(u => u.id) })
       }
       await game.CoC7.sanCheck(actor.uuid, { sanMin, sanMax, sanReason, sourceUuid, difficulty, poolModifier })
     }

@@ -1,8 +1,10 @@
 {
   "HHGROUPCHECK.ErrorNoActors": "조사자가 할당된 플레이어가 없고 선택된 토큰도 없습니다.",
+  "HHGROUPCHECK.ErrorNoCharacters": "조사자가 할당된 플레이어가 없습니다.",
   "HHGROUPCHECK.ErrorNotKeeper": "수호자만 그룹 판정을 보낼 수 있습니다.",
   "HHGROUPCHECK.Frequent": "자주 사용",
   "HHGROUPCHECK.Investigators": "조사자",
+  "HHGROUPCHECK.LuckNeedsSystem": "행운 점수 회복에는 game.CoC7.developLuck를 제공하는 CoC7 시스템이 필요합니다. 아무것도 보내지 않았습니다.",
   "HHGROUPCHECK.MissingCheck": "{check} 없음, 건너뜀: {names}",
   "HHGROUPCHECK.SanityNeedsSystem": "이성 판정에는 game.CoC7.sanCheck를 제공하는 CoC7 시스템이 필요합니다. 아무것도 보내지 않았습니다.",
   "HHGROUPCHECK.Send": "보내기",

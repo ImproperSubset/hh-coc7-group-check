@@ -1,8 +1,10 @@
 {
   "HHGROUPCHECK.ErrorNoActors": "No player has an assigned character and no tokens are selected.",
+  "HHGROUPCHECK.ErrorNoCharacters": "No player has an assigned character.",
   "HHGROUPCHECK.ErrorNotKeeper": "Only the Keeper can send group checks.",
   "HHGROUPCHECK.Frequent": "Frequent",
   "HHGROUPCHECK.Investigators": "Investigators",
+  "HHGROUPCHECK.LuckNeedsSystem": "Recovering Luck points needs a CoC7 system that provides game.CoC7.developLuck. Nothing was sent.",
   "HHGROUPCHECK.MissingCheck": "Skipped, no {check}: {names}",
   "HHGROUPCHECK.SanityNeedsSystem": "Sanity checks need a CoC7 system that provides game.CoC7.sanCheck. Nothing was sent.",
   "HHGROUPCHECK.Send": "Send",

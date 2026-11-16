@@ -1,8 +1,10 @@
 {
   "HHGROUPCHECK.ErrorNoActors": "Ingen spelare har en tilldelad rollperson och inga markörer är valda.",
+  "HHGROUPCHECK.ErrorNoCharacters": "Ingen spelare har en tilldelad rollperson.",
   "HHGROUPCHECK.ErrorNotKeeper": "Endast Spelledaren kan skicka gruppslag.",
   "HHGROUPCHECK.Frequent": "Vanliga",
   "HHGROUPCHECK.Investigators": "Utredare",
+  "HHGROUPCHECK.LuckNeedsSystem": "Att återhämta turpoäng kräver ett CoC7-system som har game.CoC7.developLuck. Inget skickades.",
   "HHGROUPCHECK.MissingCheck": "Hoppade över, saknar {check}: {names}",
   "HHGROUPCHECK.SanityNeedsSystem": "Slag mot Sinneshälsa kräver ett CoC7-system som har game.CoC7.sanCheck. Inget skickades.",
   "HHGROUPCHECK.Send": "Skicka",

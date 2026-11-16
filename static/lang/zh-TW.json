@@ -1,8 +1,10 @@
 {
   "HHGROUPCHECK.ErrorNoActors": "沒有玩家被指派角色，也沒有選擇任何 Token。",
+  "HHGROUPCHECK.ErrorNoCharacters": "沒有玩家被指派角色。",
   "HHGROUPCHECK.ErrorNotKeeper": "只有 KP 可以發送團體檢定。",
   "HHGROUPCHECK.Frequent": "常用",
   "HHGROUPCHECK.Investigators": "調查員",
+  "HHGROUPCHECK.LuckNeedsSystem": "恢復幸運點數需要提供 game.CoC7.developLuck 的 CoC7 系統。未傳送任何內容。",
   "HHGROUPCHECK.MissingCheck": "已略過，沒有{check}：{names}",
   "HHGROUPCHECK.SanityNeedsSystem": "心智檢定需要提供 game.CoC7.sanCheck 的 CoC7 系統。未傳送任何內容。",
   "HHGROUPCHECK.Send": "發送",

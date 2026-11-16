@@ -1,8 +1,10 @@
 {
   "HHGROUPCHECK.ErrorNoActors": "Aucun joueur n'a de personnage assigné et aucun token n'est sélectionné.",
+  "HHGROUPCHECK.ErrorNoCharacters": "Aucun joueur n'a de personnage assigné.",
   "HHGROUPCHECK.ErrorNotKeeper": "Seul le Gardien peut envoyer des tests de groupe.",
   "HHGROUPCHECK.Frequent": "Fréquents",
   "HHGROUPCHECK.Investigators": "Investigateurs",
+  "HHGROUPCHECK.LuckNeedsSystem": "Récupérer de la Chance nécessite un système CoC7 qui fournit game.CoC7.developLuck. Rien n'a été envoyé.",
   "HHGROUPCHECK.MissingCheck": "Ignorés, pas de {check} : {names}",
   "HHGROUPCHECK.SanityNeedsSystem": "Les tests de Santé Mentale nécessitent un système CoC7 qui fournit game.CoC7.sanCheck. Rien n'a été envoyé.",
   "HHGROUPCHECK.Send": "Envoyer",

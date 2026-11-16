@@ -1,8 +1,10 @@
 {
   "HHGROUPCHECK.ErrorNoActors": "Жоден гравець не має призначеного персонажа, і не обрано жодного токена.",
+  "HHGROUPCHECK.ErrorNoCharacters": "Жоден гравець не має призначеного персонажа.",
   "HHGROUPCHECK.ErrorNotKeeper": "Лише Вартовий може надсилати групові перевірки.",
   "HHGROUPCHECK.Frequent": "Часті",
   "HHGROUPCHECK.Investigators": "Дослідники",
+  "HHGROUPCHECK.LuckNeedsSystem": "Відновлення Очок Талану потребує системи CoC7, що надає game.CoC7.developLuck. Нічого не надіслано.",
   "HHGROUPCHECK.MissingCheck": "Пропущено, немає «{check}»: {names}",
   "HHGROUPCHECK.SanityNeedsSystem": "Перевірки Глузду потребують системи CoC7, що надає game.CoC7.sanCheck. Нічого не надіслано.",
   "HHGROUPCHECK.Send": "Надіслати",

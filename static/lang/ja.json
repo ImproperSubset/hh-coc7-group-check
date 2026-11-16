@@ -1,8 +1,10 @@
 {
   "HHGROUPCHECK.ErrorNoActors": "キャラクターを割り当てられたプレイヤーがおらず､トークンも選択されていない",
+  "HHGROUPCHECK.ErrorNoCharacters": "キャラクターを割り当てられたプレイヤーがいない",
   "HHGROUPCHECK.ErrorNotKeeper": "グループロールを送信できるのはキーパーのみ",
   "HHGROUPCHECK.Frequent": "よく使う",
   "HHGROUPCHECK.Investigators": "探索者",
+  "HHGROUPCHECK.LuckNeedsSystem": "幸運の回復には game.CoC7.developLuck を提供する CoC7 システムが必要。何も送信していない。",
   "HHGROUPCHECK.MissingCheck": "{check}がないためスキップ：{names}",
   "HHGROUPCHECK.SanityNeedsSystem": "正気度ロールには game.CoC7.sanCheck を提供する CoC7 システムが必要。何も送信していない。",
   "HHGROUPCHECK.Send": "送信",

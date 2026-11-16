@@ -1,8 +1,10 @@
 {
   "HHGROUPCHECK.ErrorNoActors": "Kein Spieler hat einen zugewiesenen Charakter und es sind keine Tokens ausgewählt.",
+  "HHGROUPCHECK.ErrorNoCharacters": "Kein Spieler hat einen zugewiesenen Charakter.",
   "HHGROUPCHECK.ErrorNotKeeper": "Nur der Spielleiter kann Gruppenproben senden.",
   "HHGROUPCHECK.Frequent": "Häufig",
   "HHGROUPCHECK.Investigators": "Investigatoren",
+  "HHGROUPCHECK.LuckNeedsSystem": "Glückspunkte wiederherstellen braucht ein CoC7-System, das game.CoC7.developLuck bereitstellt. Es wurde nichts gesendet.",
   "HHGROUPCHECK.MissingCheck": "Übersprungen, {check} fehlt: {names}",
   "HHGROUPCHECK.SanityNeedsSystem": "Stabilitätsproben brauchen ein CoC7-System, das game.CoC7.sanCheck bereitstellt. Es wurde nichts gesendet.",
   "HHGROUPCHECK.Send": "Senden",

@@ -1,8 +1,10 @@
 {
   "HHGROUPCHECK.ErrorNoActors": "没有玩家分配了角色，也没有选中任何token。",
+  "HHGROUPCHECK.ErrorNoCharacters": "没有玩家分配了角色。",
   "HHGROUPCHECK.ErrorNotKeeper": "只有KP可以发送团体检定。",
   "HHGROUPCHECK.Frequent": "常用",
   "HHGROUPCHECK.Investigators": "调查员",
+  "HHGROUPCHECK.LuckNeedsSystem": "恢复幸运值需要提供 game.CoC7.developLuck 的 CoC7 系统。未发送任何内容。",
   "HHGROUPCHECK.MissingCheck": "已跳过，没有{check}：{names}",
   "HHGROUPCHECK.SanityNeedsSystem": "理智检定需要提供 game.CoC7.sanCheck 的 CoC7 系统。未发送任何内容。",
   "HHGROUPCHECK.Send": "发送",

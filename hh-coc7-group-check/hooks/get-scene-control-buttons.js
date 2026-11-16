@@ -1,7 +1,7 @@
 import HHGroupCheckDialog from '../apps/group-check-dialog.js'
 
 /**
- * Get Scene Control Buttons, adds the group check tool to the system's Keeper's tools
+ * Get Scene Control Buttons, adds the group check and Luck improvement tools to the system's Keeper's tools
  * @param {SceneControl} controls
  */
 export default function (controls) {
@@ -17,5 +17,12 @@ export default function (controls) {
   }
   if (typeof controls.coc7menu?.tools !== 'undefined') {
     controls.coc7menu.tools['hh-group-check'] = tool
+    controls.coc7menu.tools['hh-luck-improvement'] = {
+      button: true,
+      icon: 'fa-solid fa-clover',
+      name: 'hh-luck-improvement',
+      title: 'CoC7.RecoverLuckPoints',
+      onChange: () => HHGroupCheckDialog.sendLuckImprovement()
+    }
   }
 }
