@@ -30,8 +30,8 @@ its code (diary decision 2026-11-16: the module's license).
   `SETTINGS.*`) and terminology, and check its source before assuming how it
   behaves, citing `file:line`.
 - Support Foundry VTT 14 and CoC7 9.2 or later, with Sanity checks on the fork's
-  9.2.hh.1 or later (diary decision 2026-11-16: supported versions). Code kept
-  only for an older Foundry release is marked with the system's
+  9.2.hh.1 or later (diary decision 2026-11-16: narrow version support). Code
+  kept only for an older Foundry release is marked with the system's
   `/* // FoundryVTT V<release> */` convention.
 - Ship every user-facing string in all 15 languages the system supports, using
   each language's terms from the system's own language files.
