@@ -89,13 +89,18 @@ repo = "https://github.com/fsfe/reuse-tool"
 rev = "v6.2.0"
 hooks = [{ id = "reuse", args = ["--no-multiprocessing", "lint"] }]
 
-# Markdown: mdformat writes the form. The plugin pins sit on this row;
-# .mdformat.toml names the extensions, so a missing plugin fails instead of
-# rewriting tables.
+# Markdown: mdformat writes the form, markdownlint judges what a formatter
+# cannot. The plugin pins sit on this row; .mdformat.toml names the
+# extensions, so a missing plugin fails instead of rewriting tables.
 [[repos]]
 repo = "https://github.com/hukkin/mdformat"
 rev = "1.0.0"
 hooks = [{ id = "mdformat", exclude = "^(\\.hh/shared|\\.claude/skills/(hh-[^/]+|dry-refactoring|jscpd))/", additional_dependencies = ["mdformat-gfm==1.0.0", "mdformat-frontmatter==2.1.2"] }]
+
+[[repos]]
+repo = "https://github.com/DavidAnson/markdownlint-cli2"
+rev = "v0.23.3"
+hooks = [{ id = "markdownlint-cli2", exclude = "^(\\.hh/shared|\\.claude/skills/(hh-[^/]+|dry-refactoring|jscpd))/" }]
 
 # Shell: shellcheck with every check on (.shellcheckrc), and shfmt at a
 # four-space indent. Both leave zsh files out: shellcheck cannot parse zsh,

@@ -49,4 +49,4 @@ Publications LLC, which are used under
 We are expressly prohibited from charging you to use or access this content.
 This module is not published, endorsed, or specifically approved by Chaosium
 Inc. For more information about Chaosium Inc's products, please visit
-www.chaosium.com.
+[www.chaosium.com](https://www.chaosium.com).
