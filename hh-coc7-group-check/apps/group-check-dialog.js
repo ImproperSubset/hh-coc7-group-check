@@ -128,6 +128,12 @@ export default class HHGroupCheckDialog extends foundry.applications.api.DialogV
         const check = element.querySelector('select[name=check]')
         const fields = element.querySelector('fieldset.hh-group-check-sanity')
         const monsters = element.querySelectorAll('input[name=actors][data-monster]')
+        // An empty minimum loss means none; an empty maximum is caught by its required attribute.
+        for (const input of fields.querySelectorAll('input[name=sanMin], input[name=sanMax]')) {
+          const validate = () => input.setCustomValidity(input.value === '' || Roll.validate(input.value) ? '' : game.i18n.format('CoC7.ErrorInvalidFormula', { value: input.value }))
+          input.addEventListener('input', validate)
+          validate()
+        }
         // A disabled fieldset skips the required loss field and stays out of the way of other checks.
         // Monsters cause the sanity loss, so they sit out a Sanity check and roll any other check.
         const toggle = () => {
@@ -269,6 +275,21 @@ export default class HHGroupCheckDialog extends foundry.applications.api.DialogV
       }
       await game.CoC7.sanCheck(actor.uuid, { sanMin, sanMax, sanReason, sourceUuid, difficulty, poolModifier })
     }
+  }
+
+  /**
+   * Refuse to send while the form is invalid.
+   * Foundry runs the button's action without a native submit, so the browser never checks the form itself.
+   * @param {HTMLElement} target
+   * @param {Event} event
+   * @returns {Promise<HHGroupCheckDialog>}
+   */
+  async _onSubmit (target, event) {
+    if (target?.form && !target.form.reportValidity()) {
+      event.preventDefault()
+      return this
+    }
+    return super._onSubmit(target, event)
   }
 
   /**
