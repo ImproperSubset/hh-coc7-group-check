@@ -9,6 +9,12 @@ its code (diary decision 2026-11-16: the module's license).
 - `README.md` describes what the module does for users.
 - `CONTRIBUTING.md` covers building, tests, project layout, CI and releasing.
   Read it before changing code or releasing.
+- Passages about particular files are in this project's path-scoped rules, which
+  load when a session reads one of those files:
+  `.claude/rules/hh-coc7-group-check-localization.md`, the user-facing strings
+  in all languages; `.claude/rules/hh-coc7-group-check-checks.md`, the commit
+  checks, CI and where the tests live (diary decision 2026-11-19: file-tied
+  passages in path-scoped rules).
 
 ## Repositories
 
@@ -35,9 +41,6 @@ its code (diary decision 2026-11-16: the module's license).
   2026-11-16: narrow version support with Luck improvement). Code kept only for
   an older Foundry release is marked with the system's
   `/* // FoundryVTT V<release> */` convention.
-- Ship every user-facing string in all 15 languages the system supports, using
-  each language's terms from the system's own language files.
-  `tests/lang.test.js` checks keys and placeholders.
 - Docs and comments state what is true now, with no mention of removed features;
   a comment is only for a constraint that stops a wrong edit. Spell it
   "license". Keep side discussions out of docs.
@@ -51,11 +54,6 @@ its code (diary decision 2026-11-16: the module's license).
   of git. Such a detail found in unpushed commits, diary entries included, is
   removed by rebuilding those commits before the push (diary decision
   2026-11-16: unpushed details removed from history).
-- The commit checks in `prek.toml` run `npm run eslint`, `npm test` and
-  `reuse lint`, among hh-rules' checks; no rules pack, since the module keeps
-  the system's ESLint config and `node:test` (diary decision 2026-11-16: no
-  rules pack). CI also runs actionlint and a build.
-- Tests are `tests/**/*.test.js`.
 - Commit as `ImproperSubset <1039371+ImproperSubset@users.noreply.github.com>`;
   GitHub rejects pushes containing the user's private email.
 
