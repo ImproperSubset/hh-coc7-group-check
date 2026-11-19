@@ -1,17 +1,5 @@
 # Plan
 
-- **Wrap finding**: the operator's rule "Don't ask for releases. I'm the one who
-  decides when a release gets made." has no diary decision and no doc; it is
-  held only in Claude's auto memory (`releases-decided-by-operator.md`). The
-  wrap could not record the decision, because the commit check refuses one no
-  doc carries and the doc line is the operator's to agree. Proposed: a diary
-  decision "the operator decides releases" and, in the same commit, a line in
-  `CLAUDE.md` under "How to work here" saying releases of this module and of the
-  fork are made only when the operator says so, and requests to other projects
-  ask for the change and its tests, never a release; a draft of the same rule
-  for hh-rules sent to hh-advise, since it applies to every project; and the
-  memory note removed once the line is in.
-
 - **Wrap finding**: the `CLAUDE.md` line citing "Luck gain applied by the
   system" says the module needs `game.CoC7.developLuck` but not why it does not
   copy the system's rules or read the card's dice itself. Proposed: add "rather

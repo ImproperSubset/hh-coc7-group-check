@@ -47,6 +47,10 @@ its code (diary decision 2026-11-16: the module's license).
 - Docs name the versions the module needs and where to get them, never what is
   inside a dependency or how it is built, branched or released. The fork's own
   maintenance lives in its clone's `CLAUDE.md` and `.hh/docs/`.
+- An issue or request to another project, such as the fork, asks for the change
+  and its tests, never for a release; it may say which version the module will
+  require once a release carries the change (diary decision 2026-11-19: requests
+  to other projects never ask for a release).
 - Before warning about a risk, trace it to the conditions under which it
   actually happens. If it can't be confirmed, say it's unconfirmed.
 - This repo is public. Server, infrastructure and personal details never go in
