@@ -1,3 +1,8 @@
 # Copied to a project's root by /hh-rules. Every check is on, the optional
 # ones included: a finding a linter can make is one nobody has to debug.
 enable=all
+# Follow the files a script sources, found beside the script, so a variable a
+# sourced library sets is not reported unassigned. This reads more and
+# suppresses nothing.
+external-sources=true
+source-path=SCRIPTDIR
