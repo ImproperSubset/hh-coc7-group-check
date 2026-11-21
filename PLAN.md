@@ -1,5 +1,11 @@
 # Plan
 
+- **Loose end**: whether a new Claude Code worktree gets `fvtt.config.json` from
+  `.worktreeinclude` was not tried, since the checkout has that file only once
+  the v0.28.0 update's branch is merged. Owed to the operator. Settled by the
+  first session started after the merge finding `fvtt.config.json` in its
+  worktree without copying it.
+
 - **Wrap finding**: the `CLAUDE.md` line citing "Luck gain applied by the
   system" says the module needs `game.CoC7.developLuck` but not why it does not
   copy the system's rules or read the card's dice itself. Proposed: add "rather
