@@ -364,12 +364,15 @@ How Claude and the operator work together on this project.
   appears on a command line or in output.
 - A command that needs a secret reads it from its file or variable rather than
   from a pasted value.
+- A command that uses a secret the sandbox masks runs sandboxed: outside the
+  sandbox it reads the real value, and the secret enters the session (diary
+  decision 2026-11-21: secrets masked by the sandbox, the gh login excepted).
 - The credential files a session has no use for are denied to it, not masked: a
   `permissions.deny` list in the project's `.claude/settings.json`, and the same
-  list in the user settings, refuses Claude's file tools, and a Bash command
-  that names one, `~/.ssh`, `~/.aws/credentials`, `~/.gnupg`, `~/.netrc` and
-  `~/.claude/.credentials.json` (diary decision 2026-11-20: credential deny
-  rules in project and user settings).
+  list in the user settings, refuses a read of `~/.ssh`, `~/.aws/credentials`,
+  `~/.gnupg`, `~/.netrc` and `~/.claude/.credentials.json` by Claude's tools,
+  and a Bash command that names one. It does not refuse writing to them (diary
+  decision 2026-11-20: credential deny rules in project and user settings).
 - A secret a session can read unmasked, found in any file, variable or log, is
   raised with the operator at once, with its location and what uses it, and
   settled with them: retired if nothing uses it, otherwise blocked or masked in
@@ -416,16 +419,11 @@ How Claude and the operator work together on this project.
   public, the history included, for secrets and infrastructure details the hooks
   do not know, such as a secret in a format gitleaks lacks or a server not in
   the operator's patterns (diary decision 2026-11-15: secrets and infrastructure
-  reviewed at publishing). A hook holds the session to that read: it stops a
-  push to a public repository, and a `gh` command that makes a repository
-  public, writes everything the command would make public to one file, and lets
-  the command through once the session has read every line of that file with the
-  Read tool, itself and not through a subagent (diary decision 2026-11-20: the
-  read before a public push checked by a hook). Projects are private unless the
-  operator decides otherwise, and their releases are installed with the
-  operator's login, such as `gh release download` onto the operator's own
-  server, from which a tool that cannot log in, like Foundry, installs (diary
-  decision 2026-11-05: publishing raised with the operator).
+  reviewed at publishing). Projects are private unless the operator decides
+  otherwise, and their releases are installed with the operator's login, such as
+  `gh release download` onto the operator's own server, from which a tool that
+  cannot log in, like Foundry, installs (diary decision 2026-11-05: publishing
+  raised with the operator).
 - A release needs the operator's go-ahead, as a push does, and supervising does
   not extend to one. A session may say that work can't be tried until a release.
   It asks about making one once, at the wrap, and does not list it among what is
