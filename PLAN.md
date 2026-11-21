@@ -1,14 +1,5 @@
 # Plan
 
-- **Migrate to hh-rules v0.28.0**: the next work to start. From the note's "A
-  new worktree" step: `npm run build` and `npm run watch` read the git-ignored
-  `fvtt.config.json` (`scripts/webpack-config.js:36-44`, written by
-  `npm run init`), which a new worktree lacks. Add `.worktreeinclude` at the
-  root listing `fvtt.config.json`, and commit it. It is a regular file, not a
-  link, so `CLAUDE.md` needs no `cp -P` line. Checked by: the file's one line
-  matches `git check-ignore fvtt.config.json`, and a new Claude Code worktree
-  has the file.
-
 - **Wrap finding**: the `CLAUDE.md` line citing "Luck gain applied by the
   system" says the module needs `game.CoC7.developLuck` but not why it does not
   copy the system's rules or read the card's dice itself. Proposed: add "rather
