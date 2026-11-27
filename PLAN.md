@@ -21,12 +21,10 @@
   release" and settle it in a server world on 9.2.hh.4, or accept a pass in
   14.369.
 
-- **Migrate to hh-rules v0.30.0**, the next work to start. In `prek.toml`,
-  replace the whole comment above the jscpd hook, from the line that opens
-  `# Duplication: jscpd over the whole tracked tree` down to the `[[repos]]`
-  line above the hook, with the base's words at v0.30.0, read with
-  `git -C ~/git/hh-rules show v0.30.0:prek/base.toml`. Checked by the comment
-  matching the base's word for word, and the commit checks passing.
+- **Migrate to hh-rules v0.31.0**, the next work to start. Run `/hh-push-down`
+  once on this project's `CLAUDE.md` and rules and bring the operator its
+  findings; it applies only what the operator agrees. Checked by an answer on
+  each finding.
 
 - **Review the existing docs.** Read `CLAUDE.md`, `README.md`, `CONTRIBUTING.md`
   and `LICENSING.md` as a set against the `principles` rule: lines wrong or
