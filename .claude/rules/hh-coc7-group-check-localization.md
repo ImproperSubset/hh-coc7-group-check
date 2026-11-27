@@ -2,6 +2,8 @@
 paths:
   - "static/lang/*.json"
   - "tests/lang.test.js"
+  - "hh-coc7-group-check/**/*.js"
+  - "static/templates/*.hbs"
 ---
 
 # Localization
