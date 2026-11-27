@@ -12,9 +12,11 @@ its code (diary decision 2026-11-16: the module's license).
 - Passages about particular files are in this project's path-scoped rules, which
   load when a session reads one of those files:
   `.claude/rules/hh-coc7-group-check-localization.md`, the user-facing strings
-  in all languages; `.claude/rules/hh-coc7-group-check-checks.md`, the commit
-  checks, CI and where the tests live (diary decision 2026-11-19: file-tied
-  passages in path-scoped rules).
+  in all languages, which loads on the module's code and templates too, where
+  strings are written (diary decision 2026-11-27: the localization rule loaded
+  on code and templates); `.claude/rules/hh-coc7-group-check-checks.md`, the
+  commit checks, CI and where the tests live (diary decision 2026-11-19:
+  file-tied passages in path-scoped rules).
 
 ## Repositories
 

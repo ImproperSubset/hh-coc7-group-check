@@ -21,11 +21,6 @@
   release" and settle it in a server world on 9.2.hh.4, or accept a pass in
   14.369.
 
-- **Migrate to hh-rules v0.31.0**, the next work to start. Run `/hh-push-down`
-  once on this project's `CLAUDE.md` and rules and bring the operator its
-  findings; it applies only what the operator agrees. Checked by an answer on
-  each finding.
-
 - **Review the existing docs.** Read `CLAUDE.md`, `README.md`, `CONTRIBUTING.md`
   and `LICENSING.md` as a set against the `principles` rule: lines wrong or
   stale against the code, the plan or the diary; lines restating the code;
