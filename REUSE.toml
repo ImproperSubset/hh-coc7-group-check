@@ -31,7 +31,7 @@ SPDX-License-Identifier = "MIT"
 
 # The project's own rules.
 [[annotations]]
-path = ".claude/rules/coc7-group-check-*.md"
+path = ".claude/rules/hh-coc7-group-check-*.md"
 precedence = "override"
 SPDX-FileCopyrightText = "2026 ImproperSubset"
 SPDX-License-Identifier = "GPL-3.0-only"
